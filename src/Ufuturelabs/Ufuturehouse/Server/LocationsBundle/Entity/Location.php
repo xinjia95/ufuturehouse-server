@@ -33,7 +33,7 @@ class Location
      * @var Province
      *
      * @ORM\ManyToOne(targetEntity="Province")
-     * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="province_id", referencedColumnName="id", nullable=false)
      */
     private $province;
 
