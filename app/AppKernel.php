@@ -16,6 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Ufuturelabs\Ufuturehouse\Server\BackendBundle\BackendBundle(),
+            new Ufuturelabs\Ufuturehouse\Server\FrontendBundle\FrontendBundle(),
+            new Ufuturelabs\Ufuturehouse\Server\PeopleBundle\PeopleBundle(),
+            new Ufuturelabs\Ufuturehouse\Server\HousingBundle\HousingBundle(),
+            new Ufuturelabs\Ufuturehouse\Server\LocationsBundle\LocationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,4 @@
+services:
+#    housing.example:
+#        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,3 @@
+housing_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: HousingBundle:Default:index }

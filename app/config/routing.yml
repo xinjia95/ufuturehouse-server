@@ -1,0 +1,20 @@
+locations:
+    resource: "@LocationsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+housing:
+    resource: "@HousingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+people:
+    resource: "@PeopleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+frontend:
+    resource: "@FrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+backend:
+    resource: "@BackendBundle/Resources/config/routing.yml"
+    prefix:   /
+
