@@ -59,7 +59,7 @@ class Zone
     }
 
     /**
-     * @return mixed
+     * @return Location
      */
     public function getLocation()
     {
@@ -67,7 +67,7 @@ class Zone
     }
 
     /**
-     * @param mixed $location
+     * @param Location $location
      */
     public function setLocation($location)
     {
