@@ -150,7 +150,7 @@ class Residence extends Housing
     /**
      * @var float Precio de las plazas de garaje por separado de la vivienda
      *
-     * @ORM\Column(name="parking_spaces_price", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="parking_spaces_price", type="float", precision=10, scale=2, nullable=true)
      */
     private $parkingSpacesPrice;
 

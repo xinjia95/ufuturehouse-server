@@ -17,11 +17,11 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
- *      "flat"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Falt",
+ *      "flat"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat",
  *      "apartment"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Apartment",
  *      "study"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Study",
  *      "penthouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Penthouse",
- *      "firts_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\FirtsFloor",
+ *      "firts_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\FirstFloor",
  *      "duplex"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Duplex",
  *      "attic"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Attic",
  *      "penthouse_duplex"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\PenthouseDuplex",
@@ -40,14 +40,14 @@ abstract class ResidenceVertical extends Residence
     /**
      * @var int Número de ascensores
      *
-     * @ORM\Column(name="doorway_state", type="string", length=30, nullable=true)
+     * @ORM\Column(name="elevator_number", type="integer")
      */
-    private $elevatorNumber;
+    private $elevatorNumber = 0;
 
     /**
      * @var string Tendedero
      *
-     * @ORM\Column(name="doorway_state", type="string", length=30, nullable=true)
+     * @ORM\Column(name="clothes_line", type="string", length=30, nullable=true)
      */
     private $clothesLine;
 

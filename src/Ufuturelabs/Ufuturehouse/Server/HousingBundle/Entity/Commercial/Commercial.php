@@ -19,7 +19,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
  * @ORM\DiscriminatorMap({
  *      "commercial_property"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\CommercialProperty",
  *      "storehouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Storehouse",
- *      "archive"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Archive",
+ *      "archive"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Archive"
  * })
  */
 class Commercial extends Housing

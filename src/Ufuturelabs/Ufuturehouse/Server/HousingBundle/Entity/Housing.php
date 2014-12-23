@@ -11,17 +11,17 @@ use Doctrine\ORM\Mapping AS ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="housing")
+ * @ORM\Table(name="housings")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *      "residence"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence",
- *      "office"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\",
- *      "ground"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\,
+ *      "office"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Office",
  *      "commercial"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Commercial",
- *      "warehouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\",
- *      "garage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\",
- *      "storage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\",
+ *      "warehouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Warehouse",
+ *      "garage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Garage",
+ *      "storage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Storage",
+ *      "floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\Floor"
  * })
  */
 class Housing
@@ -90,21 +90,21 @@ class Housing
     /**
      * @var float Superficie contruida
      *
-     * @ORM\Column(name="floor_area", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="floor_area", type="float", precision=10, scale=2, nullable=true)
      */
     private $floorArea;
 
     /**
      * @var float Superficie alquilable
      *
-     * @ORM\Column(name="rentable_area", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="rentable_area", type="float", precision=10, scale=2, nullable=true)
      */
     private $rentableArea;
 
     /**
      * @var float Superficie util
      *
-     * @ORM\Column(name="usable_area", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="usable_area", type="float", precision=10, scale=2, nullable=true)
      */
     private $usableArea;
 
@@ -128,14 +128,14 @@ class Housing
     /**
      * @var float Precio
      *
-     * @ORM\Column(name="price", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="price", type="float", precision=10, scale=2, nullable=true)
      */
     private $price;
 
     /**
      * @var float Precio en oferta
      *
-     * @ORM\Column(name="price_offer", type="float", precision=10, scale=2, nullable="true")
+     * @ORM\Column(name="price_offer", type="float", precision=10, scale=2, nullable=true)
      */
     private $priceOffer;
 
@@ -149,7 +149,7 @@ class Housing
     /**
      * @var \DateTime Fecha de disponibilidad
      *
-     * HousingBundle\Entity\Fecha a partir de la cual el inmueble pasa a estar disponible. Si es NULL la disponibilidad es inmediata.
+     * Fecha a partir de la cual el inmueble pasa a estar disponible. Si es NULL la disponibilidad es inmediata.
      *
      * @ORM\Column(name="availability_date", type="datetime", nullable=false)
      */
