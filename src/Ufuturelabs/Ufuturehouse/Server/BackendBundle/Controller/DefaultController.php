@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('BackendBundle:Default:index.html.twig', array('name' => $name));
     }
+
+    public function loginAction()
+    {
+        return $this->render('BackendBundle:Default:index.html.twig');
+    }
 }
