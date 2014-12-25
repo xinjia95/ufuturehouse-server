@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Ufuturelabs\Ufuturehouse\Server\PeopleBundle\PeopleBundle(),
             new Ufuturelabs\Ufuturehouse\Server\HousingBundle\HousingBundle(),
             new Ufuturelabs\Ufuturehouse\Server\LocationsBundle\LocationsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -16,5 +16,4 @@ frontend:
 
 backend:
     resource: "@BackendBundle/Resources/config/routing.yml"
-    prefix:   /
-
+    prefix:   /backend
