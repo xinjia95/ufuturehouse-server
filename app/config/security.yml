@@ -14,7 +14,10 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: backend_login
                 check_path: backend_login_check
-            logout: true
+                default_target_path: backend_index
+            logout:
+                path:   fos_user_security_logout
+                target: backend_login
             anonymous: true
 
     access_control:

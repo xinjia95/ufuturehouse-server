@@ -1,5 +1,13 @@
-login.signin: Iniciar sesión
-login.username: Nombre de usuario
+login.signin: 'Iniciar sesión'
+login.username: 'Nombre de usuario'
 login.password: Contraseña
 login.remember_me: Recuérdame
-login.forgot_password: ¿Has perdido la contraseña?
+login.forgot_password: '¿Has perdido la contraseña?'
+control_panel.title: Panel de control
+navbar.home: Inicio
+navbar.users: Usuarios
+navbar.housing: Propiedades
+navbar.people: Personas
+navbar.profile: Perfil
+navbar.configuration: Configuración
+login.logout: Cerrar sesión

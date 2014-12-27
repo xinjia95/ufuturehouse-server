@@ -1,4 +1,4 @@
-backend_homepage:
+backend_index:
     path:     /
     defaults: { _controller: BackendBundle:Default:index }
 
@@ -8,9 +8,6 @@ backend_login:
 
 backend_login_check:
     path: /login_check
-
-backend_logout:
-    path: /logout
 
 # FOSUserBundle
 fos_user_security:

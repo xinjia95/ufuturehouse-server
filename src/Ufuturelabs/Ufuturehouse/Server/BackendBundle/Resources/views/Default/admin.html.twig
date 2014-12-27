@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/backend/css/styles.css') }}" />
+{% endblock %}
+
+{% block title %}{{ 'control_panel.title' | trans }}{% endblock %}
+
+{% block body %}
+    <header>
+        {% block header %}
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">{{ ufuturehouse.business_name }}</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">{{ 'navbar.home' | trans }}</a></li>
+                            <li><a href="#">{{ 'navbar.users' | trans }}</a></li>
+                            <li><a href="#">{{ 'navbar.housing' | trans }}</a></li>
+                            <li><a href="#">{{ 'navbar.people' | trans }}</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">{{ 'navbar.profile' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.configuration' | trans }}</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'login.logout' | trans }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /container-fluid -->
+            </nav><!-- /nav-bar -->
+        {% endblock %}
+    </header>
+    <div class="container">
+        <div class="row">
+
+        </div><!-- /row -->
+    </div><!-- /container -->
+{% endblock %}
