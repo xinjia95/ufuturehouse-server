@@ -5,29 +5,53 @@
 {% block stylesheets %}<link href="{{ asset("bundles/backend/css/login.css") }}" rel="stylesheet" type="text/css" />{% endblock %}
 
 {% block body %}
-    <form class="form-login" role="form" action="{{ path('backend_login_check') }}" method="post">
-        <div class="form-login-header">
-            <img src="{{ asset('img/logo.png') }}" id="img-login-form" alt="Logo" />
-            <h1>uFutureHouse</h1>
-            <h2>{{ 'login.signin' | trans }}</h2>
-        </div>
-        {% if error %}
-            <div class="form-login-error bg-danger">{{ error.message }}</div>
-        {% endif %}
-        <div class="form-login-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" id="username" class="form-control" name="_username" placeholder="{{ 'login.username' | trans }}" value="{{ last_username }}" required autofocus />
+    {#<div>#}
+        {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
+            {#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |#}
+            {#<a href="{{ path('fos_user_security_logout') }}">#}
+                {#{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}#}
+            {#</a>#}
+        {#{% else %}#}
+            {#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
+        {#{% endif %}#}
+    {#</div>#}
+
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
             </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input type="password" id="password" class="form-control" name="_password" placeholder="{{ 'login.password' | trans }}" required />
-            </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> {{ 'login.remember_me' | trans }}
-            </label>
-            <input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ 'login.signin' | trans }}" />
-            <p><a href="#">{{ 'login.forgot_password' | trans }}</a></p>
-        </div>
-    </form>
+        {% endfor %}
+    {% endfor %}
+
+    <div>
+        {% block fos_user_content %}
+            <form class="form-login" role="form" action="{{ path('backend_login_check') }}" method="post">
+                <div class="form-login-header">
+                    <img src="{{ asset('img/logo.png') }}" id="img-login-form" alt="Logo" />
+                    <h1>uFutureHouse</h1>
+                    <h2>{{ 'login.signin' | trans }}</h2>
+                </div>
+                {% if error %}
+                    <div class="form-login-error bg-danger">{{ error.message }}</div>
+                {% endif %}
+                <div class="form-login-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" id="username" class="form-control" name="_username" placeholder="{{ 'login.username' | trans }}" value="{{ last_username }}" required autofocus />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" id="password" class="form-control" name="_password" placeholder="{{ 'login.password' | trans }}" required />
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"> {{ 'login.remember_me' | trans }}
+                    </label>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ 'login.signin' | trans }}" />
+                    <p><a href="#">{{ 'login.forgot_password' | trans }}</a></p>
+                </div>
+            </form>
+        {% endblock fos_user_content %}
+    </div>
 {% endblock %}

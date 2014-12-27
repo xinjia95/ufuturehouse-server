@@ -2,7 +2,9 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping AS ORM;
+
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -21,32 +23,136 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string Nombre de usuario
+     * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, nullable=false)
      */
     protected $username;
 
     /**
-     * @var string Contraseña
+     * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @ORM\Column(name="username_canonical", type="string", length=255, nullable=false)
      */
-    protected $password;
+    protected $usernameCanonical;
 
     /**
-     * @var string SALT
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    protected $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_canonical", type="string", length=255, nullable=false)
+     */
+    protected $emailCanonical;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     */
+    protected $enabled;
+
+    /**
+     * The salt to use for hashing
+     *
+     * @var string
      *
      * @ORM\Column(name="salt", type="string", length=255, nullable=false)
      */
     protected $salt;
 
     /**
-     * @var string Roles
+     * Encrypted password. Must be persisted.
+     *
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    protected $password;
+
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $plainPassword;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    protected $lastLogin;
+
+    /**
+     * Random string sent to the user email address in order to verify it
+     *
+     * @var string
+     *
+     * @ORM\Column(name="confirmation_token", type="string", length=255, nullable=true)
+     */
+    protected $confirmationToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
+     */
+    protected $passwordRequestedAt;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\Column(name="groups", type="array", nullable=true)
+     */
+    protected $groups;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="locked", type="boolean", nullable=false)
+     */
+    protected $locked;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="expired", type="boolean", nullable=false)
+     */
+    protected $expired;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expires_at", type="datetime", nullable=true)
+     */
+    protected $expiresAt;
+
+    /**
+     * @var array
      *
      * @ORM\Column(name="roles", type="array", nullable=false)
      */
     protected $roles;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="credentials_expired", type="boolean", nullable=false)
+     */
+    protected $credentialsExpired;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
+     */
+    protected $credentialsExpireAt;
 
     /**
      * @var string Nombre
@@ -63,105 +169,15 @@ class User extends BaseUser
     private $surname;
 
     /**
-     * @var string Email
-     *
-     * @ORM\Column(name="email", type="string", unique=true, length=255, nullable=false)
-     */
-    protected $email;
-
-    /**
      * @var string Número de teléfono de contacto
      *
      * @ORM\Column(name="telephone", type="string", length=15, nullable=false)
      */
     private $telephone;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return void
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     * @return void
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     * @return void
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    /**
-     * @param string $salt
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
     }
 
     /**
@@ -211,6 +227,4 @@ class User extends BaseUser
     {
         $this->telephone = $telephone;
     }
-
-
 }
