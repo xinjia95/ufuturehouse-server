@@ -1,0 +1,19 @@
+backend_housing_index:
+    path:     /
+    defaults: { _controller: BackendBundle:Housing:index }
+
+backend_housing_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:Housing:create }
+
+backend_housing_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackendBundle:Housing:edit }
+
+backend_housing_delete:
+    path:     /delete/{id}
+    defaults: { _controller: BackendBundle:Housing:delete }
+
+backend_housing_view:
+    path:     /view/{id}
+    defaults: { _controller: BackendBundle:Housing:view }
