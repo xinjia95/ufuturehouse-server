@@ -22,3 +22,13 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    # uFutureHouse config
+    business_name: uFutureHouse
+    business_street: Street
+    business_city: City
+    business_postal_code: Postal_code
+    business_state: State
+    business_telephone: 918887766
+    business_fax: 918887755
+    business_email: info@ufuturehouse.com
