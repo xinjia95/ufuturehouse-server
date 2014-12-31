@@ -30,11 +30,11 @@ class Province
     private $name;
 
     /**
-     * @var Location[]
+     * @var City[]
      *
-     * @ORM\OneToMany(targetEntity="Location", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="City", mappedBy="id")
      */
-    private $locations;
+    private $cities;
 
     function __toString()
     {
@@ -58,19 +58,19 @@ class Province
     }
 
     /**
-     * @return Location[]
+     * @return City[]
      */
-    public function getLocations()
+    public function getCities()
     {
-        return $this->locations;
+        return $this->cities;
     }
 
     /**
-     * @param Location[] $locations
+     * @param City[] $cities
      */
-    public function setLocations($locations)
+    public function setCities($cities)
     {
-        $this->locations = $locations;
+        $this->cities = $cities;
     }
 
     /**

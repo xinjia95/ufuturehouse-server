@@ -166,23 +166,23 @@ class Housing
      * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province Provincia en la que se encuentra el inmueble
      *
      * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province")
-     * @ORM\JoinColumn(name="province", referencedColumnName="id")
+     * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
      */
     private $province;
 
     /**
-     * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Location Localidad en la que se encuentra el inmueble
+     * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City Localidad en la que se encuentra el inmueble
      *
-     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Location")
-     * @ORM\JoinColumn(name="location", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
-    private $location;
+    private $city;
 
     /**
      * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone Zona de la localidad en la que se encuentra el inmueble
      *
      * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone")
-     * @ORM\JoinColumn(name="zone", referencedColumnName="id")
+     * @ORM\JoinColumn(name="zone_id", referencedColumnName="id")
      */
     private $zone;
 
@@ -215,8 +215,8 @@ class Housing
      * @ORM\ManyToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Person")
      * @ORM\JoinTable(
      *     name="owners",
-     *     joinColumns={@ORM\JoinColumn(name="housing", referencedColumnName="id", nullable=false)},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="person", referencedColumnName="id", nullable=false)}
+     *     joinColumns={@ORM\JoinColumn(name="housing_id", referencedColumnName="id", nullable=false)},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id", nullable=false)}
      * )
      */
     private $owners;
@@ -366,19 +366,19 @@ class Housing
     }
 
     /**
-     * @return \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Location
+     * @return \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City
      */
-    public function getLocation()
+    public function getCity()
     {
-        return $this->location;
+        return $this->city;
     }
 
     /**
-     * @param \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Location $location
+     * @param \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City $city
      */
-    public function setLocation($location)
+    public function setCity($city)
     {
-        $this->location = $location;
+        $this->city = $city;
     }
 
     /**

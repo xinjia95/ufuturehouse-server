@@ -1,0 +1,11 @@
+backend_locations_zone_index:
+    path:     /
+    defaults: { _controller: BackendBundle:Locations:indexZone }
+
+backend_locations_zone_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:Locations:createZone }
+
+backend_locations_zone_delete:
+    path:     /delete/{id}
+    defaults: { _controller: BackendBundle:Locations:deleteZone }

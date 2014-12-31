@@ -1,5 +1,23 @@
-login.signin: Iniciar sesión
-login.username: Nombre de usuario
+control_panel.title: 'Panel de control'
+control_panel.locations.province.title: Provincias
+control_panel.locations.province.search_box_placeholder: Buscar provincia
+control_panel.locations.province: Provincia
+control_panel.delete: Eliminar
+control_panel.locations.province.delete_confirmation: '¿Estás seguro de querer eliminar la provincia "%name%"?'
+control_panel.close: Cerrar
+login.signin: 'Iniciar sesión'
+login.username: 'Nombre de usuario'
 login.password: Contraseña
 login.remember_me: Recuérdame
-login.forgot_password: ¿Has perdido la contraseña?
+login.forgot_password: '¿Has perdido la contraseña?'
+login.logout: 'Cerrar sesión'
+navbar.home: Inicio
+navbar.users: Usuarios
+navbar.housing: Propiedades
+navbar.people: Personas
+navbar.locations: Localizaciones
+navbar.locations.provinces: Provincias
+navbar.locations.cities: Ciudades
+navbar.locations.zones: Zonas
+navbar.profile: Perfil
+navbar.configuration: Configuración

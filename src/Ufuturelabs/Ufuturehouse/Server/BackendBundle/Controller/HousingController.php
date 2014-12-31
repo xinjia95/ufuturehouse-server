@@ -8,32 +8,26 @@ class HousingController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BackendBundle:Housing:index.html.twig', array(
-                // ...
-            ));    }
+        return $this->render('BackendBundle:Housing:index.html.twig');
+    }
 
     public function createAction()
     {
-        return $this->render('BackendBundle:Housing:create.html.twig', array(
-                // ...
-            ));    }
+        return $this->render('BackendBundle:Housing:create.html.twig');
+    }
 
-    public function editAction()
+    public function editAction($id)
     {
-        return $this->render('BackendBundle:Housing:edit.html.twig', array(
-                // ...
-            ));    }
+        return $this->render('BackendBundle:Housing:edit.html.twig');
+    }
 
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        return $this->render('BackendBundle:Housing:delete.html.twig', array(
-                // ...
-            ));    }
+        return $this->redirect($this->generateUrl('backend_housing_index'));
+    }
 
-    public function viewAction()
+    public function viewAction($id)
     {
-        return $this->render('BackendBundle:Housing:view.html.twig', array(
-                // ...
-            ));    }
-
+        return $this->render('BackendBundle:Housing:view.html.twig');
+    }
 }

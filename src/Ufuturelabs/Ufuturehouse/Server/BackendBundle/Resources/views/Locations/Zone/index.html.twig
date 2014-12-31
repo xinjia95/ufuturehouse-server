@@ -1,0 +1,115 @@
+{% extends 'BackendBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'control_panel.locations.city.title' | trans }}{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('backend_index') }}">Inicio</a></li>
+        <li class="active">{{ 'control_panel.locations.zone.title' | trans }}</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9">
+            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <form class="form-inline col-md-3" role="form">
+            <div class="search-box form-group">
+                <input type="search" name="search" class="form-control" placeholder="{{ 'control_panel.locations.zone.search_box_placeholder' | trans }}" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>{{ 'control_panel.locations.zone' | trans }}</th>
+                <th>{{ 'control_panel.locations.city' | trans }}</th>
+                <th>{{ 'control_panel.locations.province' | trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for zone in zones %}
+                <tr>
+                    <td>{{ zone.name }}</td>
+                    <td>{{ zone.city }}</td>
+                    <td>{{ zone.city.province }}</td>
+                    <td>
+                        <a type="button" class="btn btn-danger" style="position: relative; left: 70%;" data-toggle="modal" data-target="#modal-delete-{{ zone.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="controlPanelCreate">{{ 'control_panel.locations.zone.create' | trans }}</h4>
+                </div>
+                {{ form_start(form, {
+                    'attr': {
+                        'class': 'form-horizontal'
+                    }
+                }) }}
+                <div class="modal-body">
+                    <div class="form-group">
+                        {{ form_label(form.name, null, {
+                            'label_attr': {
+                                'class': 'col-sm-2 control-label'
+                            }
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.name, {
+                                'attr': {
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.city, null, {
+                            'label_attr': {
+                                'class': 'col-sm-2 control-label'
+                            }
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.city, {
+                                'attr': {
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
+                    <input type="submit" class="btn btn-success" value="{{ 'control_panel.create' | trans }}" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    {% for zone in zones %}
+        <div class="modal fade" id="modal-delete-{{ zone.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'control_panel.locations.zone.delete_confirmation' | trans({ '%name%': zone.name }) }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
+                        <a class="btn btn-danger" href="{{ path('backend_locations_zone_delete', {'id': zone.id}) }}">{{ 'control_panel.delete' | trans }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

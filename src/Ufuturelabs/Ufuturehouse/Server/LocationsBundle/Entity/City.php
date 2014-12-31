@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="locations")
+ * @ORM\Table(name="cities")
  */
-class Location
+class City
 {
     /**
      * @var int

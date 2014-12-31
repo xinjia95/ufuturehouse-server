@@ -13,6 +13,18 @@ backend_housing:
     resource: "@BackendBundle/Resources/config/routing/housing.yml"
     prefix: /housing
 
+backend_locations_province:
+    resource: "@BackendBundle/Resources/config/routing/locations/province.yml"
+    prefix: /locations/province
+
+backend_locations_city:
+    resource: "@BackendBundle/Resources/config/routing/locations/city.yml"
+    prefix: /locations/city
+
+backend_locations_zone:
+    resource: "@BackendBundle/Resources/config/routing/locations/zone.yml"
+    prefix: /locations/zone
+
 # FOSUserBundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

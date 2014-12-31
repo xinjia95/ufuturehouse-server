@@ -25,28 +25,28 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     * @ORM\Column(name="username", type="string", length=255, unique=true, nullable=false)
      */
     protected $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username_canonical", type="string", length=255, nullable=false)
+     * @ORM\Column(name="username_canonical", type="string", length=255, unique=true, nullable=false)
      */
     protected $usernameCanonical;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=false)
      */
     protected $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email_canonical", type="string", length=255, nullable=false)
+     * @ORM\Column(name="email_canonical", type="string", length=255, unique=true, nullable=false)
      */
     protected $emailCanonical;
 

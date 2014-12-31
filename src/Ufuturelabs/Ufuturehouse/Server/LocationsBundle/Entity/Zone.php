@@ -30,12 +30,12 @@ class Zone
     private $name;
 
     /**
-     * @var Location
+     * @var City
      *
-     * @ORM\ManyToOne(targetEntity="Location")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable=false)
      */
-    private $location;
+    private $city;
 
     function __toString()
     {
@@ -59,19 +59,19 @@ class Zone
     }
 
     /**
-     * @return Location
+     * @return City
      */
-    public function getLocation()
+    public function getCity()
     {
-        return $this->location;
+        return $this->city;
     }
 
     /**
-     * @param Location $location
+     * @param City $city
      */
-    public function setLocation($location)
+    public function setCity($city)
     {
-        $this->location = $location;
+        $this->city = $city;
     }
 
     /**

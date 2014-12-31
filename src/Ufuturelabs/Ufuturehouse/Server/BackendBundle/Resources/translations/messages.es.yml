@@ -1,13 +1,35 @@
+control_panel.title: 'Panel de control'
+control_panel.locations.province.title: Provincias
+control_panel.locations.province.search_box_placeholder: 'Buscar provincia'
+control_panel.locations.province: Provincia
+control_panel.delete: Eliminar
+control_panel.locations.province.delete_confirmation: '¿Está seguro de querer eliminar la provincia "%name%"?'
+control_panel.close: Cerrar
 login.signin: 'Iniciar sesión'
 login.username: 'Nombre de usuario'
 login.password: Contraseña
 login.remember_me: Recuérdame
 login.forgot_password: '¿Has perdido la contraseña?'
-control_panel.title: Panel de control
+login.logout: 'Cerrar sesión'
 navbar.home: Inicio
 navbar.users: Usuarios
 navbar.housing: Propiedades
 navbar.people: Personas
+navbar.locations: Localizaciones
+navbar.locations.provinces: Provincias
+navbar.locations.cities: Ciudades
+navbar.locations.zones: Zonas
 navbar.profile: Perfil
 navbar.configuration: Configuración
-login.logout: Cerrar sesión
+control_panel.locations.city.title: Ciudades
+control_panel.locations.city.search_box_placeholder: Buscar ciudad
+control_panel.locations.city: Ciudad
+control_panel.locations.city.create: Crear ciudad
+control_panel.create: Crear
+control_panel.locations.city.delete_confirmation: '¿Está seguro de querer eliminar la ciudad "%name%"?'
+control_panel.locations.province.create: Crear provincia
+control_panel.locations.zone.title: Zonas
+control_panel.locations.zone.search_box_placeholder: Buscar zona
+control_panel.locations.zone: Zona
+control_panel.locations.zone.create: Crear zona
+control_panel.locations.zone.delete_confirmation: '¿Está seguro de querer eliminar la zona "%name%"?'
