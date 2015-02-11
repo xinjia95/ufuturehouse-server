@@ -1,1 +1,100 @@
-Hello {{ name }}!
+{% extends 'FrontendBundle:Default:frontend.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block header %}
+    <div class="header-presentation">
+        <div class="container">
+            <img src="{{ asset('img/bussiness_logo.jpg') }}" width="128px" height="128px" alt="{{ ufuturehouse.business_name }} logo" />
+            <p class="lead">{{ ufuturehouse.business_name }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block article %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="search" class="form-control search-housing" placeholder="Buscar viviendas (metros cuadrados, piso, chalet, piscina, garaje)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="well housing-offer">
+                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
+                    <p>## TIPO VIVIENDA ##</p>
+                    <p>## LOCALIDAD ## - ## ZONA ##</p>
+                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
