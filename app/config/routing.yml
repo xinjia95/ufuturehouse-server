@@ -17,3 +17,6 @@ frontend:
 backend:
     resource: "@BackendBundle/Resources/config/routing.yml"
     prefix:   /backend
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

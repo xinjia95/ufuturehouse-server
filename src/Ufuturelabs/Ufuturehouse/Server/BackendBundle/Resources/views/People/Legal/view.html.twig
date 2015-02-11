@@ -1,0 +1,87 @@
+<div id="modalViewPerson" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ person.bussinessName }}
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ 'control_panel.people.view.modal.person_data' | trans }}</div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><b>{{ 'control_panel.people.legal.bussiness_name' | trans }}</b>: {{ person.bussinessName }}</li>
+                                    <li class="list-group-item"><b>{{ 'control_panel.people.legal.cif' | trans }}</b>: {{ person.cif }}</li>
+                                    <li class="list-group-item"><b>{{ 'control_panel.people.legal.creation_date' | trans }}</b>: {{ person.creationDate | localizeddate('short', 'none') }}</li>
+                                    <li class="list-group-item"><b>{{ 'control_panel.people.legal.contact_person' | trans }}</b>: {{ person.contactPerson }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ 'control_panel.people.emails' | trans }}</div>
+                                <ul class="list-group">
+                                    {% for email in person.emails %}
+                                        <li class="list-group-item">
+                                            <p><b>{{ 'control_panel.people.description' | trans }}</b>: {{ email.description }}</p>
+                                            <p><a href="mailto:{{ email.email }}">{{ email.email }}</a></p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ 'control_panel.people.phonenumbers' | trans }}</div>
+                                <ul class="list-group">
+                                    {% for phone in person.phonenumbers %}
+                                        <li class="list-group-item">
+                                            <p><b>{{ 'control_panel.people.description' | trans }}</b>: {{ phone.description }}</p>
+                                            <p><a href="tel:{{ phone.number }}">{{ phone.number }}</a></p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ 'control_panel.people.addresses' | trans }}</div>
+                                <ul class="list-group">
+                                    {% for address in person.addresses %}
+                                        <li class="list-group-item">
+                                            <p><b>{{ 'control_panel.people.description' | trans }}</b>: {{ address.description }}</p>
+                                            <p><b>{{ 'control_panel.people.address.street' | trans }}</b>: {{ address.street }}</p>
+                                            <p><b>{{ 'control_panel.people.address.city' | trans }}</b>: {{ address.city }}</p>
+                                            <p><b>{{ 'control_panel.people.address.zip_code' | trans }}</b>: {{ address.zipCode }}</p>
+                                            <p><b>{{ 'control_panel.people.address.state' | trans }}</b>: {{ address.state }}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ 'control_panel.people.bankAccounts' | trans }}</div>
+                                <ul class="list-group">
+                                    {% for bankAccount in person.bankAccounts %}
+                                        <li class="list-group-item">
+                                            <p><b>{{ 'control_panel.people.description' | trans }}</b>: {{ bankAccount.description }}</p>
+                                            <p><b>{{ 'control_panel.people.bank_account.holder' | trans }}</b>: {{ bankAccount.holder }}</p>
+                                            <p><b>{{ 'control_panel.people.bank_account.bank_account_number' | trans }}</b>: {{ bankAccount.bankAccountNumber }}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

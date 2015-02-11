@@ -1,0 +1,17 @@
+backend_people_legal_index:
+    path:     /
+    defaults: { _controller: BackendBundle:People:indexLegal }
+
+backend_people_legal_view:
+    path:     /view/{id}
+    defaults: { _controller: BackendBundle:People:viewLegal }
+    options:
+        expose: true
+
+backend_people_legal_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:People:createLegal }
+
+backend_people_legal_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackendBundle:People:editLegal }

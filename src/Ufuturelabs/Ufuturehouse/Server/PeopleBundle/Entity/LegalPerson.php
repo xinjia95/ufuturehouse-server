@@ -3,113 +3,63 @@
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="people_legal")
+ * @UniqueEntity("cif")
  */
 class LegalPerson extends Person
 {
     /**
      * @var string
      *
+     * @ORM\Column(name="cif", type="string", length=9, nullable=true, unique=true)
+     */
+    private $cif;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=50, unique=true, nullable=false, name="bussines_name")
      */
-    private $bussinesName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=15, nullable=true, name="telephone")
-     */
-    private $telephone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=9, nullable=true, name="fax")
-     */
-    private $fax;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true, name="address")
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=30, unique=true, nullable=true, name="email")
-     */
-    private $email;
+    private $bussinessName;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime", nullable=true, name="creation_date")
      */
-    private $creation_date;
+    private $creationDate;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=100, nullable=true, name="contact_person")
      */
-    private $contact_person;
+    private $contactPerson;
 
     function __toString()
     {
-        return $this->bussinesName;
+        return $this->bussinessName;
     }
 
     /**
      * @return string
      */
-    public function getAddress()
+    public function getBussinessName()
     {
-        return $this->address;
+        return $this->bussinessName;
     }
 
     /**
-     * @param string $address
+     * @param string $bussinessName
      */
-    public function setAddress($address)
+    public function setBussinessName($bussinessName)
     {
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBussinesName()
-    {
-        return $this->bussinesName;
-    }
-
-    /**
-     * @param string $bussinesName
-     */
-    public function setBussinesName($bussinesName)
-    {
-        $this->bussinesName = $bussinesName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContactPerson()
-    {
-        return $this->contact_person;
-    }
-
-    /**
-     * @param string $contact_person
-     */
-    public function setContactPerson($contact_person)
-    {
-        $this->contact_person = $contact_person;
+        $this->bussinessName = $bussinessName;
     }
 
     /**
@@ -117,62 +67,46 @@ class LegalPerson extends Person
      */
     public function getCreationDate()
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
     /**
-     * @param \DateTime $creation_date
+     * @param \DateTime $creationDate
      */
-    public function setCreationDate($creation_date)
+    public function setCreationDate($creationDate)
     {
-        $this->creation_date = $creation_date;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
+        $this->creationDate = $creationDate;
     }
 
     /**
      * @return string
      */
-    public function getFax()
+    public function getContactPerson()
     {
-        return $this->fax;
+        return $this->contactPerson;
     }
 
     /**
-     * @param string $fax
+     * @param string $contactPerson
      */
-    public function setFax($fax)
+    public function setContactPerson($contactPerson)
     {
-        $this->fax = $fax;
+        $this->contactPerson = $contactPerson;
     }
 
     /**
      * @return string
      */
-    public function getTelephone()
+    public function getCif()
     {
-        return $this->telephone;
+        return $this->cif;
     }
 
     /**
-     * @param string $telephone
+     * @param string $cif
      */
-    public function setTelephone($telephone)
+    public function setCif($cif)
     {
-        $this->telephone = $telephone;
+        $this->cif = $cif;
     }
 }

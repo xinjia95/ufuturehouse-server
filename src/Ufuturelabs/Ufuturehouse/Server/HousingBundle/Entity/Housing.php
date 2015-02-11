@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *
  * @ORM\Entity
  * @ORM\Table(name="housings")
- * @ORM\InheritanceType("JOINED")
+ * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *      "residence"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence",
@@ -163,12 +163,12 @@ class Housing
     private $luxuryProperty = false;
 
     /**
-     * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province Provincia en la que se encuentra el inmueble
+     * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State Provincia en la que se encuentra el inmueble
      *
-     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province")
-     * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      */
-    private $province;
+    private $locationState;
 
     /**
      * @var \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City Localidad en la que se encuentra el inmueble
@@ -494,19 +494,19 @@ class Housing
     }
 
     /**
-     * @return \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province
+     * @return \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State
      */
-    public function getProvince()
+    public function getLocationState()
     {
-        return $this->province;
+        return $this->locationState;
     }
 
     /**
-     * @param \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province $province
+     * @param \Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State $locationState
      */
-    public function setProvince($province)
+    public function setLocationState($locationState)
     {
-        $this->province = $province;
+        $this->locationState = $locationState;
     }
 
     /**

@@ -1,0 +1,11 @@
+backend_people_physical:
+    resource: "@BackendBundle/Resources/config/routing/people/physical.yml"
+    prefix: /physical
+
+backend_people_legal:
+    resource: "@BackendBundle/Resources/config/routing/people/legal.yml"
+    prefix: /legal
+
+backend_people_delete:
+    path: /delete/{id}
+    defaults: { _controller: BackendBundle:People:delete }

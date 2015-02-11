@@ -4,7 +4,7 @@
 
 {% block article %}
     <ol class="breadcrumb">
-        <li><a href="{{ path('backend_index') }}">Inicio</a></li>
+        <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
         <li class="active">{{ 'control_panel.locations.city.title' | trans }}</li>
     </ol>
     <div class="row">
@@ -23,7 +23,7 @@
             <thead>
             <tr>
                 <th>{{ 'control_panel.locations.city' | trans }}</th>
-                <th>{{ 'control_panel.locations.province' | trans }}</th>
+                <th>{{ 'control_panel.locations.state' | trans }}</th>
                 <th></th>
             </tr>
             </thead>

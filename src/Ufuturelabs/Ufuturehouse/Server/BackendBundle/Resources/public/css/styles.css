@@ -1,12 +1,16 @@
-.navbar {
-    background-color: #170266;
-    border-radius: 0px;
-}
+/*.navbar {*/
+    /*background-color: #170266;*/
+    /*border-radius: 0px;*/
+/*}*/
 
-.navbar-brand, .navbar-brand:hover, .navbar-nav>li>a {
-    color: #ffffff;
-}
+/*.navbar-brand, .navbar-brand:hover, .navbar-nav>li>a {*/
+    /*color: #ffffff;*/
+/*}*/
 
-.navbar-nav>li>a:hover {
-    color: #170266;
+/*.navbar-nav>li>a:hover {*/
+    /*color: #170266;*/
+/*}*/
+
+.td-actions {
+    text-align: right;
 }
