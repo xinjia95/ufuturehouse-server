@@ -29,8 +29,6 @@ class ConfigurationController extends Controller
 
         if ($form->isValid())
         {
-            $company->preUpload();
-            $company->upload();
             $em->persist($company);
             $em->flush();
         }

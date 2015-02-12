@@ -8,9 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="companies")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="companies")
  */
 class Company {
 
@@ -95,7 +95,7 @@ class Company {
     /**
      * @var string
      *
-     * @ORM\Column(name="logo_path", type="string", length=255, nullable=false)
+     * @ORM\Column(name="logo_path", type="string", length=255, nullable=true)
      */
     private $logoPath;
 
@@ -186,14 +186,6 @@ class Company {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -539,27 +531,18 @@ class Company {
      */
     public function upload()
     {
-        if (null === $this->getLogo())
-            return;
+        if (null === $this->getLogo()) return;
 
-        $this->getLogo()->move(
-            $this->getUploadRootDir(),
-            $this->logoPath
-        );
-
-        $this->logoPath = $this->getLogo()->getClientOriginalName();
+        $this->getLogo()->move($this->getUploadRootDir(), $this->logoPath );
 
         $this->logo = null;
     }
 
-    /**
-     * @ORM\PostRemove()
-     */
+    /** @ORM\PostRemove() */
     public function removeUpload()
     {
-        $file = $this->getAbsolutePath();
+        $file = $this->getAbsolutePath().'/'.$this->getLogoPath();
 
-        if ($file)
-            unlink($file);
+        if ($file) unlink($file);
     }
 }

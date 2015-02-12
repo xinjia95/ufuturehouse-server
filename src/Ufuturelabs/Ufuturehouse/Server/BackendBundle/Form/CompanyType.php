@@ -23,7 +23,9 @@ class CompanyType extends AbstractType
             ->add('telephone')
             ->add('fax')
             ->add('email')
-            ->add('logo', 'file')
+            ->add('logo', 'file', array(
+                'required' => false,
+            ))
             ->add('facebook')
             ->add('twitter')
             ->add('googlePlus')
