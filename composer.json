@@ -25,7 +25,10 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
-        "lunetics/locale-bundle": "2.2.*"
+        "lunetics/locale-bundle": "2.2.*",
+        "robloach/component-installer": "0.0.12.*",
+        "components/jquery": "~2.1",
+        "components/bootstrap": "~3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -52,7 +55,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "web/bundles"
     },
     "extra": {
         "symfony-app-dir": "app",
