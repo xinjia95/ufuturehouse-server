@@ -47,7 +47,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">{{ 'navbar.profile' | trans }}</a></li>
-                                    <li><a href="#">{{ 'navbar.configuration' | trans }}</a></li>
+                                    <li><a href="{{ path('backend_configuration_index') }}">{{ 'navbar.configuration' | trans }}</a></li>
                                     <li class="divider"></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}">{{ 'login.logout' | trans }}</a></li>
                                 </ul>
@@ -58,9 +58,8 @@
             </nav><!-- /nav-bar -->
         {% endblock %}
     </header>
+    {% block wrapper %}{% endblock %}
     <article>
-        <div class="container">
-            {% block article %}{% endblock %}
-        </div>
+        {% block article %}{% endblock %}
     </article>
 {% endblock %}

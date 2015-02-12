@@ -25,6 +25,10 @@ backend_locations_zone:
     resource: "@BackendBundle/Resources/config/routing/locations/zone.yml"
     prefix: /locations/zone
 
+backend_configuration:
+    resource: "@BackendBundle/Resources/config/routing/configuration.yml"
+    prefix: /conf
+
 # FOSUserBundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

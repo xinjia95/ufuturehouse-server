@@ -1,0 +1,7 @@
+backend_configuration_index:
+    path:     /
+    defaults: { _controller: BackendBundle:Configuration:index }
+
+backend_configuration_company:
+    path:     /company
+    defaults: { _controller: BackendBundle:Configuration:company }

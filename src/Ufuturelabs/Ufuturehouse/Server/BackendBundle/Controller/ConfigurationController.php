@@ -1,0 +1,42 @@
+<?php
+
+namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\CompanyType;
+
+class ConfigurationController extends Controller
+{
+    public function indexAction()
+    {
+        return $this->render('BackendBundle:Configuration:index.html.twig');
+    }
+
+    public function companyAction()
+    {
+        /** @var \Symfony\Component\HttpFoundation\Request $request */
+        $request = $this->container->get('request');
+
+        /** @var \Doctrine\ORM\EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var Company $company */
+        $company = $em->getRepository('BackendBundle:Company')->findAll()[0];
+
+        $form = $this->createForm(new CompanyType(), $company);
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            $company->preUpload();
+            $company->upload();
+            $em->persist($company);
+            $em->flush();
+        }
+
+        return $this->render('BackendBundle:Configuration:company.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+}
