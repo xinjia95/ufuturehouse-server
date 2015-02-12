@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Ufuturelabs\Ufuturehouse\Server\LocationsBundle\LocationsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
+            new Xinjia\SpainValidatorBundle\XinjiaSpainValidatorBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

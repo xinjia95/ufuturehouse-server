@@ -1,0 +1,17 @@
+backend_people_physical_index:
+    path:     /
+    defaults: { _controller: BackendBundle:People:indexPhysical }
+
+backend_people_physical_view:
+    path:     /view/{id}
+    defaults: { _controller: BackendBundle:People:viewPhysical }
+    options:
+        expose: true
+
+backend_people_physical_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:People:createPhysical }
+
+backend_people_physical_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackendBundle:People:editPhysical }

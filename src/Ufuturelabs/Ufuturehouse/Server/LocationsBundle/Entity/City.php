@@ -30,12 +30,12 @@ class City
     private $name;
 
     /**
-     * @var Province
+     * @var State
      *
-     * @ORM\ManyToOne(targetEntity="Province")
-     * @ORM\JoinColumn(name="province_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="State")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=false)
      */
-    private $province;
+    private $state;
 
     /**
      * @var Zone[]
@@ -82,19 +82,19 @@ class City
     }
 
     /**
-     * @return Province
+     * @return State
      */
-    public function getProvince()
+    public function getState()
     {
-        return $this->province;
+        return $this->state;
     }
 
     /**
-     * @param Province $province
+     * @param State $state
      */
-    public function setProvince($province)
+    public function setState($state)
     {
-        $this->province = $province;
+        $this->state = $state;
     }
 
     /**

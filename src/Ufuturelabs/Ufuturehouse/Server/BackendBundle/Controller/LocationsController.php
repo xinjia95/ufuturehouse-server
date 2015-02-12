@@ -4,7 +4,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\CityType;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\ProvinceType;
@@ -25,7 +25,7 @@ class LocationsController extends Controller
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 
-        $province = new Province();
+        $province = new State();
 
         /** @var \Symfony\Component\Form\Form $form */
         $form = $this->createForm(new ProvinceType(), $province, array(
@@ -45,7 +45,7 @@ class LocationsController extends Controller
      */
     public function createProvinceAction()
     {
-        $province = new Province();
+        $province = new State();
 
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
@@ -74,7 +74,7 @@ class LocationsController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        /** @var Province $province */
+        /** @var State $province */
         $province = $em->getRepository('LocationsBundle:Province')->find($id);
 
         $em->remove($province);

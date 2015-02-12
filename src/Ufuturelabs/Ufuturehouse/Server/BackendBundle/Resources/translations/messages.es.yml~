@@ -1,9 +1,9 @@
 control_panel.title: 'Panel de control'
 control_panel.locations.province.title: Provincias
-control_panel.locations.province.search_box_placeholder: Buscar provincia
+control_panel.locations.province.search_box_placeholder: 'Buscar provincia'
 control_panel.locations.province: Provincia
 control_panel.delete: Eliminar
-control_panel.locations.province.delete_confirmation: '¿Estás seguro de querer eliminar la provincia "%name%"?'
+control_panel.locations.province.delete_confirmation: '¿Está seguro de querer eliminar la provincia "%name%"?'
 control_panel.close: Cerrar
 login.signin: 'Iniciar sesión'
 login.username: 'Nombre de usuario'
@@ -16,8 +16,48 @@ navbar.users: Usuarios
 navbar.housing: Propiedades
 navbar.people: Personas
 navbar.locations: Localizaciones
-navbar.locations.provinces: Provincias
+navbar.locations.states: Provincias
 navbar.locations.cities: Ciudades
 navbar.locations.zones: Zonas
 navbar.profile: Perfil
 navbar.configuration: Configuración
+control_panel.locations.city.title: Ciudades
+control_panel.locations.city.search_box_placeholder: 'Buscar ciudad'
+control_panel.locations.city: Ciudad
+control_panel.locations.city.create: 'Crear ciudad'
+control_panel.create: Crear
+control_panel.locations.city.delete_confirmation: '¿Está seguro de querer eliminar la ciudad "%name%"?'
+control_panel.locations.province.create: 'Crear provincia'
+control_panel.locations.zone.title: Zonas
+control_panel.locations.zone.search_box_placeholder: 'Buscar zona'
+control_panel.locations.zone: Zona
+control_panel.locations.zone.create: 'Crear zona'
+control_panel.locations.zone.delete_confirmation: '¿Está seguro de querer eliminar la zona "%name%"?'
+navbar.people.physical: 'Personas físicas'
+navbar.people.legal: 'Personas jurídicas'
+control_panel.locations.state: Provincia
+control_panel.people.physical.title: 'Personas físicas'
+control_panel.people.physical.create: 'Crear persona física'
+control_panel.people.physical.personal_data: 'Datos personales'
+control_panel.people.emails: 'Correos electrónicos'
+control_panel.people.phonenumbers: 'Números de teléfono'
+control_panel.people.addresses: Direcciones
+control_panel.people.bankAccounts: 'Cuentas bancarias'
+create: Crear
+control_panel.people.legal.title: Personas jurídicas
+control_panel.people.legal.create: Crear persona jurídica
+control_panel.people.legal.data: Datos empresariales
+control_panel.people.legal.search: Buscar persona jurídica
+control_panel.people.legal.bussiness_name: Nombre comercial
+control_panel.people.legal.cif: CIF
+control_panel.people.legal.creation_date: Fecha de creación
+control_panel.people.legal.delete_confirmation: '¿Está seguro de querer eliminar la persona jurídica "%name%"?'
+control_panel.people.view.error: Error al obtener los datos de la persona
+control_panel.people.physical.surname: Primer apellido
+control_panel.people.physical.second_surname: Segundo apellido
+control_panel.people.physical.firtsname: Nombre
+control_panel.people.physical.dni: DNI
+control_panel.people.physical.birthday: Fecha de nacimiento
+control_panel.people.physical.delete_confirmation: '¿Está seguro de querer eliminar la persona jurídica "%name%"?'
+control_panel.people.physical.search: Buscar persona física
+control_panel.people.description: Descripción

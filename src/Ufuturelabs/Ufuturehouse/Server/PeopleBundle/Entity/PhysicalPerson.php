@@ -3,26 +3,26 @@
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="people_physical")
+ *
+ * @UniqueEntity("dni")
  */
 class PhysicalPerson extends Person
 {
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true, unique=true, name="dni", length=9)
+     * @ORM\Column(name="dni", type="string", length=9, nullable=false, unique=true)
+     *
+     * @SpainAssert\Dni()
      */
     private $dni;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true, unique=true, name="nie", length=9)
-     */
-    private $nie;
 
     /**
      * @var string
@@ -46,68 +46,17 @@ class PhysicalPerson extends Person
     private $secondSurname;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(type="string", nullable=true, name="telephone", length=15)
-     */
-    private $telephone;
-
-    /**
-     * @var string
+     * @ORM\Column(name="birthday", type="date", nullable=false)
      *
-     * @ORM\Column(type="string", nullable=true, name="email", length=30)
+     * @Assert\Date()
      */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true, name="address", length=255)
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true, name="bank_account", length=25)
-     */
-    private $bankAccount;
+    private $birthday;
 
     function __toString()
     {
-        return $this->firstname." ".$this->surname.(!is_null($this->secondSurname) ? "" : " ".$this->secondSurname);
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankAccount()
-    {
-        return $this->bankAccount;
-    }
-
-    /**
-     * @param string $bankAccount
-     */
-    public function setBankAccount($bankAccount)
-    {
-        $this->bankAccount = $bankAccount;
+        return $this->firstname . " " . $this->surname . (!is_null($this->secondSurname) ? "" : " " . $this->secondSurname);
     }
 
     /**
@@ -129,22 +78,6 @@ class PhysicalPerson extends Person
     /**
      * @return string
      */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return string
-     */
     public function getFirstname()
     {
         return $this->firstname;
@@ -156,22 +89,6 @@ class PhysicalPerson extends Person
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNie()
-    {
-        return $this->nie;
-    }
-
-    /**
-     * @param string $nie
-     */
-    public function setNie($nie)
-    {
-        $this->nie = $nie;
     }
 
     /**
@@ -207,18 +124,18 @@ class PhysicalPerson extends Person
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getTelephone()
+    public function getBirthday()
     {
-        return $this->telephone;
+        return $this->birthday;
     }
 
     /**
-     * @param string $telephone
+     * @param \DateTime $birthday
      */
-    public function setTelephone($telephone)
+    public function setBirthday(\DateTime $birthday)
     {
-        $this->telephone = $telephone;
+        $this->birthday = $birthday;
     }
 } 
