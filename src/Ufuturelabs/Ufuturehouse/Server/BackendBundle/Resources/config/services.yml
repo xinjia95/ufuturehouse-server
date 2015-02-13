@@ -1,4 +1,6 @@
 services:
-#    backend.example:
-#        class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    twig.extension.company:
+        class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Twig\CompanyExtension
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: twig.extension }

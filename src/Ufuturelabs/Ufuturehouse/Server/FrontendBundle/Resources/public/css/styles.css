@@ -20,7 +20,6 @@
 }
 
 footer {
-    background-color: #6AA8E9;
     color: #FFF;
     padding: 20px 0;
 }
@@ -31,4 +30,8 @@ footer a:link {
 
 .footer-copyright {
     text-align: center;
+}
+
+footer .social {
+    text-align: right;
 }

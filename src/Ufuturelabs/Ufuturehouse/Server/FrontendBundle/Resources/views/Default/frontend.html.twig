@@ -16,7 +16,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">{{ ufuturehouse.business_name }}</a>
+                    <a class="navbar-brand" href="#">{{ company.name }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -30,40 +30,79 @@
                 </div>
             </div><!-- /container-fluid -->
         </nav><!-- /nav-bar -->
-        {% block header %}
-            <div class="header-presentation">
-                <div class="container">
-                    <img src="{{ asset('img/bussiness_logo.jpg') }}" width="128px" height="128px" />
-                    <p class="lead">{{ ufuturehouse.business_name }}</p>
-                </div>
-            </div>
-        {% endblock %}
+        {% block header %}{% endblock %}
     </header>
     <article>
         {% block article %}{% endblock %}
     </article>
-    <footer>
+    <footer style="background-color: {{ company.secundaryColor }}">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <address>
-                        <strong>{{ ufuturehouse.business_name }}</strong><br>
-                        {{ 'footer.street' | trans }}: {{ ufuturehouse.business_street }}<br>
-                        {{ 'footer.city' | trans }}: {{ ufuturehouse.business_city }}<br>
-                        {{ 'footer.zip_code' | trans }}: {{ ufuturehouse.business_postal_code }}<br>
-                        {{ 'footer.state' | trans }}: {{ ufuturehouse.business_state }}<br>
-                        {{ 'footer.telephone' | trans }}: <a href="tel:{{ ufuturehouse.business_telephone }}">{{ ufuturehouse.business_telephone }}</a><br>
-                        {{ 'footer.fax' | trans }}: <a href="fax:{{ ufuturehouse.business_fax }}">{{ ufuturehouse.business_fax }}</a><br>
-                        {{ 'footer.email' | trans }}: <a href="mailto:{{ ufuturehouse.business_email }}">{{ ufuturehouse.business_email }}</a><br>
+                        <strong>{{ company.name }}</strong><br>
+                        {{ 'footer.street' | trans }}: {{ company.street }}<br>
+                        {{ 'footer.city' | trans }}: {{ company.city }}<br>
+                        {{ 'footer.zip_code' | trans }}: {{ company.zipCode }}<br>
+                        {{ 'footer.state' | trans }}: {{ company.state }}<br>
+                        {{ 'footer.telephone' | trans }}: <a href="tel:{{ company.telephone }}">{{ company.telephone }}</a><br>
+                        {% if company.fax is not null %}
+                            {{ 'footer.fax' | trans }}: <a href="fax:{{ company.fax }}">{{ company.fax }}</a><br>
+                        {% endif %}
+                        {{ 'footer.email' | trans }}: <a href="mailto:{{ company.email }}">{{ company.email }}</a><br>
                     </address>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6 social">
-
+                    {% if company.facebook is not null or company.facebook == '' %}
+                        <a href="{{ company.facebook }}">
+                            <img src="{{ asset('bundles/frontend/images/facebook.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.twitter is not null or company.twitter == '' %}
+                        <a href="{{ company.twitter }}">
+                            <img src="{{ asset('bundles/frontend/images/twitter.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.googlePlus is not null or company.googlePlus == '' %}
+                        <a href="{{ company.googlePlus }}">
+                            <img src="{{ asset('bundles/frontend/images/google_plus.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.googleMaps is not null or company.googleMaps == '' %}
+                        <a href="{{ company.googleMaps }}">
+                            <img src="{{ asset('bundles/frontend/images/google-maps.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.tumblr is not null or company.tumblr == '' %}
+                        <a href="{{ company.tumblr }}">
+                            <img src="{{ asset('bundles/frontend/images/tumblr.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.pinterest is not null or company.pinterest == '' %}
+                        <a href="{{ company.pinterest }}">
+                            <img src="{{ asset('bundles/frontend/images/pinterest.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.flickr is not null or company.flickr == '' %}
+                        <a href="{{ company.flickr }}">
+                            <img src="{{ asset('bundles/frontend/images/flicker.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.linkedin is not null or company.linkedin == '' %}
+                        <a href="{{ company.linkedin }}">
+                            <img src="{{ asset('bundles/frontend/images/linkedin.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
+                    {% if company.youtube is not null or company.youtube == '' %}
+                        <a href="{{ company.youtube }}">
+                            <img src="{{ asset('bundles/frontend/images/you-tube.png') }}" alt="Facebook logo" width="32px" height="32px" />
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="footer-copyright">&copy; {{ ufuturehouse.business_name }} {{ "now" | date('Y') }} - Designed by uFutureLabs</div>
+                    <div class="footer-copyright">&copy; {{ company.name ~ ' ' ~ 'now' | date('Y') }} - Designed by uFutureLabs</div>
                 </div>
         </div>
     </footer>

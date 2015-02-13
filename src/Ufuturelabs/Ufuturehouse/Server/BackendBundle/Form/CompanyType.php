@@ -21,7 +21,9 @@ class CompanyType extends AbstractType
             ->add('zipCode')
             ->add('state')
             ->add('telephone')
-            ->add('fax')
+            ->add('fax', 'text', array(
+                'required' => false,
+            ))
             ->add('email')
             ->add('logo', 'file', array(
                 'required' => false,
@@ -35,6 +37,8 @@ class CompanyType extends AbstractType
             ->add('flickr')
             ->add('youtube')
             ->add('linkedin')
+            ->add('primaryColor')
+            ->add('secundaryColor')
         ;
     }
     

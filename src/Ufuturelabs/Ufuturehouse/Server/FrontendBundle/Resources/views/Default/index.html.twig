@@ -1,12 +1,12 @@
 {% extends 'FrontendBundle:Default:frontend.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ company.name }}{% endblock %}
 
 {% block header %}
-    <div class="header-presentation">
+    <div class="header-presentation" style="background-color: {{ company.secundaryColor }}">
         <div class="container">
-            <img src="{{ asset('img/bussiness_logo.jpg') }}" width="128px" height="128px" alt="{{ ufuturehouse.business_name }} logo" />
-            <p class="lead">{{ ufuturehouse.business_name }}</p>
+            <img src="{{ asset('uploads/images/' ~ company.logoPath) }}" width="128px" height="128px" alt="{{ company.name }} logo" />
+            <p class="lead">{{ company.name }}</p>
         </div>
     </div>
 {% endblock %}

@@ -30,16 +30,6 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources: ['bootstrap_3_horizontal_layout.html.twig']
-    globals:
-        ufuturehouse:
-            business_name: "%business_name%"
-            business_street: "%business_street%"
-            business_city: "%business_city%"
-            business_postal_code: "%business_postal_code%"
-            business_state: "%business_state%"
-            business_telephone: "%business_telephone%"
-            business_fax: "%business_fax%"
-            business_email: "%business_email%"
 
 # Assetic Configuration
 assetic:
