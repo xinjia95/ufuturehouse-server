@@ -568,6 +568,11 @@ class Company {
         if (null !== $this->getLogo())
         {
             $filename = sha1(uniqid(mt_rand(), true));
+
+            if (file_exists($this->getAbsolutePath())) {
+                unlink($this->getAbsolutePath());
+            }
+
             $this->logoPath = $filename.'.'.$this->getLogo()->getClientOriginalExtension();
         }
     }
@@ -580,7 +585,7 @@ class Company {
     {
         if (null === $this->getLogo()) return;
 
-        $this->getLogo()->move($this->getUploadRootDir(), $this->logoPath );
+        $this->getLogo()->move($this->getUploadRootDir(), $this->logoPath);
 
         $this->createFavicons($this->getAbsolutePath(), $this->getLogo());
 
@@ -733,8 +738,8 @@ class Company {
      */
     private function writeFile($file, $fileName, $path)
     {
-        $newFile = fopen($path.'/'.$fileName, 'w');
-        fwrite($newFile, $file);
+        $newFile = fopen($path.'/'.$fileName, 'w') or die ('The file could not open');
+        fwrite($newFile, $file) or die ('The file could not write');
         fclose($newFile);
     }
 }
