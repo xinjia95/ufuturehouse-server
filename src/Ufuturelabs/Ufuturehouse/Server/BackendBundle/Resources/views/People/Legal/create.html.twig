@@ -5,71 +5,73 @@
 {% block title %}{{ parent() }} - {{ 'control_panel.people.legal.title' | trans }}{% endblock %}
 
 {% block article %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
-        <li><a href="{{ path('backend_people_legal_index') }}">{{ 'control_panel.people.legal.title' | trans }}</a></li>
-        <li class="active">{{ 'control_panel.people.legal.create' | trans }}</li>
-    </ol>
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-    <fieldset>
-        <legend>{{ 'control_panel.people.legal.data' | trans }}</legend>
-        {{ form_row(form.bussinessName) }}
-        {{ form_row(form.cif) }}
-        {{ form_row(form.creationDate) }}
-        {{ form_row(form.contactPerson) }}
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.emails' | trans }}
-        </legend>
-        {% macro email_prototype(email) %}
-            {{ form_row(email.email) }}
-            {{ form_row(email.description) }}
-        {% endmacro %}
-        <div class="emails" style="list-style: none;" data-prototype="{{ _self.email_prototype(form.emails.vars.prototype)|e }}"></div>
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.phonenumbers' | trans }}
-        </legend>
-        {% macro phonenumber_prototype(phonenumber) %}
-            {{ form_row(phonenumber.number) }}
-            {{ form_row(phonenumber.description) }}
-        {% endmacro %}
-        <div class="phonenumbers" style="list-style: none;" data-prototype="{{ _self.phonenumber_prototype(form.phonenumbers.vars.prototype)|e }}"></div>
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.addresses' | trans }}
-        </legend>
-        {% macro address_prototype(address) %}
-            {{ form_row(address.street) }}
-            {{ form_row(address.city) }}
-            {{ form_row(address.zipCode) }}
-            {{ form_row(address.state) }}
-            {{ form_row(address.description) }}
-        {% endmacro %}
-        <div class="addresses" style="list-style: none;" data-prototype="{{ _self.address_prototype(form.addresses.vars.prototype)|e }}"></div>
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.bankAccounts' | trans }}
-        </legend>
-        {% macro bank_account_prototype(bankAccount) %}
-            {{ form_row(bankAccount.holder) }}
-            {{ form_row(bankAccount.bankAccountNumber) }}
-            {{ form_row(bankAccount.description) }}
-        {% endmacro %}
-        <div class="bankAccounts" style="list-style: none;" data-prototype="{{ _self.bank_account_prototype(form.bankAccounts.vars.prototype)|e }}"></div>
-    </fieldset>
-    <hr />
-    <input type="submit" class="btn btn-success" value="{{ 'create' | trans }}" />
-    {% do form.emails.setRendered %}
-    {% do form.phonenumbers.setRendered %}
-    {% do form.addresses.setRendered %}
-    {% do form.bankAccounts.setRendered %}
-    {{ form_end(form) }}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li><a href="{{ path('backend_people_legal_index') }}">{{ 'control_panel.people.legal.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.people.legal.create' | trans }}</li>
+        </ol>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ 'control_panel.people.legal.data' | trans }}</legend>
+            {{ form_row(form.bussinessName) }}
+            {{ form_row(form.cif) }}
+            {{ form_row(form.creationDate) }}
+            {{ form_row(form.contactPerson) }}
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.emails' | trans }}
+            </legend>
+            {% macro email_prototype(email) %}
+                {{ form_row(email.email) }}
+                {{ form_row(email.description) }}
+            {% endmacro %}
+            <div class="emails" style="list-style: none;" data-prototype="{{ _self.email_prototype(form.emails.vars.prototype)|e }}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.phonenumbers' | trans }}
+            </legend>
+            {% macro phonenumber_prototype(phonenumber) %}
+                {{ form_row(phonenumber.number) }}
+                {{ form_row(phonenumber.description) }}
+            {% endmacro %}
+            <div class="phonenumbers" style="list-style: none;" data-prototype="{{ _self.phonenumber_prototype(form.phonenumbers.vars.prototype)|e }}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.addresses' | trans }}
+            </legend>
+            {% macro address_prototype(address) %}
+                {{ form_row(address.street) }}
+                {{ form_row(address.city) }}
+                {{ form_row(address.zipCode) }}
+                {{ form_row(address.state) }}
+                {{ form_row(address.description) }}
+            {% endmacro %}
+            <div class="addresses" style="list-style: none;" data-prototype="{{ _self.address_prototype(form.addresses.vars.prototype)|e }}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.bankAccounts' | trans }}
+            </legend>
+            {% macro bank_account_prototype(bankAccount) %}
+                {{ form_row(bankAccount.holder) }}
+                {{ form_row(bankAccount.bankAccountNumber) }}
+                {{ form_row(bankAccount.description) }}
+            {% endmacro %}
+            <div class="bankAccounts" style="list-style: none;" data-prototype="{{ _self.bank_account_prototype(form.bankAccounts.vars.prototype)|e }}"></div>
+        </fieldset>
+        <hr />
+        <input type="submit" class="btn btn-success" value="{{ 'create' | trans }}" />
+        {% do form.emails.setRendered %}
+        {% do form.phonenumbers.setRendered %}
+        {% do form.addresses.setRendered %}
+        {% do form.bankAccounts.setRendered %}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
