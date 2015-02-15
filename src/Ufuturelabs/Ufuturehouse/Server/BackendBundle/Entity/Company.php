@@ -616,6 +616,9 @@ class Company {
             case 'image/png':
                 $image = imagecreatefrompng($path);
                 break;
+            case 'image/bmp':
+                $image = imagecreatefromwbmp($path);
+                break;
             default :
                 throw new \InvalidArgumentException('Invalid image type');
         }
@@ -634,7 +637,7 @@ class Company {
         $favicon96x96 = $this->resizeImage($path, $image, 96, 96);
         $androidChrome192x192 = $this->resizeImage($path, $image, 192, 192);
         $msTile144x144 = $this->resizeImage($path, $image, 144, 144);
-        // TODO ICO
+        $favicon = $this->resizeImage($path, $image, 256, 256);
 
         $manifest = json_encode(array(
             'name' => $this->name,
@@ -707,10 +710,10 @@ class Company {
         imagepng($favicon96x96, $uploadDir.'/'.'favicon-96x96.png');
         imagepng($androidChrome192x192, $uploadDir.'/'.'android-chrome-192x192.png');
         imagepng($msTile144x144, $uploadDir.'/'.'mstile-144x144.png');
+        imagepng($favicon, $uploadDir.'/'.'favicon.ico');
 
         $this->writeFile($manifest, 'manifest.json', $uploadDir);
         $this->writeFile($browserconfig , 'browserconfig.xml', $uploadDir);
-        // TODO ICO $this->writeFile( , 'favicon.ico', $uploadDir);
 
     }
 
