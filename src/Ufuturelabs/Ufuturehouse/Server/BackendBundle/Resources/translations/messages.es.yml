@@ -21,6 +21,7 @@ navbar.locations.cities: Ciudades
 navbar.locations.zones: Zonas
 navbar.profile: Perfil
 navbar.configuration: Configuración
+control_panel.locations.state: Provincia
 control_panel.locations.city.title: Ciudades
 control_panel.locations.city.search_box_placeholder: 'Buscar ciudad'
 control_panel.locations.city: Ciudad
