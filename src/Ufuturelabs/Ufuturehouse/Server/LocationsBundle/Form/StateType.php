@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProvinceType extends AbstractType
+class StateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,7 +23,7 @@ class ProvinceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Province'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State'
         ));
     }
 
@@ -32,6 +32,6 @@ class ProvinceType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_locationsbundle_province';
+        return 'ufuturelabs_ufuturehouse_server_locationsbundle_state';
     }
 }

@@ -13,9 +13,9 @@ backend_housing:
     resource: "@BackendBundle/Resources/config/routing/housing.yml"
     prefix: /housing
 
-backend_locations_province:
-    resource: "@BackendBundle/Resources/config/routing/locations/province.yml"
-    prefix: /locations/province
+backend_locations_state:
+    resource: "@BackendBundle/Resources/config/routing/locations/state.yml"
+    prefix: /locations/state
 
 backend_locations_city:
     resource: "@BackendBundle/Resources/config/routing/locations/city.yml"

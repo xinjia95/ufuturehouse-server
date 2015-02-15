@@ -7,7 +7,7 @@ use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\CityType;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\ProvinceType;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\StateType;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\ZoneType;
 
 class LocationsController extends Controller
@@ -15,27 +15,27 @@ class LocationsController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexProvinceAction()
+    public function indexStateAction()
     {
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $provinces = $em->getRepository('LocationsBundle:Province')->findAll();
+        $states = $em->getRepository('LocationsBundle:State')->findAll();
 
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 
-        $province = new State();
+        $state = new State();
 
         /** @var \Symfony\Component\Form\Form $form */
-        $form = $this->createForm(new ProvinceType(), $province, array(
-            'action' => $this->generateUrl('backend_locations_province_create'),
+        $form = $this->createForm(new StateType(), $state, array(
+            'action' => $this->generateUrl('backend_locations_state_create'),
             'method' => 'POST'
         ));
         $form->handleRequest($request);
 
-        return $this->render('BackendBundle:Locations:Province/index.html.twig', array(
-            'provinces' => $provinces,
+        return $this->render('BackendBundle:Locations:State/index.html.twig', array(
+            'states' => $states,
             'form' => $form->createView(),
         ));
     }
@@ -43,44 +43,44 @@ class LocationsController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function createProvinceAction()
+    public function createStateAction()
     {
-        $province = new State();
+        $state = new State();
 
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 
         /** @var \Symfony\Component\Form\Form $form */
-        $form = $this->createForm(new ProvinceType(), $province);
+        $form = $this->createForm(new StateType(), $state);
         $form->handleRequest($request);
 
         if ($form->isValid())
         {
             /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
-            $em->persist($province);
+            $em->persist($state);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('backend_locations_province_index'));
+        return $this->redirect($this->generateUrl('backend_locations_state_index'));
     }
 
     /**
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteProvinceAction($id)
+    public function deleteStateAction($id)
     {
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        /** @var State $province */
-        $province = $em->getRepository('LocationsBundle:Province')->find($id);
+        /** @var State $state */
+        $state = $em->getRepository('LocationsBundle:State')->find($id);
 
-        $em->remove($province);
+        $em->remove($state);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('backend_locations_province_index'));
+        return $this->redirect($this->generateUrl('backend_locations_state_index'));
     }
 
     public function indexCityAction()

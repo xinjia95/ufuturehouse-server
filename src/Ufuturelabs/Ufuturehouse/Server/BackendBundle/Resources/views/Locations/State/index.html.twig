@@ -1,11 +1,11 @@
 {% extends 'BackendBundle:Default:admin.html.twig' %}
 
-{% block title %}{{ parent() }} - {{ 'control_panel.locations.province.title' | trans }}{% endblock %}
+{% block title %}{{ parent() }} - {{ 'control_panel.locations.states.title' | trans }}{% endblock %}
 
 {% block article %}
     <ol class="breadcrumb">
-        <li><a href="{{ path('backend_index') }}">Inicio</a></li>
-        <li class="active">{{ 'control_panel.locations.province.title' | trans }}</li>
+        <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+        <li class="active">{{ 'control_panel.locations.states.title' | trans }}</li>
     </ol>
     <div class="row">
         <div class="col-md-9">
@@ -13,7 +13,7 @@
         </div>
         <form class="form-inline col-md-3" role="form">
             <div class="search-box form-group">
-                <input type="search" name="search" class="form-control" placeholder="{{ 'control_panel.locations.province.search_box_placeholder' | trans }}" />
+                <input type="search" name="search" class="form-control" placeholder="{{ 'control_panel.locations.states.search_box_placeholder' | trans }}" />
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
@@ -27,11 +27,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for province in provinces %}
+            {% for states in states %}
                 <tr>
-                    <td>{{ province.name }}</td>
+                    <td>{{ states.name }}</td>
                     <td>
-                        <a type="button" class="btn btn-danger" style="position: relative; left: 70%;" data-toggle="modal" data-target="#modal-delete-{{ province.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a type="button" class="btn btn-danger" style="position: relative; left: 70%;" data-toggle="modal" data-target="#modal-delete-{{ states.id }}"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -43,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="controlPanelCreate">{{ 'control_panel.locations.province.create' | trans }}</h4>
+                    <h4 class="modal-title" id="controlPanelCreate">{{ 'control_panel.locations.states.create' | trans }}</h4>
                 </div>
                 {{ form_start(form, {
                     'attr': {
@@ -74,8 +74,8 @@
             </div>
         </div>
     </div>
-    {% for province in provinces %}
-        <div class="modal fade" id="modal-delete-{{ province.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    {% for states in states %}
+        <div class="modal fade" id="modal-delete-{{ states.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -83,11 +83,11 @@
                         <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
                     </div>
                     <div class="modal-body">
-                        <p>{{ 'control_panel.locations.province.delete_confirmation' | trans({ '%name%': province.name }) }}</p>
+                        <p>{{ 'control_panel.locations.states.delete_confirmation' | trans({ '%name%': states.name }) }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
-                        <a class="btn btn-danger" href="{{ path('backend_locations_province_delete', {'id': province.id}) }}">{{ 'control_panel.delete' | trans }}</a>
+                        <a class="btn btn-danger" href="{{ path('backend_locations_state_delete', {'id': states.id}) }}">{{ 'control_panel.delete' | trans }}</a>
                     </div>
                 </div>
             </div>
