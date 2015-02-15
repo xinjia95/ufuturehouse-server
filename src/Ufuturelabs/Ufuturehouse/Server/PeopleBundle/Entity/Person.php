@@ -31,7 +31,7 @@ class Person
     /**
      * @var Phonenumber[]
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Phonenumber", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\PhoneNumber", mappedBy="person", cascade={"all","merge","persist","refresh","remove"})
      * @Assert\Valid
      */
     private $phonenumbers;
@@ -39,7 +39,7 @@ class Person
     /**
      * @var Email[]
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email", mappedBy="person", cascade={"all","merge","persist","refresh","remove"})
      *
      * @Assert\Valid
      */
@@ -48,7 +48,7 @@ class Person
     /**
      * @var BankAccount[]
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount", mappedBy="person", cascade={"all","merge","persist","refresh","remove"})
      *
      * @Assert\Valid
      */
@@ -57,7 +57,7 @@ class Person
     /**
      * @var Address[]
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address", mappedBy="person", cascade={"all","merge","persist","refresh","remove"})
      *
      * @Assert\Valid
      */
