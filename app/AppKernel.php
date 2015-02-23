@@ -24,7 +24,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Xinjia\SpainValidatorBundle\XinjiaSpainValidatorBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Elao\Bundle\FormTranslationBundle\ElaoFormTranslationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
