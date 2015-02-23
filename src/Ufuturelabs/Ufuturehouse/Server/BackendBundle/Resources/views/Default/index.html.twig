@@ -1,2 +1,165 @@
 {% extends 'BackendBundle:Default:admin.html.twig' %}
 
+{% block article %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md12">
+                <h1>{{ company.name }} <small>{{ 'backend.index.web_administration' | trans }}</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{ 'backend.index.quick_search' | trans }}</h3>
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">{{ 'control_panel.search.filter_by' | trans }}</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#bussinessName">{{ 'control_panel.people.legal.bussiness_name' | trans }}</a></li>
+                                    <li><a href="#cif">{{ 'control_panel.people.legal.cif' | trans }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input type="text" class="form-control" name="x" placeholder="{{ 'control_panel.search' | trans }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{ 'backend.index.new_housing' | trans }}</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="selectNewHousing" class="form-control">
+                                    <option>{{ 'backend.index.housing_type_select' | trans }}</option>
+                                    <option>----------------------</option>
+                                    <option value="commercial.archive">{{ 'navbar.housing.commercial.archive' | trans }}</option>
+                                    <option value="commercial.commercial_property">{{ 'navbar.housing.commercial.commercial_property' | trans }}</option>
+                                    <option value="commercial.storehouse">{{ 'navbar.housing.commercial.storehouse' | trans }}</option>
+                                    <option value="floor.urban">{{ 'navbar.housing.floor.urban' | trans }}</option>
+                                    <option value="floor.non_urba">{{ 'navbar.housing.floor.non_urban' | trans }}</option>
+                                    <option value="vertical.apartment">{{ 'navbar.housing.residence.vertical.apartment' | trans }}</option>
+                                    <option value="residence.vertical.attic">{{ 'navbar.housing.residence.vertical.attic' | trans }}</option>
+                                    <option value="residence.vertical.duplex">{{ 'navbar.housing.residence.vertical.duplex' | trans }}</option>
+                                    <option value="residence.vertical.firts_floor">{{ 'navbar.housing.residence.vertical.firts_floor' | trans }}</option>
+                                    <option value="residence.vertical.flat">{{ 'navbar.housing.residence.vertical.flat' | trans }}</option>
+                                    <option value="residence.vertical.loft">{{ 'navbar.housing.residence.vertical.loft' | trans }}</option>
+                                    <option value="residence.vertical.penthouse">{{ 'navbar.housing.residence.vertical.penthouse' | trans }}</option>
+                                    <option value="residence.vertical.penthouse_duplex">{{ 'navbar.housing.residence.vertical.penthouse_duplex' | trans }}</option>
+                                    <option value="residence.vertical.study">{{ 'navbar.housing.residence.vertical.study' | trans }}</option>
+                                    <option value="residence.horizontal.bungalow">{{ 'navbar.housing.residence.horizontal.bungalow' | trans }}</option>
+                                    <option value="residence.horizontal.castle">{{ 'navbar.housing.residence.horizontal.castle' | trans }}</option>
+                                    <option value="residence.horizontal.country_house">{{ 'navbar.housing.residence.horizontal.country_house' | trans }}</option>
+                                    <option value="residence.horizontal.detached_house">{{ 'navbar.housing.residence.horizontal.detached_house' | trans }}</option>
+                                    <option value="residence.horizontal.house">{{ 'navbar.housing.residence.horizontal.house' | trans }}</option>
+                                    <option value="residence.horizontal.ranch">{{ 'navbar.housing.residence.horizontal.ranch' | trans }}</option>
+                                    <option value="residence.horizontal.semidetached_house">{{ 'navbar.housing.residence.horizontal.semidetached_house' | trans }}</option>
+                                    <option value="residence.horizontal.tower">{{ 'navbar.housing.residence.horizontal.tower' | trans }}</option>
+                                    <option value="residence.horizontal.townhouse">{{ 'navbar.housing.residence.horizontal.townhouse' | trans }}</option>
+                                    <option value="residence.horizontal.urban_development_detached_house">{{ 'navbar.housing.residence.horizontal.urban_development_detached_house' | trans }}</option>
+                                    <option value="residence.horizontal.villa">{{ 'navbar.housing.residence.horizontal.villa' | trans }}</option>
+                                    <option value="housing.garage">{{ 'navbar.housing.garage' | trans }}</option>
+                                    <option value="housing.office">{{ 'navbar.housing.office' | trans }}</option>
+                                    <option value="housing.storage">{{ 'navbar.housing.storage' | trans }}</option>
+                                    <option value="housing.warehouse">{{ 'navbar.housing.warehouse' | trans }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <a id="btnNewHousing" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-plus"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>## ULTIMOS INMUEBLES ##</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript">
+        $(document).ready(function() {
+
+            $('#btnNewHousing').click(function($e) {
+                $e.preventDefault();
+
+                var $type = $('#selectNewHousing').value;
+                var $url = null;
+
+                switch ($type) {
+                    case 'commercial.archive':
+                            $url = Routing.generate('backend_people_legal_view');
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    case '':
+                        break;
+                    default:
+                        break;
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

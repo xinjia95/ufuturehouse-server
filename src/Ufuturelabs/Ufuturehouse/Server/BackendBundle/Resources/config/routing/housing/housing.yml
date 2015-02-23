@@ -1,0 +1,3 @@
+backend_housing_residence:
+    resource: "@BackendBundle/Resources/config/routing/housing/residence/residence.yml"
+    prefix: /residence

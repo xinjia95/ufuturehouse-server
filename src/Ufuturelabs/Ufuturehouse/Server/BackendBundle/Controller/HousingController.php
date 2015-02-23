@@ -3,31 +3,53 @@
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Residence\ResidenceVertical\FlatType;
 
 class HousingController extends Controller
 {
-    public function indexAction()
+    public function indexResidenceVerticalFlatAction()
     {
-        return $this->render('BackendBundle:Housing:index.html.twig');
+        return $this->render('BackendBundle:Housing/residence/vertical/flat:index.html.twig');
     }
 
-    public function createAction()
+    public function createResidenceVerticalFlatAction()
     {
-        return $this->render('BackendBundle:Housing:create.html.twig');
+        $flat = new Flat();
+
+        /** @var \Symfony\Component\HttpFoundation\Request $request */
+        $request = $this->container->get('request');
+
+        /** @var \Symfony\Component\Form\Form $form */
+        $form = $this->createForm(new FlatType(), $flat);
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            /** @var \Doctrine\Common\Persistence\ObjectManager $em */
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($flat);
+            $em->flush();
+
+            return $this->redirectToRoute('backend_housing_residence_vertical_flat_index');
+        }
+        return $this->render("BackendBundle:Housing/residence/vertical/flat:create.html.twig", array(
+            "form" => $form->createView()
+        ));
     }
 
-    public function editAction($id)
+    public function editResidenceVerticalFlatAction($id)
     {
-        return $this->render('BackendBundle:Housing:edit.html.twig');
+        return $this->render('BackendBundle:Housing/residence/vertical/flat:edit.html.twig');
     }
 
-    public function deleteAction($id)
+    public function deleteResidenceVerticalFlatAction($id)
     {
-        return $this->redirect($this->generateUrl('backend_housing_index'));
+        return $this->redirect($this->generateUrl('backend_housing_residence_vertical_flat_index'));
     }
 
-    public function viewAction($id)
+    public function viewResidenceVerticalFlatAction($id)
     {
-        return $this->render('BackendBundle:Housing:view.html.twig');
+        return $this->render('BackendBundle:Housing/residence/vertical/flat:view.html.twig');
     }
 }

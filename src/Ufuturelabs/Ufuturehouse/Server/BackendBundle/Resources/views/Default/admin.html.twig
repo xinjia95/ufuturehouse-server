@@ -24,7 +24,40 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{{ path('backend_index') }}">{{ 'navbar.home' | trans }}</a></li>
                             <li><a href="#">{{ 'navbar.users' | trans }}</a></li>
-                            <li><a href="#">{{ 'navbar.housing' | trans }}</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'navbar.housing' | trans }}  <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">{{ 'navbar.housing.commercial.archive' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.commercial.commercial_property' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.commercial.storehouse' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.floor.urban' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.floor.non_urban' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.apartment' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.attic' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.duplex' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.firts_floor' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.flat' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.loft' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.penthouse' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.penthouse_duplex' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.vertical.study' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.bungalow' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.castle' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.country_house' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.detached_house' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.house' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.ranch' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.semidetached_house' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.tower' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.townhouse' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.urban_development_detached_house' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.residence.horizontal.villa' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.garage' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.office' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.storage' | trans }}</a></li>
+                                    <li><a href="#">{{ 'navbar.housing.warehouse' | trans }}</a></li>
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'navbar.people' | trans }}  <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">

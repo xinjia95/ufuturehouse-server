@@ -151,7 +151,7 @@ class Housing
      *
      * Fecha a partir de la cual el inmueble pasa a estar disponible. Si es NULL la disponibilidad es inmediata.
      *
-     * @ORM\Column(name="availability_date", type="datetime", nullable=false)
+     * @ORM\Column(name="availability_date", type="date", nullable=false)
      */
     private $availabilityDate;
 

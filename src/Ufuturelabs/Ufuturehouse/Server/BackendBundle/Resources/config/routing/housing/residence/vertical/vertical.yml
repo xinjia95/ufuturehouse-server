@@ -1,0 +1,3 @@
+backend_housing_residence_vertical_flat:
+    resource: "@BackendBundle/Resources/config/routing/housing/residence/vertical/flat/flat.yml"
+    prefix: /flat

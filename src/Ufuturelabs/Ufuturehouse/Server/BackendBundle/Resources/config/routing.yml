@@ -10,7 +10,7 @@ backend_login_check:
     path: /login_check
 
 backend_housing:
-    resource: "@BackendBundle/Resources/config/routing/housing.yml"
+    resource: "@BackendBundle/Resources/config/routing/housing/housing.yml"
     prefix: /housing
 
 backend_locations_state:

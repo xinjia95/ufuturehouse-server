@@ -1,0 +1,19 @@
+backend_housing_residence_vertical_flat_index:
+    path:     /
+    defaults: { _controller: BackendBundle:Housing:indexResidenceVerticalFlat }
+
+backend_housing_residence_vertical_flat_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:Housing:createResidenceVerticalFlat }
+
+backend_housing_residence_vertical_flat_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackendBundle:Housing:editResidenceVerticalFlat }
+
+backend_housing_residence_vertical_flat_delete:
+    path:     /delete/{id}
+    defaults: { _controller: BackendBundle:Housing:deleteResidenceVerticalFlat }
+
+backend_housing_residence_vertical_flat_view:
+    path:     /view/{id}
+    defaults: { _controller: BackendBundle:Housing:viewResidenceVerticalFlat }

@@ -4,7 +4,7 @@
 
 {% block title %}{{ parent() }} - {{ 'control_panel.people.physical.title' | trans }}{% endblock %}
 
-{% macro email_prototype(email) %}
+{% macro email_prototype() %}
     <div class="form-group well">
         <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
         <div class="col-sm-12">
@@ -58,49 +58,281 @@
     </div>
 {% endblock %}
 
+{% macro phonenumber_prototype() %}
+    <div class="form-group well">
+        <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers___name___number">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers___name___number" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[phonenumbers][__name__][number]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers___name___description">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers___name___description" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[phonenumbers][__name__][description]" required="required" maxlength="140" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% block _ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers_row %}
+    <div id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers" class="phonenumbers" data-prototype="{{ _self.phonenumber_prototype()|e }}">
+        {% for phonenumber in form.children %}
+            <div class="form-group well">
+                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(phonenumber.number) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(phonenumber.number) }}
+                            </div>
+                            {{ form_errors(phonenumber.number) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(phonenumber.description) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(phonenumber.description) }}
+                            </div>
+                            {{ form_errors(phonenumber.description) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% macro address_prototype() %}
+    <div class="form-group well">
+        <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___street">Street</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___street" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[addresses][__name__][street]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___city">City</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___city" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[addresses][__name__][city]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___zipCode">Zip code</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___zipCode" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[addresses][__name__][zipCode]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___state">State</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___state" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[addresses][__name__][state]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___description">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses___name___description" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[addresses][__name__][description]" required="required" maxlength="140" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% block _ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_addresses_row %}
+    <div id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_phonenumbers" class="addresses" data-prototype="{{ _self.address_prototype()|e }}">
+        {% for address in form.children %}
+            <div class="form-group well">
+                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(address.street) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(address.street) }}
+                            </div>
+                            {{ form_errors(address.street) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(address.city) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(address.city) }}
+                            </div>
+                            {{ form_errors(address.city) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(address.zipCode) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(address.zipCode) }}
+                            </div>
+                            {{ form_errors(address.zipCode) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(address.state) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(address.state) }}
+                            </div>
+                            {{ form_errors(address.state) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(address.description) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(address.description) }}
+                            </div>
+                            {{ form_errors(address.description) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% macro bank_account_prototype() %}
+    <div class="form-group well">
+        <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___holder">Holder</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___holder" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[bankAccounts][__name__][holder]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___bankAccountNumber">Bank account number</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___bankAccountNumber" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[bankAccounts][__name__][bankAccountNumber]" required="required" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required" for="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___description">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts___name___description" name="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson[bankAccounts][__name__][description]" required="required" maxlength="140" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% block _ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts_row %}
+    <div id="ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson_bankAccounts" class="bankAccounts" data-prototype="{{ _self.bank_account_prototype()|e }}">
+        {% for bankAccount in form.children %}
+            <div class="form-group well">
+                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(bankAccount.holder) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(bankAccount.holder) }}
+                            </div>
+                            {{ form_errors(bankAccount.holder) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(bankAccount.bankAccountNumber) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(bankAccount.bankAccountNumber) }}
+                            </div>
+                            {{ form_errors(bankAccount.bankAccountNumber) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form_label(bankAccount.description) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(bankAccount.description) }}
+                            </div>
+                            {{ form_errors(bankAccount.description) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
 {% block article %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
-        <li><a href="{{ path('backend_people_physical_index') }}">{{ 'control_panel.people.physical.title' | trans }}</a></li>
-        <li class="active">{{ 'control_panel.people.physical.create' | trans }}</li>
-    </ol>
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-    <fieldset>
-        <legend>{{ 'control_panel.people.physical.personal_data' | trans }}</legend>
-        {{ form_row(form.firstname) }}
-        {{ form_row(form.surname) }}
-        {{ form_row(form.secondSurname) }}
-        {{ form_row(form.birthday) }}
-        {{ form_row(form.dni) }}
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.emails' | trans }}
-        </legend>
-        {{ form_row(form.emails) }}
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.phonenumbers' | trans }}
-        </legend>
-        {{ form_row(form.phonenumbers) }}
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.addresses' | trans }}
-        </legend>
-        {{ form_row(form.addresses) }}
-    </fieldset>
-    <fieldset>
-        <legend>
-            {{ 'control_panel.people.bankAccounts' | trans }}
-        </legend>
-        {{ form_row(form.bankAccounts) }}
-    </fieldset>
-    <hr />
-    <input type="submit" class="btn btn-warning" value="{{ 'edit' | trans }}" />
-    {{ form_end(form) }}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li><a href="{{ path('backend_people_physical_index') }}">{{ 'control_panel.people.physical.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.people.physical.create' | trans }}</li>
+        </ol>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ 'control_panel.people.physical.personal_data' | trans }}</legend>
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.surname) }}
+            {{ form_row(form.secondSurname) }}
+            {{ form_row(form.birthday) }}
+            {{ form_row(form.dni) }}
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.emails' | trans }}
+            </legend>
+            {{ form_row(form.emails) }}
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.phonenumbers' | trans }}
+            </legend>
+            {{ form_row(form.phonenumbers) }}
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.addresses' | trans }}
+            </legend>
+            {{ form_row(form.addresses) }}
+        </fieldset>
+        <fieldset>
+            <legend>
+                {{ 'control_panel.people.bankAccounts' | trans }}
+            </legend>
+            {{ form_row(form.bankAccounts) }}
+        </fieldset>
+        <hr />
+        <input type="submit" class="btn btn-warning" value="{{ 'edit' | trans }}" />
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
 {% block javascripts %}

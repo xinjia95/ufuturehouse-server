@@ -2,83 +2,120 @@
 
 {% block title %}{{ parent() }} - {{ 'control_panel.people.physical.title' | trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/backend/css/ladda-themeless.min.css') }}" />
+{% endblock %}
+
 {% block article %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
-        <li class="active">{{ 'control_panel.people.physical.title' | trans }}</a></li>
-    </ol>
-    <div class="row">
-        <div class="col-md-9">
-            <a type="button" class="btn btn-primary" href="{{ path('backend_people_physical_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
-        <form class="form-inline col-md-3" role="form">
-            <div class="search-box form-group">
-                <input type="search" name="search" class="form-control" placeholder="{{ 'control_panel.people.physical.search' | trans }}" />
-                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.people.physical.title' | trans }}</a></li>
+        </ol>
+        <div class="row">
+            <div class="col-xs-1">
+                <a type="button" class="btn btn-primary" href="{{ path('backend_people_physical_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>{{ 'control_panel.people.physical.surname' | trans }}</th>
-                <th>{{ 'control_panel.people.physical.second_surname' | trans }}</th>
-                <th>{{ 'control_panel.people.physical.firtsname' | trans }}</th>
-                <th>{{ 'control_panel.people.physical.dni' | trans }}</th>
-                <th>{{ 'control_panel.people.physical.birthday' | trans }}</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for person in people %}
-                <tr>
-                    <td>{{ person.surname }}</td>
-                    <td>{{ person.secondSurname }}</td>
-                    <td>{{ person.firstname }}</td>
-                    <td>{{ person.dni }}</td>
-                    <td>{{ person.birthday | localizeddate('short', 'none') }}</td>
-                    <td class="td-actions">
-                        <button class="btn btn-primary btn-view-person" data-id="{{ person.id }}"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <a href="{{ path('backend_people_physical_edit', { 'id': person.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ person.id }}"><span class="glyphicon glyphicon-remove"></span></a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% for person in people %}
-        <div class="modal fade" id="modal-delete-{{ person.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">{{ 'control_panel.search.filter_by' | trans }}</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#bussinessName">{{ 'control_panel.people.legal.bussiness_name' | trans }}</a></li>
+                            <li><a href="#cif">{{ 'control_panel.people.legal.cif' | trans }}</a></li>
+                        </ul>
                     </div>
-                    <div class="modal-body">
-                        <p>{{ 'control_panel.people.physical.delete_confirmation' | trans({ '%name%': person }) }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
-                        <a class="btn btn-danger" href="{{ path('backend_people_delete', {'id': person.id}) }}">{{ 'control_panel.delete' | trans }}</a>
-                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="{{ 'control_panel.search' | trans }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
                 </div>
             </div>
         </div>
-    {% endfor %}
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'control_panel.people.physical.surname' | trans }}</th>
+                    <th>{{ 'control_panel.people.physical.second_surname' | trans }}</th>
+                    <th>{{ 'control_panel.people.physical.firtsname' | trans }}</th>
+                    <th>{{ 'control_panel.people.physical.dni' | trans }}</th>
+                    <th>{{ 'control_panel.people.physical.birthday' | trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for person in people %}
+                    <tr>
+                        <td>{{ person.surname }}</td>
+                        <td>{{ person.secondSurname }}</td>
+                        <td>{{ person.firstname }}</td>
+                        <td>{{ person.dni }}</td>
+                        <td>{{ person.birthday | localizeddate('short', 'none') }}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button class="btn btn-primary ladda-button btn-view-person" data-style="zoom-in" data-id="{{ person.id }}">
+                                    <span class="ladda-label">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    </span>
+                                </button>
+                                <a href="{{ path('backend_people_physical_edit', { 'id': person.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ person.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% for person in people %}
+            <div class="modal fade" id="modal-delete-{{ person.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ 'control_panel.people.physical.delete_confirmation' | trans({ '%name%': person }) }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
+                            <a class="btn btn-danger" href="{{ path('backend_people_delete', {'id': person.id}) }}">{{ 'control_panel.delete' | trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/spin.min.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/ladda.min.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/ladda.jquery.min.js') }}"></script>
     <script type="application/javascript">
         $(document).ready(function() {
+
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
 
             $('.btn-view-person').click(function() {
 
                 var $button = $(this);
-                $button.css('display', 'none');
-                $button.after('<img id="loaderImage" src="{{ asset('img/image-loader.gif') }}" alt="Loader image" style="margin-right: 5px; margin-left: 5px;" />');
                 $('#alertErrorView').remove();
+
+                var $ladda = Ladda.create(document.querySelector('.btn-view-person'));
+                $ladda.start();
 
                 var $id = $button.data('id');
 
@@ -86,8 +123,7 @@
                     url: Routing.generate('backend_people_physical_view', { id: $id }),
                     method: 'GET',
                     success: function($response) {
-                        $button.css('display', '');
-                        $('#loaderImage').remove();
+                        $ladda.stop();
 
                         $('#modalViewPerson').remove();
 
@@ -96,12 +132,11 @@
                         $('#modalViewPerson').modal();
                     },
                     error: function() {
-                        $button.css('display', '');
-                        $('#loaderImage').remove();
+                        $ladda.stop();
                         $('.table').before(
-                                '<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +
+                            '<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +
                                 '{{ 'control_panel.people.view.error' | trans }}' +
-                                '</div>'
+                            '</div>'
                         );
                     }
                 });
