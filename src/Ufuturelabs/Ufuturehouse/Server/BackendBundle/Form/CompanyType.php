@@ -39,6 +39,11 @@ class CompanyType extends AbstractType
             ->add('linkedin')
             ->add('primaryColor')
             ->add('secundaryColor')
+            ->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn-success',
+                )
+            ))
         ;
     }
     

@@ -96,3 +96,6 @@ lunetics_locale:
         - browser
         - query
         - router
+
+elao_form_translation:
+    auto_generate: true

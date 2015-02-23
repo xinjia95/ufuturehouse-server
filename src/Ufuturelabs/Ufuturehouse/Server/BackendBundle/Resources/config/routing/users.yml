@@ -1,0 +1,25 @@
+backend_users_index:
+    path:     /
+    defaults: { _controller: BackendBundle:Users:index }
+
+backend_users_create:
+    path:     /create
+    defaults: { _controller: BackendBundle:Users:create }
+
+backend_users_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackendBundle:Users:edit }
+
+backend_users_view:
+    path:     /view/{id}
+    defaults: { _controller: BackendBundle:Users:view }
+
+backend_users_delete:
+    path:     /delete/{id}
+    defaults: { _controller: BackendBundle:Users:delete }
+
+backend_users_search:
+    path:     /search/{filter}/{param}
+    defaults: { _controller: BackendBundle:Users:search }
+    options:
+        expose: true
