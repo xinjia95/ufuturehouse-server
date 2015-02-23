@@ -39,6 +39,7 @@ class CompanyType extends AbstractType
             ->add('linkedin')
             ->add('primaryColor')
             ->add('secundaryColor')
+            ->add('submit', 'submit')
         ;
     }
     

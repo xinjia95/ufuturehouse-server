@@ -1,4 +1,9 @@
-{% extends 'BackendBundle:Configuration:configuration.html.twig' %}
+{% extends 'BackendBundle:Default:admin.html.twig' %}
 
-{% block pagecontent %}{% endblock %}
+{% block article %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
 

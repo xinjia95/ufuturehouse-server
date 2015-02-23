@@ -10,11 +10,6 @@ class ConfigurationController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BackendBundle:Configuration:index.html.twig');
-    }
-
-    public function companyAction()
-    {
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 
@@ -33,7 +28,7 @@ class ConfigurationController extends Controller
             $em->flush();
         }
 
-        return $this->render('BackendBundle:Configuration:company.html.twig', array(
+        return $this->render('BackendBundle:Configuration:index.html.twig', array(
             'form' => $form->createView(),
         ));
     }
