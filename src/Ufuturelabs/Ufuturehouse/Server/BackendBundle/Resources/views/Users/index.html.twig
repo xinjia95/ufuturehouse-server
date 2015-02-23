@@ -1,0 +1,157 @@
+{% extends 'BackendBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'control_panel.people.users.title' | trans }}{% endblock %}
+
+{% block article %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.people.users.title' | trans }}</a></li>
+        </ol>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info" role="alert">
+                {{ flashMessage | trans }}
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-xs-1">
+                <a type="button" class="btn btn-primary" href="{{ path('backend_users_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">{{ 'control_panel.search.filter_by' | trans }}</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#username">{{ 'control_panel.user.username' | trans }}</a></li>
+                        <li><a href="#email">{{ 'control_panel.user.email' | trans }}</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input id="inputParamSearch" type="text" class="form-control" name="inputParamSearch" placeholder="{{ 'control_panel.search' | trans }}">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span id="btnSearch" class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'control_panel.user.username' | trans }}</th>
+                    <th>{{ 'control_panel.user.email' | trans }}</th>
+                    <th>{{ 'control_panel.user.name' | trans }}</th>
+                    <th>{{ 'control_panel.user.surname' | trans }}</th>
+                    <th>{{ 'control_panel.user.enabled' | trans }}</th>
+                    <th>{{ 'control_panel.user.last_login' | trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>{{ user.enabled }}</td>
+                        <td>{{ user.lastLogin | localizeddate('short', 'short') }}</td>
+                        <td class="td-actions">
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-view-user" data-id="{{ user.id }}"><span class="glyphicon glyphicon-eye-open"></span></button>
+                                <a href="{{ path('backend_users_edit', { 'id': user.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ user.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% for user in users %}
+            <div class="modal fade" id="modal-delete-{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ 'control_panel.user.delete_confirmation' | trans({ '%username%': user.username }) }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
+                            <a class="btn btn-danger" href="{{ path('backend_users_delete', {'id': user.id}) }}">{{ 'control_panel.delete' | trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript">
+        $(document).ready(function() {
+
+            var $searchFilter = null;
+
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+                $searchFilter = $(this).attr("href").replace("#","");
+            });
+
+            $('#btnSearch').click(function($e) {
+
+                $e.preventDefault();
+
+                location.href = Routing.generate('backend_users_search', {
+                    filter: $searchFilter,
+                    param: $('#inputParamSearch').val()
+                });
+
+            });
+
+            {#$('.btn-view-person').click(function() {#}
+
+                {#var $button = $(this);#}
+                {#$button.css('display', 'none');#}
+                {#$button.after('<img id="loaderImage" src="{{ asset('img/image-loader.gif') }}" alt="Loader image" style="margin-right: 5px; margin-left: 5px;" />');#}
+                {#$('#alertErrorView').remove();#}
+
+                {#var $id = $button.data('id');#}
+
+                {#$.ajax({#}
+                    {#url: Routing.generate('backend_people_physical_view', { id: $id }),#}
+                    {#method: 'GET',#}
+                    {#success: function($response) {#}
+                        {#$button.css('display', '');#}
+                        {#$('#loaderImage').remove();#}
+
+                        {#$('#modalViewPerson').remove();#}
+
+                        {#$('.table').before($response);#}
+
+                        {#$('#modalViewPerson').modal();#}
+                    {#},#}
+                    {#error: function() {#}
+                        {#$button.css('display', '');#}
+                        {#$('#loaderImage').remove();#}
+                        {#$('.table').before(#}
+                                {#'<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +#}
+                                {#'{{ 'control_panel.people.view.error' | trans }}' +#}
+                                {#'</div>'#}
+                        {#);#}
+                    {#}#}
+                {#});#}
+
+            {#});#}
+
+        });
+    </script>
+{% endblock %}
