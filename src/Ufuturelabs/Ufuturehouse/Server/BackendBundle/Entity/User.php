@@ -164,14 +164,14 @@ class User extends BaseUser
     /**
      * @var string Apellidos
      *
-     * @ORM\Column(name="surname", type="string", length=100, nullable=false)
+     * @ORM\Column(name="surname", type="string", length=100, nullable=true)
      */
     private $surname;
 
     /**
      * @var string Número de teléfono de contacto
      *
-     * @ORM\Column(name="telephone", type="string", length=15, nullable=false)
+     * @ORM\Column(name="telephone", type="string", length=15, nullable=true)
      */
     private $telephone;
 

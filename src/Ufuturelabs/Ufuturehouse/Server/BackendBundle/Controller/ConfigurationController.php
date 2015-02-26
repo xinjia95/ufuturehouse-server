@@ -10,6 +10,9 @@ class ConfigurationController extends Controller
 {
     public function indexAction()
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+            throw $this->createAccessDeniedException();
+
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 

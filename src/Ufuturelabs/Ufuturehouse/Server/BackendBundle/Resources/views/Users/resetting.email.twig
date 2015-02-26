@@ -1,0 +1,11 @@
+{% block subject %}{{ 'users.resseting.subject' | trans({}, 'emails', default_locale) }}{% endblock %}
+
+{% block body_text %}
+    {% autoescape false %}
+    {{ 'users.resseting.subject' | trans({
+        '%name%':        user.name ~ ' ' ~ user.surname,
+        '%link%':        confirmationUrl,
+        '%companyName%': company.name
+    }, 'messages', default_locale) }}
+    {% endautoescape %}
+{% endblock %}

@@ -1,0 +1,9 @@
+users.resseting.subject: Reinicio de contraseña
+users.resseting.message: |
+    Hola %name%,
+
+    Puedes reiniciar tu contraseña entrando a %link%.
+
+    Saludos.
+
+    %companyName%

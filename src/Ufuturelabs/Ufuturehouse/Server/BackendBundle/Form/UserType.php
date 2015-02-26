@@ -17,9 +17,13 @@ class UserType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('enabled')
-            ->add('password')
-            ->add('locked')
+            ->add('enabled', null, array(
+                'required' => false,
+            ))
+            ->add('password', 'password')
+            ->add('locked', null, array(
+                'required' => false,
+            ))
             ->add('roles', 'choice', array(
                 'choices' => array(
                     'ROLE_USER'        => 'User',
@@ -29,8 +33,12 @@ class UserType extends AbstractType
                 'multiple' => true,
             ))
             ->add('name')
-            ->add('surname')
-            ->add('telephone')
+            ->add('surname', null, array(
+                'required' => false,
+            ))
+            ->add('telephone', null, array(
+                'required' => false,
+            ))
         ;
     }
     

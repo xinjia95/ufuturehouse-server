@@ -23,7 +23,9 @@
                     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li><a href="{{ path('backend_index') }}">{{ 'navbar.home' | trans }}</a></li>
-                            <li><a href="#">{{ 'navbar.users' | trans }}</a></li>
+                            {% if app.user and is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('backend_users_index') }}">{{ 'navbar.users' | trans }}</a></li>
+                            {% endif %}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'navbar.housing' | trans }}  <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -79,7 +81,9 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">{{ 'navbar.profile' | trans }}</a></li>
-                                    <li><a href="{{ path('backend_configuration_index') }}">{{ 'navbar.configuration' | trans }}</a></li>
+                                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('backend_configuration_index') }}">{{ 'navbar.configuration' | trans }}</a></li>
+                                    {% endif %}
                                     <li class="divider"></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}">{{ 'login.logout' | trans }}</a></li>
                                 </ul>

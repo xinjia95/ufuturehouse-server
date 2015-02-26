@@ -1,0 +1,33 @@
+{% extends 'BackendBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'control_panel.users.title' | trans }}{% endblock %}
+
+{% block article %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li><a href="{{ path('backend_users_index') }}">{{ 'control_panel.users.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.users.create' | trans }}</li>
+        </ol>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ 'form.users.user_data' | trans({}, 'forms') }}</legend>
+            {{ form_row(form.username) }}
+            {{ form_row(form.password, { 'required': false }) }}
+            {{ form_row(form.roles) }}
+            {{ form_row(form.enabled) }}
+            {{ form_row(form.locked) }}
+        </fieldset>
+        <fieldset>
+            <legend>{{ 'form.users.personal_data' | trans({}, 'forms') }}</legend>
+            {{ form_row(form.name) }}
+            {{ form_row(form.surname) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.telephone) }}
+        </fieldset>
+        <hr />
+        <input type="submit" class="btn btn-warning" value="{{ 'edit' | trans }}" />
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -30,6 +30,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources: ['bootstrap_3_horizontal_layout.html.twig']
+    globals:
+        default_locale: "%locale%"
 
 # Assetic Configuration
 assetic:
@@ -83,6 +85,18 @@ fos_user:
     db_driver: orm
     firewall_name: backend
     user_class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User
+    from_email:
+        address:        "%ufuturehouse.company.email%"
+        sender_name:    "%ufuturehouse.company.name%"
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        email:
+            template: BackendBundle:Users:resetting.email.twig
+    registration:
+        confirmation:
+            enabled: true
+            template: BackendBundle:Users:confirmation.email.twig
 
 # LocaleBundle COnfiguration
 lunetics_locale:

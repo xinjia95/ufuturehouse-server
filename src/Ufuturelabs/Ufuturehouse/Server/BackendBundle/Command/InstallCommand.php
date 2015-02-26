@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Question\Question;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
 
 class InstallCommand extends ContainerAwareCommand
 {
@@ -108,6 +109,16 @@ class InstallCommand extends ContainerAwareCommand
             } while(!$rootPasswordSet);
 
             $log->debug('Root user set');
+
+            /** @var \Doctrine\ORM\EntityManager $em */
+            $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+
+            $company = new Company();
+            $company->setName($this->getContainer()->getParameter('ufuturehouse.company.name'));
+            $company->setEmail($this->getContainer()->getParameter('ufuturehouse.company.email'));
+
+            $em->persist($company);
+            $em->flush();
 
             $output->writeln('<info>uFutureHouse Server has been successfully installed</info>');
         }
