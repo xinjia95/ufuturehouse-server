@@ -26,7 +26,8 @@ class EmailType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email',
+            'translation_domain' => 'forms'
         ));
     }
 

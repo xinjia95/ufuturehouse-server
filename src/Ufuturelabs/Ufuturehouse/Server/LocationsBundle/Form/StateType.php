@@ -23,7 +23,8 @@ class StateType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State',
+            'translation_domain' => 'forms'
         ));
     }
 

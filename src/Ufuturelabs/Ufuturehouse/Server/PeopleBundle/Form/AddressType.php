@@ -29,7 +29,8 @@ class AddressType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address',
+            'translation_domain' => 'forms'
         ));
     }
 

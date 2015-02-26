@@ -1,8 +1,8 @@
 control_panel.title: 'Panel de control'
+control_panel.delete: Eliminar
+control_panel.locations.states: Provincia
 control_panel.locations.states.title: Provincias
 control_panel.locations.states.search_box_placeholder: 'Buscar provincia'
-control_panel.locations.states: Provincia
-control_panel.delete: Eliminar
 control_panel.locations.states.delete_confirmation: '¿Está seguro de querer eliminar la provincia "%name%"?'
 control_panel.close: Cerrar
 login.signin: 'Iniciar sesión'
@@ -68,27 +68,6 @@ control_panel.people.address.zip_code: 'Código postal'
 control_panel.people.address.state: Provincia
 control_panel.people.bank_account.holder: Titular
 control_panel.people.bank_account.bank_account_number: IBAN
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.name.label: 'Nombre compañía'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.street.label: Calle
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.city.label: Ciudad
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.zipCode.label: 'Código postal'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.state.label: Provincia
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.telephone.label: Teléfono
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.fax.label: Fax
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.email.label: 'Correo electrónico'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.logo.label: Logotipo
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.facebook.label: Facebook
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.twitter.label: Twitter
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.googlePlus.label: 'Google +'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.googleMaps.label: 'Google Maps'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.tumblr.label: Tumblr
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.pinterest.label: Pinterest
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.flickr.label: Flickr
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.youtube.label: YouTube
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.linkedin.label: LinkedIn
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.primaryColor.label: 'Color primario'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.secundaryColor.label: 'Color secundario'
-form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.submit.label: 'Guardar configuración'
 control_panel.user.username: Nombre de usuario
 control_panel.user.email: Email
 control_panel.user.name: Nombre
@@ -96,3 +75,5 @@ control_panel.user.surname: Apellidos
 control_panel.user.enabled: Activado
 control_panel.user.last_login: Última sesión
 control_panel.user.delete_confirmation: ¿Realmente quiere eliminar al usuario "%username%"?
+control_panel.users.title: Gestión de usuarios
+control_panel.users.create: Creación de usuario

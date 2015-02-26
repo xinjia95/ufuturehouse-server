@@ -53,7 +53,8 @@ class CompanyType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company',
+            'translation_domain' => 'forms'
         ));
     }
 

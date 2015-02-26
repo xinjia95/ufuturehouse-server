@@ -18,13 +18,16 @@ class UserType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('enabled')
-            ->add('salt')
             ->add('password')
-            ->add('groups')
             ->add('locked')
-            ->add('expired')
-            ->add('expiresAt')
-            ->add('roles')
+            ->add('roles', 'choice', array(
+                'choices' => array(
+                    'ROLE_USER'        => 'User',
+                    'ROLE_ADMIN'       => 'Admin',
+                    'ROLE_SUPER_ADMIN' => 'Super Admin',
+                ),
+                'multiple' => true,
+            ))
             ->add('name')
             ->add('surname')
             ->add('telephone')
@@ -37,7 +40,8 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User',
+            'translation_domain' => 'forms'
         ));
     }
 

@@ -65,7 +65,8 @@ class PhysicalPersonType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\PhysicalPerson'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\PhysicalPerson',
+            'translation_domain' => 'forms'
         ));
     }
 

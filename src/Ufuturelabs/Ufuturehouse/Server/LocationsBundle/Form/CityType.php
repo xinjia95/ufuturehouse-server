@@ -26,7 +26,8 @@ class CityType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City',
+            'translation_domain' => 'forms'
         ));
     }
 

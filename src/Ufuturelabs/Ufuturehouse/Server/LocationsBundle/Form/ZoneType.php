@@ -26,7 +26,8 @@ class ZoneType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone',
+            'translation_domain' => 'forms'
         ));
     }
 
