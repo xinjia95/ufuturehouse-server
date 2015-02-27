@@ -1,0 +1,38 @@
+build:
+    environment:
+        hosts:
+            local.dev: '127.0.0.1'
+
+        apache2:
+            modules: ['rewrite']
+            sites:
+                symfony_app:
+                    web_root: 'web/'
+                    host: 'local.dev'
+
+    dependencies:
+          before:
+               - mysql -uroot -e 'CREATE DATABASE my_project'
+
+before_commands:
+    - "composer self-update"
+    - "composer install --prefer-source --dev"
+#    - "php app/console ufuturehouse:install"
+tools:
+    external_code_coverage: false
+    php_code_coverage:      false
+    php_code_sniffer:
+        config: { standard: 'PSR1' }
+    php_changetracking: true
+    php_cpd: true
+    php_cs_fixer:
+        config: { level: 'psr1' }
+    php_mess_detector: true
+    php_pdepend: true
+    php_analyzer: true
+    sensiolabs_security_checker: true
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
