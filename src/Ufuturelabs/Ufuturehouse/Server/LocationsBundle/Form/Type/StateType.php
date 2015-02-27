@@ -1,12 +1,12 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BankAccountType extends AbstractType
+class StateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,11 +14,7 @@ class BankAccountType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('holder')
-            ->add('bankAccountNumber')
-            ->add('description')
-        ;
+        $builder->add('name', 'text');
     }
     
     /**
@@ -27,7 +23,7 @@ class BankAccountType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount',
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State',
             'translation_domain' => 'forms'
         ));
     }
@@ -37,6 +33,6 @@ class BankAccountType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_bankaccount';
+        return 'ufuturelabs_ufuturehouse_server_locationsbundle_state';
     }
 }

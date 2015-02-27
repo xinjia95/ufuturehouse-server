@@ -2,10 +2,10 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Command;
 
-use Doctrine\DBAL\Schema\SchemaException;
 use FOS\UserBundle\Entity\UserManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Question\Question;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User;
 
 class InstallCommand extends ContainerAwareCommand
 {
@@ -34,19 +35,21 @@ class InstallCommand extends ContainerAwareCommand
         {
             $output->writeln('<info>Installing uFutureHouse Server</info>');
 
+            $arguments = new ArrayInput(array('--quiet' => true,));
+
             $output->writeln('<comment>Creating database...</comment>');
             $log->debug('Creating database');
-            $this->runCommand('doctrine:database:create', $input, $output);
+            $this->runCommand('doctrine:database:create', $arguments, $output);
             $log->debug('Database created or already exists');
 
             $log->debug('Creating schema');
             $output->writeln('<comment>Creating tables...</comment>');
-            $this->runCommand('doctrine:schema:create', $input, $output);
+            $this->runCommand('doctrine:schema:create', $arguments, $output);
             $log->debug('Schema created');
 
             $log->debug('Generating assets');
             $output->writeln('<comment>Generating CSS, JavaScript, images...</comment>');
-            $this->runCommand('assetic:dump', $input, $output);
+            $this->runCommand('assetic:dump', $arguments, $output);
             $log->debug('Assets generated');
 
             $log->debug('Now the root user is set');
@@ -87,6 +90,7 @@ class InstallCommand extends ContainerAwareCommand
                 /** @var UserManager $userManager */
                 $userManager = $this->getContainer()->get('fos_user.user_manager');
 
+                /** @var User $user */
                 $user = $userManager->createUser();
                 $user->setUsername('root');
                 $user->setPlainPassword($rootPassword);

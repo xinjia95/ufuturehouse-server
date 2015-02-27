@@ -3,7 +3,6 @@
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
@@ -685,7 +684,6 @@ class Company {
 
         $msapplication = $xmlBrowserconfig->addChild('msapplication');
         $tile = $msapplication->addChild('tile');
-        // TODO Si no funciona mirar si cogiendo la ruta del logo funciona
         $tile->addChild('square70x70logo')->addAttribute('src', 'mstile-70x70.png');
         $tile->addChild('square150x150logo')->addAttribute('src', 'mstile-150x150.png');
         $tile->addChild('square310x310logo')->addAttribute('src', 'mstile-310x310.png');
@@ -694,7 +692,7 @@ class Company {
 
         $browserconfig = $xmlBrowserconfig->asXML();
 
-        $uploadDir = __DIR__.'/../../../../../../web/uploads';
+        $uploadDir = __DIR__.'/../../../../../../web';
 
         imagepng($imageAppleTouchIcon57x57, $uploadDir.'/'.'apple-touch-icon-57x57.png');
         imagepng($imageAppleTouchIcon60x60, $uploadDir.'/'.'apple-touch-icon-60x60.png');
@@ -741,8 +739,8 @@ class Company {
      */
     private function writeFile($file, $fileName, $path)
     {
-        $newFile = fopen($path.'/'.$fileName, 'w') or die ('The file could not open');
-        fwrite($newFile, $file) or die ('The file could not write');
+        $newFile = fopen($path.'/'.$fileName, 'w');
+        fwrite($newFile, $file);
         fclose($newFile);
     }
 }

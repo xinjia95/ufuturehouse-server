@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\CityType;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\StateType;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\ZoneType;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type\CityType;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type\StateType;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type\ZoneType;
 
 class LocationsController extends Controller
 {

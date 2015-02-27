@@ -1,12 +1,12 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PhonenumberType extends AbstractType
+class ZoneType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,8 @@ class PhonenumberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('number')
-            ->add('description')
+            ->add('name')
+            ->add('city')
         ;
     }
     
@@ -26,7 +26,7 @@ class PhonenumberType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Phonenumber',
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone',
             'translation_domain' => 'forms'
         ));
     }
@@ -36,6 +36,6 @@ class PhonenumberType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_phonenumber';
+        return 'ufuturelabs_ufuturehouse_server_locationsbundle_zone';
     }
 }

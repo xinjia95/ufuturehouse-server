@@ -15,4 +15,4 @@ use Doctrine\ORM\Mapping AS ORM;
  */
 class House extends ResidenceHorizontal
 {
-} 
+}

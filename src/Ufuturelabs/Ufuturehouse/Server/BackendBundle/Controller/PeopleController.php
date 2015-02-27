@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\LegalPerson;
 use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Person;
 use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\PhysicalPerson;
-use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\LegalPersonType;
-use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\PhysicalPersonType;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type\LegalPersonType;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type\PhysicalPersonType;
 
 class PeopleController extends Controller
 {

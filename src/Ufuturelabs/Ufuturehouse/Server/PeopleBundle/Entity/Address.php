@@ -3,8 +3,6 @@
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
 
 /**
  * @ORM\Entity
@@ -167,4 +165,4 @@ class Address
     {
         $this->person = $person;
     }
-} 
+}

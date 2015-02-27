@@ -1,12 +1,12 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EmailType extends AbstractType
+class AddressType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,10 @@ class EmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email')
+            ->add('street')
+            ->add('city')
+            ->add('zipCode')
+            ->add('state')
             ->add('description')
         ;
     }
@@ -26,7 +29,7 @@ class EmailType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email',
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address',
             'translation_domain' => 'forms'
         ));
     }
@@ -36,6 +39,6 @@ class EmailType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_email';
+        return 'ufuturelabs_ufuturehouse_server_peoplebundle_address';
     }
 }

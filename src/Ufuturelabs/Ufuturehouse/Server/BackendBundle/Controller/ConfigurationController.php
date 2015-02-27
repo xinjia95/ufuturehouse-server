@@ -4,9 +4,8 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
-use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User;
-use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\CompanyType;
-use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\UserProfileType;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\Type\CompanyType;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\Type\UserProfileType;
 
 class ConfigurationController extends Controller
 {

@@ -4,7 +4,6 @@ namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity

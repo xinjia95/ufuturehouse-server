@@ -1,12 +1,12 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Residence\ResidenceVertical;
+namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ResidenceVerticalType extends AbstractType
+class BankAccountType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,9 @@ class ResidenceVerticalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('doorwayState')
-            ->add('elevatorNumber')
-            ->add('clothesLine')
+            ->add('holder')
+            ->add('bankAccountNumber')
+            ->add('description')
         ;
     }
     
@@ -27,7 +27,8 @@ class ResidenceVerticalType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\ResidenceVertical'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount',
+            'translation_domain' => 'forms'
         ));
     }
 
@@ -36,6 +37,6 @@ class ResidenceVerticalType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_residencevertical';
+        return 'ufuturelabs_ufuturehouse_server_peoplebundle_bankaccount';
     }
 }

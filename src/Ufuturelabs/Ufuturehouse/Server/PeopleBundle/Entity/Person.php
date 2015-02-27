@@ -99,7 +99,7 @@ class Person
     /**
      * @param $phonenumber Phonenumber
      */
-    public function addPhonenumber($phonenumber)
+    public function addPhonenumber(Phonenumber $phonenumber)
     {
         $this->phonenumbers[] = $phonenumber;
     }
@@ -107,7 +107,7 @@ class Person
     /**
      * @param $phonenumber Phonenumber
      */
-    public function removePhonenumber($phonenumber)
+    public function removePhonenumber(Phonenumber $phonenumber)
     {
         unset($this->phonenumbers[$phonenumber->getId()]);
     }
@@ -127,7 +127,7 @@ class Person
     {
         $this->emails = $emails;
 
-        foreach($emails as $email) {
+        foreach ($emails as $email) {
             $email->setPerson($this);
         }
     }
@@ -135,7 +135,7 @@ class Person
     /**
      * @param $email Email
      */
-    public function addEmail($email)
+    public function addEmail(Email $email)
     {
         $this->emails[] = $email;
     }
@@ -143,7 +143,7 @@ class Person
     /**
      * @param $email Email
      */
-    public function removeEmail($email)
+    public function removeEmail(Email $email)
     {
         unset($this->emails[$email->getId()]);
     }
@@ -167,7 +167,7 @@ class Person
     /**
      * @param $bankAccount BankAccount
      */
-    public function addBankAccount($bankAccount)
+    public function addBankAccount(BankAccount $bankAccount)
     {
         $this->bankAccounts[] = $bankAccount;
     }
@@ -175,7 +175,7 @@ class Person
     /**
      * @param $bankAccount BankAccount
      */
-    public function removeBankAccount($bankAccount)
+    public function removeBankAccount(BankAccount $bankAccount)
     {
         unset($this->bankAccounts[$bankAccount->getId()]);
     }
@@ -199,7 +199,7 @@ class Person
     /**
      * @param $address Address
      */
-    public function addAddress($address)
+    public function addAddress(Address $address)
     {
         $this->addresses[] = $address;
     }
@@ -207,8 +207,8 @@ class Person
     /**
      * @param $address Address
      */
-    public function removeAddress($address)
+    public function removeAddress(Address $address)
     {
         unset($this->addresses[$address->getId()]);
     }
-} 
+}

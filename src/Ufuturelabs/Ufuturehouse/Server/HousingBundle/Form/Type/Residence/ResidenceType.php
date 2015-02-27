@@ -1,6 +1,6 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Residence;
+namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

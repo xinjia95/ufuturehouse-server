@@ -56,4 +56,3 @@ fos_user_change_password:
 backend_people:
     resource: "@BackendBundle/Resources/config/routing/people/people.yml"
     prefix: /people
-

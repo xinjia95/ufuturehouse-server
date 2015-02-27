@@ -1,12 +1,13 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email;
 
-class LegalPersonType extends AbstractType
+class PhysicalPersonType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,12 +16,15 @@ class LegalPersonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cif')
-            ->add('bussinessName')
-            ->add('creationDate', 'birthday')
-            ->add('contactPerson')
+            ->add('dni')
+            ->add('firstname')
+            ->add('surname')
+            ->add('secondSurname')
+            ->add('birthday', 'birthday')
             ->add('emails', 'collection', array(
                 'type' => new EmailType(),
+                'by_reference' => false,
+                'prototype' => new Email(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'attr' => array(
@@ -61,7 +65,7 @@ class LegalPersonType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\LegalPerson',
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\PhysicalPerson',
             'translation_domain' => 'forms'
         ));
     }
@@ -71,6 +75,6 @@ class LegalPersonType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_legalperson';
+        return 'ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson';
     }
 }

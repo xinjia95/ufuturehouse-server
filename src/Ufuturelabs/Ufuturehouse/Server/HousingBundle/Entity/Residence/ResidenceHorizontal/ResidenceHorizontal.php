@@ -32,4 +32,4 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
  */
 abstract class ResidenceHorizontal extends Residence
 {
-} 
+}

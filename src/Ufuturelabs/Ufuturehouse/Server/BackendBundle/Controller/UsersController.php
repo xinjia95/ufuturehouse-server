@@ -4,9 +4,8 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User;
-use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\UserType;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\Type\UserType;
 
 class UsersController extends Controller
 {

@@ -98,4 +98,4 @@ abstract class ResidenceVertical extends Residence
     {
         $this->clothesLine = $clothesLine;
     }
-} 
+}

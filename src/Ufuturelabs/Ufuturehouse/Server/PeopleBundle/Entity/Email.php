@@ -99,4 +99,4 @@ class Email
     {
         return $this->person;
     }
-} 
+}

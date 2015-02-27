@@ -1,12 +1,12 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence\ResidenceVertical;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class StateType extends AbstractType
+class ResidenceVerticalType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,7 +14,11 @@ class StateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text');
+        $builder
+            ->add('doorwayState')
+            ->add('elevatorNumber')
+            ->add('clothesLine')
+        ;
     }
     
     /**
@@ -23,8 +27,7 @@ class StateType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State',
-            'translation_domain' => 'forms'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\ResidenceVertical'
         ));
     }
 
@@ -33,6 +36,6 @@ class StateType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_locationsbundle_state';
+        return 'ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_residencevertical';
     }
 }

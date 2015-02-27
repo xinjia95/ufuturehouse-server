@@ -4,7 +4,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat;
-use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Residence\ResidenceVertical\FlatType;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence\ResidenceVertical\FlatType;
 
 class HousingController extends Controller
 {
