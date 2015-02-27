@@ -77,5 +77,3 @@ $RECYCLE.BIN/
 # PHPStorm
 # ========================
 .idea
-
-composer.lock
