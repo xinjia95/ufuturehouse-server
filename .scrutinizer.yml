@@ -8,3 +8,7 @@ filter:
     excluded_paths: [vendor/*, tests/*]
 before_commands:
     - 'composer install --dev --prefer-source'
+checks:
+    php:
+        code_rating: true
+        duplication: true
