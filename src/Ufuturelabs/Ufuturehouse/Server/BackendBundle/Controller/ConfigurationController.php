@@ -4,7 +4,9 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\User;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\CompanyType;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Form\UserProfileType;
 
 class ConfigurationController extends Controller
 {
@@ -32,6 +34,32 @@ class ConfigurationController extends Controller
         }
 
         return $this->render('BackendBundle:Configuration:index.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function profileAction()
+    {
+        /** @var \Symfony\Component\HttpFoundation\Request $request */
+        $request = $this->container->get('request');
+
+        /** @var \FOS\UserBundle\Model\UserManager $userManager */
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        /** @var string $username */
+        $username = $this->getUser()->getUsername();
+
+        $user = $userManager->findUserByUsername($username);
+
+        $form = $this->createForm(new UserProfileType(), $user);
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            $userManager->updateUser($user);
+        }
+
+        return $this->render('BackendBundle:Configuration:profile.html.twig', array(
             'form' => $form->createView(),
         ));
     }

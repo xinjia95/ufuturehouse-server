@@ -1,7 +1,8 @@
 form.users.user_data: Datos de usuario
 form.users.personal_data: Datos personales
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.username.label: Nombre de usuario
-form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.password.label: Contraseña
+form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.password.children.first.label: Contraseña
+form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.password.children.second.label: Repetir contraseña
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.enabled.label: Cuenta activada
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.locked.label: Cuenta bloqueada
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.roles.label: Roles de usuario
@@ -9,6 +10,7 @@ form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.name.label: Nom
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.surname.label: Apellidos
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.email.label: Correo electrónico
 form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.telephone.label: Teléfono
+form.ufuturelabs_ufuturehouse_server_backendbundle_user.children.update.label: Actualizar perfil
 form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.name.label: 'Nombre compañía'
 form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.street.label: Calle
 form.ufuturelabs_ufuturehouse_server_backendbundle_company.children.city.label: Ciudad

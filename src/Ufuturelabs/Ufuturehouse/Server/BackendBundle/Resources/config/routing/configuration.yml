@@ -1,3 +1,7 @@
 backend_configuration_index:
     path:     /
     defaults: { _controller: BackendBundle:Configuration:index }
+
+backend_configuration_profile:
+    path:     /profile
+    defaults: { _controller: BackendBundle:Configuration:profile }
