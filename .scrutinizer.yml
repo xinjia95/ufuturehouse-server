@@ -12,7 +12,7 @@ build:
 
     dependencies:
           before:
-               - mysql -uroot -e 'CREATE DATABASE my_project'
+               - mysql -u root -e 'CREATE DATABASE ufuturehouse'
 
 before_commands:
     - "composer self-update"
@@ -36,3 +36,8 @@ checks:
     php:
         code_rating: true
         duplication: true
+
+application:
+    project_setup:
+        before:
+            - mysql -u root -e "CREATE DATABASE ufuturehouse"
