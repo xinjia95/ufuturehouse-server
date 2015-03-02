@@ -35,22 +35,30 @@ class InstallCommand extends ContainerAwareCommand
         {
             $output->writeln('<info>Installing uFutureHouse Server</info>');
 
-            $arguments = new ArrayInput(array('--quiet' => true,));
-
             $output->writeln('<comment>Creating database...</comment>');
             $log->debug('Creating database');
-            $this->runCommand('doctrine:database:create', $arguments, $output);
+            $this->runCommand(
+                'doctrine:database:create',
+                new ArrayInput(array(
+                        'command' => 'doctrine:database:create',
+                        '--quiet' => true,
+                    )
+                ),
+                $output
+            );
             $log->debug('Database created or already exists');
 
             $log->debug('Creating schema');
             $output->writeln('<comment>Creating tables...</comment>');
-            $this->runCommand('doctrine:schema:create', $arguments, $output);
+            $this->runCommand(
+                'doctrine:schema:create',
+                new ArrayInput(array(
+                        'command' => 'doctrine:schema:create',
+                        '--quiet' => true,
+                    )
+                ),
+                $output);
             $log->debug('Schema created');
-
-            $log->debug('Generating assets');
-            $output->writeln('<comment>Generating CSS, JavaScript, images...</comment>');
-            $this->runCommand('assetic:dump', $arguments, $output);
-            $log->debug('Assets generated');
 
             $log->debug('Now the root user is set');
 
