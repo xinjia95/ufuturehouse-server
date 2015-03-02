@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="towers")
+ * @ORM\Table(name="housings_towers")
  */
 class Tower extends ResidenceHorizontal
 {

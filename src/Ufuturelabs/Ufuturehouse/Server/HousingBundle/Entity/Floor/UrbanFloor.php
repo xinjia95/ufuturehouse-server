@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="urbans_floors")
+ * @ORM\Table(name="housings_urbans_floors")
  */
 class UrbanFloor extends Floor
 {

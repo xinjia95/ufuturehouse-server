@@ -77,3 +77,4 @@ control_panel.user.last_login: Última sesión
 control_panel.user.delete_confirmation: ¿Realmente quiere eliminar al usuario "%username%"?
 control_panel.users.title: Gestión de usuarios
 control_panel.users.create: Creación de usuario
+save: Guardar

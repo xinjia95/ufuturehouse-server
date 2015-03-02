@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="locations_cities")
  */
 class City
 {

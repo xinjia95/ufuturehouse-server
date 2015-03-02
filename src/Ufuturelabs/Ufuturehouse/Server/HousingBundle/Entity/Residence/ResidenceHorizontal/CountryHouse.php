@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="country_houses")
+ * @ORM\Table(name="housings_country_houses")
  */
 class CountryHouse extends ResidenceHorizontal
 {

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="emails")
+ * @ORM\Table(name="people_emails")
  * @UniqueEntity("email")
  */
 class Email

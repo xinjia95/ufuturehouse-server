@@ -8,7 +8,7 @@ use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="phonenumbers")
+ * @ORM\Table(name="people_phonenumbers")
  */
 class Phonenumber
 {

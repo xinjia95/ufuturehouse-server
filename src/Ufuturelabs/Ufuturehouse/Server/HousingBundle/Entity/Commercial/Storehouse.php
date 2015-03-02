@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="storehouses")
+ * @ORM\Table(name="housings_storehouses")
  */
 class Storehouse extends Commercial
 {

@@ -33,35 +33,35 @@ class Company {
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=140, nullable=false)
+     * @ORM\Column(name="street", type="string", length=140, nullable=true)
      */
     private $street;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=140, nullable=false)
+     * @ORM\Column(name="city", type="string", length=140, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zip_code", type="string", length=10, nullable=false)
+     * @ORM\Column(name="zip_code", type="string", length=10, nullable=true)
      */
     private $zipCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="state", type="string", length=140, nullable=false)
+     * @ORM\Column(name="state", type="string", length=140, nullable=true)
      */
     private $state;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=15, nullable=false)
+     * @ORM\Column(name="telephone", type="string", length=15, nullable=true)
      *
      * @SpainAssert\Phone()
      */
@@ -185,14 +185,14 @@ class Company {
      *
      * @ORM\Column(name="primary_color", type="string", length=7, nullable=false)
      */
-    private $primaryColor;
+    private $primaryColor = '#197CE2';
 
     /**
      * @var string
      *
      * @ORM\Column(name="secundary_color", type="string", length=7, nullable=false)
      */
-    private $secundaryColor;
+    private $secundaryColor = '#6AA8E9';
 
     /**
      * @return int

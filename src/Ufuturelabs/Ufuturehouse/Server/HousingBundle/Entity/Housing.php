@@ -2,6 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *
  * @ORM\Entity
  * @ORM\Table(name="housings")
- * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *      "residence"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence",
@@ -191,7 +192,7 @@ class Housing
      *
      * Los valores posibles se obtienen del catálogo "orientation".
      *
-     * @ORM\Column(name="orientation", type="string", length=30, nullable=false)
+     * @ORM\Column(name="orientation", type="string", length=30, nullable=true)
      */
     private $orientation;
 
@@ -214,12 +215,25 @@ class Housing
      *
      * @ORM\ManyToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Person")
      * @ORM\JoinTable(
-     *     name="owners",
+     *     name="housings_owners",
      *     joinColumns={@ORM\JoinColumn(name="housing_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id", nullable=false)}
      * )
      */
     private $owners;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Image", mappedBy="housing", cascade={"persist", "remove"})
+     */
+    private $images;
+
+    function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
 
     /**
      * @return string
@@ -603,5 +617,37 @@ class Housing
     public function setZone($zone)
     {
         $this->zone = $zone;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param ArrayCollection $images
+     */
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $this->getImages()->add($image);
+    }
+
+    /**
+     * @param Image $image
+     */
+    public  function removeImage(Image $image)
+    {
+        $this->getImages()->remove($image);
     }
 }

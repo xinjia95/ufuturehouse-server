@@ -13,7 +13,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
  * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="residences_horizontal")
+ * @ORM\Table(name="housings_residences_horizontal")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap( {
