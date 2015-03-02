@@ -174,7 +174,7 @@ class PeopleController extends Controller
         $em->remove($person);
         $em->flush();
 
-        $this->redirectToRoute((($person instanceof PhysicalPerson) ? 'backend_people_physical_index_index' : 'backend_people_physical_legal_index'));
+        return $this->redirectToRoute((($person instanceof PhysicalPerson) ? 'backend_people_physical_index' : 'backend_people_legal_index'));
     }
 
 }

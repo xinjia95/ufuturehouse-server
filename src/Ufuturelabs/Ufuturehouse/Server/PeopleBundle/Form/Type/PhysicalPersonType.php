@@ -5,7 +5,10 @@ namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount;
 use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email;
+use Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Phonenumber;
 
 class PhysicalPersonType extends AbstractType
 {
@@ -33,6 +36,8 @@ class PhysicalPersonType extends AbstractType
             ))
             ->add('phonenumbers', 'collection', array(
                 'type' => new PhonenumberType(),
+                'by_reference' => false,
+                'prototype' => new Phonenumber(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'attr' => array(
@@ -41,6 +46,8 @@ class PhysicalPersonType extends AbstractType
             ))
             ->add('addresses', 'collection', array(
                 'type' => new AddressType(),
+                'by_reference' => false,
+                'prototype' => new Address(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'attr' => array(
@@ -49,9 +56,10 @@ class PhysicalPersonType extends AbstractType
             ))
             ->add('bankAccounts', 'collection', array(
                 'type' => new BankAccountType(),
+                'by_reference' => false,
+                'prototype' => new BankAccount(),
                 'allow_add' => true,
                 'allow_delete' => true,
-                'required' => false,
                 'attr' => array(
                     'class' => 'bankAccounts'
                 ),

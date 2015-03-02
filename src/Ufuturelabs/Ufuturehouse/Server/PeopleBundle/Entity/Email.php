@@ -99,4 +99,12 @@ class Email
     {
         return $this->person;
     }
+
+    /**
+     * @param Person $person
+     */
+    public function setPerson($person)
+    {
+        $this->person = $person;
+    }
 }

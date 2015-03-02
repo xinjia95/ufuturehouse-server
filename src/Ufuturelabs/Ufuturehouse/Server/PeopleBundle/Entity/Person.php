@@ -29,9 +29,9 @@ class Person
     private $id;
 
     /**
-     * @var Phonenumber[]
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Phonenumber", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Phonenumber", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=true)
      * @Assert\Valid
      */
     private $phonenumbers;
@@ -39,25 +39,25 @@ class Person
     /**
      * @var Email[]
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=true)
      *
      * @Assert\Valid
      */
     private $emails;
 
     /**
-     * @var BankAccount[]
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\BankAccount", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=true)
      *
      * @Assert\Valid
      */
     private $bankAccounts;
 
     /**
-     * @var Address[]
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Address", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=true)
      *
      * @Assert\Valid
      */
@@ -71,7 +71,6 @@ class Person
         $this->addresses = new ArrayCollection();
     }
 
-
     /**
      * @return int
      */
@@ -81,7 +80,7 @@ class Person
     }
 
     /**
-     * @return Phonenumber[]
+     * @return ArrayCollection
      */
     public function getPhonenumbers()
     {
@@ -89,11 +88,15 @@ class Person
     }
 
     /**
-     * @param Phonenumber[] $phonenumbers
+     * @param ArrayCollection $phonenumbers
      */
-    public function setPhonenumbers($phonenumbers)
+    public function setPhonenumbers(ArrayCollection $phonenumbers)
     {
         $this->phonenumbers = $phonenumbers;
+
+        foreach ($phonenumbers as $phonenumber) {
+            $phonenumber->setPerson($this);
+        }
     }
 
     /**
@@ -101,7 +104,8 @@ class Person
      */
     public function addPhonenumber(Phonenumber $phonenumber)
     {
-        $this->phonenumbers[] = $phonenumber;
+        $phonenumber->setPerson($this);
+        $this->phonenumbers->add($phonenumber);
     }
 
     /**
@@ -109,11 +113,12 @@ class Person
      */
     public function removePhonenumber(Phonenumber $phonenumber)
     {
-        unset($this->phonenumbers[$phonenumber->getId()]);
+        $this->phonenumbers->removeElement($phonenumber);
+        $phonenumber->setPerson(null);
     }
 
     /**
-     * @return Email[]
+     * @return ArrayCollection
      */
     public function getEmails()
     {
@@ -121,9 +126,9 @@ class Person
     }
 
     /**
-     * @param $emails Collection
+     * @param $emails ArrayCollection
      */
-    public function setEmails($emails)
+    public function setEmails(ArrayCollection $emails)
     {
         $this->emails = $emails;
 
@@ -137,7 +142,8 @@ class Person
      */
     public function addEmail(Email $email)
     {
-        $this->emails[] = $email;
+        $email->setPerson($this);
+        $this->emails->add($email);
     }
 
     /**
@@ -145,11 +151,12 @@ class Person
      */
     public function removeEmail(Email $email)
     {
-        unset($this->emails[$email->getId()]);
+        $this->emails->removeElement($email);
+        $email->setPerson(null);
     }
 
     /**
-     * @return BankAccount[]
+     * @return ArrayCollection
      */
     public function getBankAccounts()
     {
@@ -157,10 +164,15 @@ class Person
     }
 
     /**
-     * @param BankAccount[] $bankAccounts
+     * @param ArrayCollection $bankAccounts
      */
-    public function setBankAccounts($bankAccounts)
+    public function setBankAccounts(ArrayCollection $bankAccounts)
     {
+        foreach ($bankAccounts as $bankAccount)
+        {
+            $bankAccount->setPerson($this);
+        }
+
         $this->bankAccounts = $bankAccounts;
     }
 
@@ -169,7 +181,8 @@ class Person
      */
     public function addBankAccount(BankAccount $bankAccount)
     {
-        $this->bankAccounts[] = $bankAccount;
+        $bankAccount->setPerson($this);
+        $this->bankAccounts->add($bankAccount);
     }
 
     /**
@@ -177,11 +190,12 @@ class Person
      */
     public function removeBankAccount(BankAccount $bankAccount)
     {
-        unset($this->bankAccounts[$bankAccount->getId()]);
+        $this->bankAccounts->removeElement($bankAccount);
+        $bankAccount->setPerson(null);
     }
 
     /**
-     * @return Address[]
+     * @return ArrayCollection
      */
     public function getAddresses()
     {
@@ -189,10 +203,14 @@ class Person
     }
 
     /**
-     * @param Address[] $addresses
+     * @param ArrayCollection $addresses
      */
-    public function setAddresses($addresses)
+    public function setAddresses(ArrayCollection $addresses)
     {
+        foreach ($addresses as $address)
+        {
+            $address->setPerson($this);
+        }
         $this->addresses = $addresses;
     }
 
@@ -201,7 +219,8 @@ class Person
      */
     public function addAddress(Address $address)
     {
-        $this->addresses[] = $address;
+        $address->setPerson($this);
+        $this->addresses->add($address);
     }
 
     /**
@@ -209,6 +228,7 @@ class Person
      */
     public function removeAddress(Address $address)
     {
-        unset($this->addresses[$address->getId()]);
+        $this->addresses->removeElement($address);
+        $address->setPerson(null);
     }
 }
