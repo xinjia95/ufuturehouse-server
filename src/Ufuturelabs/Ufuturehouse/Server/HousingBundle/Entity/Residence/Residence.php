@@ -195,7 +195,7 @@ class Residence extends Housing
      *
      * @ORM\Column(name="wardrobes_number", type="integer", nullable=false)
      */
-    private $wardrobesNumber;
+    private $wardrobesNumber = 0;
 
     /**
      * @var boolean Vestidor

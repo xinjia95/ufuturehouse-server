@@ -28,7 +28,9 @@ class HousingController extends Controller
         {
             /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
+            $flat->preUploadImages();
             $em->persist($flat);
+            $flat->uploadImages();
             $em->flush();
 
             return $this->redirectToRoute('backend_housing_residence_vertical_flat_index');

@@ -6,7 +6,7 @@
     <div class="form-group" style="margin-top: 15px;margin-bottom: -15px;">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <input type="file" id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images___name___path" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[images][__name__][path]" required="required" accept="image/*" />
+                <input type="file" id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images___name___image" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[images][__name__][image]" required="required" accept="image/*" />
             </div>
             <div class="col-sm-1">
                 <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
@@ -18,22 +18,7 @@
 {% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images_row %}
     <div class="form-group">
         <label class="col-sm-2 control-label required">{{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.images.label' | trans({}, 'forms') }}</label>
-        <div id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images" class="images" data-prototype="{{ _self.image_prototype()|e }}">
-            {% for email in form.children %}
-                <div class="row">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-9">
-                                <img src="" height="128px" width="128px" />
-                            </div>
-                            <div class="col-sm-1">
-                                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+        <div id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images" class="images" data-prototype="{{ _self.image_prototype()|e }}"></div>
     </div>
 {% endblock %}
 
@@ -68,6 +53,10 @@
                 addTagForm($collectionHolderImages, $newLinkLiImages);
             });
 
+            $('#{{ form.parkingSpacesPriceIncluded.vars.id }}').click(function () {
+                $('#{{ form.parkingSpacesPrice.vars.id }}').prop('disabled', !this.checked);
+            });
+
         });
 
         function addTagForm($collectionHolder, $newLinkLi) {
@@ -82,7 +71,7 @@
 
             $('.remove-tag').click(function(e) {
                 e.preventDefault();
-                $(this).parent().remove();
+                $(this).parent().parent().remove();
                 return false;
             });
         }

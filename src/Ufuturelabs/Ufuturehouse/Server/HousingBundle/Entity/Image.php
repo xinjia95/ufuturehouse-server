@@ -105,20 +105,62 @@ class Image
         $this->housing = $housing;
     }
 
-    /**
-     * @return string Filename
-     */
-    public function generatePath()
+    public function getAbsolutePath()
     {
-        $this->path = sha1(uniqid(mt_rand(), true)).'.'.$this->getImage()->getClientOriginalExtension();
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/images';
     }
 
     /**
-     * @param $path string Absolute path
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      */
-    public function upload($path)
+    public function preUpload()
     {
-        $this->getImage()->move($path, $this->getPath());
-        $this->setImage(null);
+        if (null !== $this->getImage())
+        {
+            $filename = sha1(uniqid(mt_rand(), true));
+
+            if (file_exists($this->getAbsolutePath())) {
+                unlink($this->getAbsolutePath());
+            }
+
+            $this->path = $filename.'.'.$this->getImage()->getClientOriginalExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getImage()) return;
+
+        $this->getImage()->move($this->getUploadRootDir(), $this->path);
+
+        $this->image = null;
+    }
+
+    /** @ORM\PostRemove() */
+    public function removeUpload()
+    {
+        $file = $this->getAbsolutePath();
+
+        if ($file) unlink($file);
     }
 }

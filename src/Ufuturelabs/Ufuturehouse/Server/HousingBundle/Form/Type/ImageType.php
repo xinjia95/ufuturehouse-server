@@ -1,6 +1,6 @@
 <?php
 
-namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form;
+namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +15,7 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('path', 'file', array(
+            ->add('image', 'file', array(
                 'required' => true,
                 'attr' => array(
                     'accept' => 'image/*'

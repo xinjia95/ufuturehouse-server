@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Image;
-use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\ImageType;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\ImageType;
 
 class FlatType extends AbstractType
 {
@@ -105,6 +105,7 @@ class FlatType extends AbstractType
             ))
             ->add('parkingSpacesPrice', 'money', array(
                 'required' => false,
+                'disabled' => true,
             ))
             ->add('buildingType', null, array(
                 'required' => false,

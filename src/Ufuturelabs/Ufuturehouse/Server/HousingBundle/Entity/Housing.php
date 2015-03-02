@@ -229,7 +229,7 @@ class Housing
      */
     private $images;
 
-    function __construct()
+    public function __construct()
     {
         $this->images = new ArrayCollection();
     }
@@ -633,6 +633,11 @@ class Housing
     public function setImages(ArrayCollection $images)
     {
         $this->images = $images;
+
+        foreach ($images as $image)
+        {
+            $image->setHousing($this);
+        }
     }
 
     /**
@@ -640,6 +645,7 @@ class Housing
      */
     public function addImage(Image $image)
     {
+        $image->setHousing($this);
         $this->getImages()->add($image);
     }
 
@@ -648,6 +654,39 @@ class Housing
      */
     public  function removeImage(Image $image)
     {
-        $this->getImages()->remove($image);
+        $this->getImages()->removeElement($image);
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUploadImages()
+    {
+        foreach ($this->getImages() as $image)
+        {
+            $image->preUpload();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function uploadImages()
+    {
+        foreach ($this->getImages() as $image)
+        {
+            $image->upload();
+        }
+    }
+
+    /** @ORM\PostRemove() */
+    public function removeUploadImages()
+    {
+        foreach ($this->getImages() as $image)
+        {
+            $image->removeUpload();
+        }
     }
 }
