@@ -35,3 +35,7 @@ footer a:link {
 footer .social {
     text-align: right;
 }
+
+.price-offer {
+    text-decoration: line-through;
+}

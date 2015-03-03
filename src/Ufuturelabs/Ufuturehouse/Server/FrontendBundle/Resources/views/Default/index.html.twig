@@ -15,86 +15,35 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <input type="search" class="form-control search-housing" placeholder="Buscar viviendas (metros cuadrados, piso, chalet, piscina, garaje)" />
+                <input type="search" class="form-control search-housing" placeholder="## Buscar viviendas (metros cuadrados, piso, chalet, piscina, garaje) ##" />
             </div>
         </div>
-        <div class="row">
+        {% set rowAux = 0 %}
+        {% for housing in housings %}
+            {% if rowAux == 0 %}
+                <div class="row">
+            {% endif %}
             <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+                    <p><img src="{{ asset('uploads/images/' ~ housing.images.0.path) }}" width="256px" height="200px" alt="{{ 'housing.image' | trans() }}" /></p>
+                    <p>{{ get_housing_type(housing) | trans }}</p>
+                    <p>{{ housing.city ~ '-' ~ housing.zone }}</p>
+                    <p>{{ housing.floorArea }} m<sup>2</sup></p>
+                    <p>
+                        {% if housing.priceOffer is not null and housing.priceOffer > 0 %}
+                            <span class="price-offer">{{ housing.price|localizedcurrency('EUR') }}</span> {{ housing.priceOffer|localizedcurrency('EUR') }}
+                        {% else %}
+                            {{ housing.price|localizedcurrency('EUR') }}
+                        {% endif %}
+                    </p>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
+            {% if rowAux < 2 %}
+                {% set rowAux = rowAux + 1 %}
+            {% else %}
+                {% set rowAux = 0 %}
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="well housing-offer">
-                    <p><img src="" width="256px" height="256px" alt="## IMAGEN VIVIENDA ##" /></p>
-                    <p>## TIPO VIVIENDA ##</p>
-                    <p>## LOCALIDAD ## - ## ZONA ##</p>
-                    <p>## NUM_DORM ## - ## NUM_BAÑOS ##</p>
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
