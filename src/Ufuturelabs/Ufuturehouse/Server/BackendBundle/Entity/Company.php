@@ -718,7 +718,11 @@ class Company {
         imagepng($favicon, $uploadDir.'/'.'favicon.ico');
 
         $this->writeFile($manifest, 'manifest.json', $uploadDir);
-        $this->writeFile($browserconfig, 'browserconfig.xml', $uploadDir);
+
+        if ($browserconfig !== false)
+        {
+            $this->writeFile($browserconfig, 'browserconfig.xml', $uploadDir);
+        }
 
     }
 
