@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
 /**
  * Archivo
@@ -13,6 +14,6 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\Entity
  * @ORM\Table(name="housings_archives")
  */
-class Archive extends Commercial
+class Archive extends Housing
 {
 }

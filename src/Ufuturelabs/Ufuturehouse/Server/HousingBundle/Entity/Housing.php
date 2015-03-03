@@ -11,18 +11,40 @@ use Doctrine\ORM\Mapping AS ORM;
  * @package Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity
  * @since 1.0
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\HousingRepository")
  * @ORM\Table(name="housings")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
- *      "residence"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence",
+ *      "flat"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat",
+ *      "apartment"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Apartment",
+ *      "study"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Study",
+ *      "penthouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Penthouse",
+ *      "firts_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\FirstFloor",
+ *      "duplex"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Duplex",
+ *      "attic"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Attic",
+ *      "penthouse_duplex"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\PenthouseDuplex",
+ *      "loft"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Loft",
+ *      "detached_house"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\DetachedHouse",
+ *      "townhouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Townhouse",
+ *      "semidetached_house"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\SemidetachedHouse",
+ *      "urban_development_detached_house"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\UrbanDevelopmentDetachedHouse",
+ *      "villa"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Villa",
+ *      "ranch"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Ranch",
+ *      "tower"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Tower",
+ *      "castle"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Castle",
+ *      "bungalow"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\Bungalow",
+ *      "house"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\House",
+ *      "country_house"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal\CountryHouse",
  *      "office"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Office",
- *      "commercial"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Commercial",
+ *      "commercial_property"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\CommercialProperty",
+ *      "storehouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Storehouse",
+ *      "archive"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Commercial\Archive",
  *      "warehouse"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Warehouse",
  *      "garage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Garage",
  *      "storage"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Storage",
- *      "floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\Floor"
+ *      "non_urban_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\NonUrbanFloor",
+ *      "urban_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\UrbanFloor",
  * })
  */
 class Housing

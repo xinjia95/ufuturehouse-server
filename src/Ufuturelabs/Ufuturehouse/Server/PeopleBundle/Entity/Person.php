@@ -37,7 +37,7 @@ class Person
     private $phonenumbers;
 
     /**
-     * @var Email[]
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\Email", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=true)
      *
