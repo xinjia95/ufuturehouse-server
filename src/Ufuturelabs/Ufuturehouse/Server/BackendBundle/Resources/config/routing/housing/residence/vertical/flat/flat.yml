@@ -5,6 +5,8 @@ backend_housing_residence_vertical_flat_index:
 backend_housing_residence_vertical_flat_create:
     path:     /create
     defaults: { _controller: BackendBundle:Housing:createResidenceVerticalFlat }
+    options:
+        expose: true
 
 backend_housing_residence_vertical_flat_edit:
     path:     /edit/{id}

@@ -117,3 +117,21 @@ backend.index.last_housings: Últimos inmuebles
 control_panel.people.legal.contact_person: Persona de contacto
 edit: Editar
 control_panel.people.users.title: Gestión de usuarios
+backend.housing.on_sale: En venta
+backend.housing.for_rent: En alquiler
+backend.housing.sold: Vendido
+backend.housing.rented: Alquilado
+control_panel.search.state: Provincia
+control_panel.search.city: Ciudad
+control_panel.search.zone: Zona
+control_panel.search.on_sale: En venta
+control_panel.search.for_rent: En alquiler
+control_panel.search.sold: Vendido
+control_panel.search.rented: Alquilado
+control_panel.search.type: Tipo
+control_panel.search.area: Superficie
+control_panel.search.price: Precio
+backend.housing.type: Tipo inmueble
+backend.housing.status: Estado
+backend.housing.city_zone: Ciudad - Zona
+backend.housing.price: Precio

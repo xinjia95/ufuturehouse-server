@@ -1,4 +1,5 @@
 services:
-#    housing.example:
-#        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    twig.extension.housing.get_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Twig\HousingTypeExtension
+        tags:
+            - { name: twig.extension }

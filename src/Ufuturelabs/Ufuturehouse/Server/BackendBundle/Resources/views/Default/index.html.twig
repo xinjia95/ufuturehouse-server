@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
                         <h3>{{ 'backend.index.quick_search' | trans }}</h3>
@@ -18,8 +18,16 @@
                                     <span id="search_concept">{{ 'control_panel.search.filter_by' | trans }}</span> <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#bussinessName">{{ 'control_panel.people.legal.bussiness_name' | trans }}</a></li>
-                                    <li><a href="#cif">{{ 'control_panel.people.legal.cif' | trans }}</a></li>
+                                    <li><a href="#state">{{ 'control_panel.search.state' | trans }}</a></li>
+                                    <li><a href="#city">{{ 'control_panel.search.city' | trans }}</a></li>
+                                    <li><a href="#zone">{{ 'control_panel.search.zone' | trans }}</a></li>
+                                    <li><a href="#onSale">{{ 'control_panel.search.on_sale' | trans }}</a></li>
+                                    <li><a href="#forRent">{{ 'control_panel.search.for_rent' | trans }}</a></li>
+                                    <li><a href="#sold">{{ 'control_panel.search.sold' | trans }}</a></li>
+                                    <li><a href="#rented">{{ 'control_panel.search.rented' | trans }}</a></li>
+                                    <li><a href="#type">{{ 'control_panel.search.type' | trans }}</a></li>
+                                    <li><a href="#area">{{ 'control_panel.search.area' | trans }}</a></li>
+                                    <li><a href="#price">{{ 'control_panel.search.price' | trans }}</a></li>
                                 </ul>
                             </div>
                             <input type="hidden" name="search_param" value="all" id="search_param">
@@ -34,7 +42,7 @@
                     <div class="col-md-12">
                         <h3>{{ 'backend.index.new_housing' | trans }}</h3>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <select id="selectNewHousing" class="form-control">
                                     <option>{{ 'backend.index.housing_type_select' | trans }}</option>
                                     <option>----------------------</option>
@@ -69,15 +77,52 @@
                                     <option value="housing.warehouse">{{ 'navbar.housing.warehouse' | trans }}</option>
                                 </select>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <a id="btnNewHousing" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-plus"></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h3>## ULTIMOS INMUEBLES ##</h3>
+            <div class="col-md-8">
+                <h3>{{ 'backend.index.last_housings' | trans }}</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ 'backend.housing.type' | trans }}</th>
+                            <th>{{ 'backend.housing.status' | trans }}</th>
+                            <th>{{ 'backend.housing.city_zone' | trans }}</th>
+                            <th>{{ 'backend.housing.price' | trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {% for housing in housings %}
+                        <tbody>
+                            <tr>
+                                <td>{{ get_housing_type(housing) | trans }}</td>
+                                <td>
+                                    {% if housing.onSale %}
+                                        {{ 'backend.housing.on_sale' | trans }}
+                                    {% elseif housing.forRent %}
+                                        {{ 'backend.housing.for_rent' | trans }}
+                                    {% elseif housing.sold %}
+                                        {{ 'backend.housing.sold' | trans }}
+                                    {% elseif housing.rented %}
+                                        {{ 'backend.housing.rented' | trans }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ housing.city ~ '-' ~ housing.zone }}</td>
+                                <td>{{ housing.price|localizedcurrency('EUR') }}</td>
+                                <td><a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>## AVISOS ##</h3>
             </div>
         </div>
     </div>
@@ -90,74 +135,18 @@
             $('#btnNewHousing').click(function($e) {
                 $e.preventDefault();
 
-                var $type = $('#selectNewHousing').value;
+                var $type = $('#selectNewHousing').val();
                 var $url = null;
 
                 switch ($type) {
-                    case 'commercial.archive':
-                            $url = Routing.generate('backend_people_legal_view');
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
-                        break;
-                    case '':
+                    case 'residence.vertical.flat':
+                            $url = Routing.generate('backend_housing_residence_vertical_flat_create');
                         break;
                     default:
                         break;
                 }
+
+                location.href = $url;
             });
 
         });
