@@ -36,7 +36,7 @@ class State
      */
     private $cities;
 
-    function __toString()
+    public function __toString()
     {
         return $this->name;
     }

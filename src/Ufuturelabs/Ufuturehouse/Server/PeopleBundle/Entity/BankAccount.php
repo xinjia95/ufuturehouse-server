@@ -120,7 +120,7 @@ class BankAccount
     }
 
     /**
-     * @param Person $person
+     * @param Person|null $person
      */
     public function setPerson($person)
     {

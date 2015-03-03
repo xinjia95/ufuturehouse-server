@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
@@ -54,13 +54,13 @@ class PhysicalPerson extends Person
      */
     private $birthday;
 
-    function __toString()
+    public function __toString()
     {
-        return $this->firstname . " " . $this->surname . (!is_null($this->secondSurname) ? "" : " " . $this->secondSurname);
+        return $this->firstname." ".$this->surname.(!is_null($this->secondSurname) ? "" : " ".$this->secondSurname);
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDni()
     {
@@ -68,7 +68,7 @@ class PhysicalPerson extends Person
     }
 
     /**
-     * @param mixed $dni
+     * @param string $dni
      */
     public function setDni($dni)
     {

@@ -3,8 +3,7 @@
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -63,7 +62,7 @@ class Person
      */
     private $addresses;
 
-    function __construct()
+    public function __construct()
     {
         $this->phonenumbers = new ArrayCollection();
         $this->bankAccounts = new ArrayCollection();

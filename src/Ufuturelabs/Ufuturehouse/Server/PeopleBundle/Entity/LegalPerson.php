@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -40,7 +40,7 @@ class LegalPerson extends Person
      */
     private $contactPerson;
 
-    function __toString()
+    public function __toString()
     {
         return $this->bussinessName;
     }

@@ -13,7 +13,7 @@ login.forgot_password: '¿Has perdido la contraseña?'
 login.logout: 'Cerrar sesión'
 navbar.home: Inicio
 navbar.users: Usuarios
-navbar.housing: Propiedades
+navbar.housing: Inmuebles
 navbar.people: Personas
 navbar.locations: Localizaciones
 navbar.locations.states: Provincias
@@ -135,3 +135,4 @@ backend.housing.type: Tipo inmueble
 backend.housing.status: Estado
 backend.housing.city_zone: Ciudad - Zona
 backend.housing.price: Precio
+housing: Inmueble

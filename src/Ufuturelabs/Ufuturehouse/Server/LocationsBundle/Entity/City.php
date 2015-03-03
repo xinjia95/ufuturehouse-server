@@ -44,7 +44,7 @@ class City
      */
     private $zones;
 
-    function __toString()
+    public function __toString()
     {
         return $this->name;
     }

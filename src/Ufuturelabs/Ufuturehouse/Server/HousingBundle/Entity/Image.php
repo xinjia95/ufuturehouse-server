@@ -149,7 +149,10 @@ class Image
      */
     public function upload()
     {
-        if (null === $this->getImage()) return;
+        if (null === $this->getImage())
+        {
+            return;
+        }
 
         $this->getImage()->move($this->getUploadRootDir(), $this->path);
 
@@ -161,6 +164,9 @@ class Image
     {
         $file = $this->getAbsolutePath();
 
-        if ($file) unlink($file);
+        if ($file)
+        {
+            unlink($file);
+        }
     }
 }

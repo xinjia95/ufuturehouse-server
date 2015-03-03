@@ -65,12 +65,10 @@ class InstallCommand extends ContainerAwareCommand
             /** @var \Symfony\Component\Console\Helper\QuestionHelper $helper */
             $helper = $this->getHelper('question');
 
-            $rootPasswordSet = false;
-
             do
             {
                 $rootPasswordQuestion = new Question('<question>Password for superadmin:</question> ');
-                $rootPasswordQuestion->setValidator(function ($value)
+                $rootPasswordQuestion->setValidator(function($value)
                 {
                     if (trim($value) == '')
                     {
@@ -118,7 +116,7 @@ class InstallCommand extends ContainerAwareCommand
                     $rootPasswordSet = false;
                 }
 
-            } while(!$rootPasswordSet);
+            } while (!$rootPasswordSet);
 
             $log->debug('Root user set');
 
@@ -134,7 +132,8 @@ class InstallCommand extends ContainerAwareCommand
 
             $output->writeln('<info>uFutureHouse Server has been successfully installed</info>');
         }
-        catch (\Exception $e) {
+        catch (\Exception $e)
+        {
             $log->error($e->getMessage());
             $output->writeln('<error>An error has occurred. The installation can not continue.</error>');
             $output->writeln('<error>'.$e->getMessage().'</error>');

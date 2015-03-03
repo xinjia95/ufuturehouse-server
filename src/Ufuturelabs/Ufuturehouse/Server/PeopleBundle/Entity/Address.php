@@ -159,7 +159,7 @@ class Address
     }
 
     /**
-     * @param Person $person
+     * @param Person|null $person
      */
     public function setPerson($person)
     {

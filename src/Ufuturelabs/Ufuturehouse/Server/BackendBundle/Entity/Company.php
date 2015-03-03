@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Xinjia\SpainValidatorBundle\Validator as SpainAssert;
@@ -475,7 +475,7 @@ class Company {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPrimaryColor()
     {
@@ -483,7 +483,7 @@ class Company {
     }
 
     /**
-     * @param mixed $primaryColor
+     * @param string $primaryColor
      */
     public function setPrimaryColor($primaryColor)
     {
@@ -582,7 +582,10 @@ class Company {
      */
     public function upload()
     {
-        if (null === $this->getLogo()) return;
+        if (null === $this->getLogo())
+        {
+            return;
+        }
 
         $this->getLogo()->move($this->getUploadRootDir(), $this->logoPath);
 
@@ -596,14 +599,18 @@ class Company {
     {
         $file = $this->getAbsolutePath();
 
-        if ($file) unlink($file);
+        if ($file)
+        {
+            unlink($file);
+        }
     }
 
+    /**
+     * @param string $path Absolute path
+     * @param UploadedFile $file Image to create favicons
+     */
     public function createFavicons($path, UploadedFile $file)
     {
-        /** @var \resource $image */
-        $image = null;
-
         switch ($file->getClientMimeType())
         {
             case 'image/jpeg':
@@ -618,7 +625,7 @@ class Company {
             case 'image/bmp':
                 $image = imagecreatefromwbmp($path);
                 break;
-            default :
+            default:
                 throw new \InvalidArgumentException('Invalid image type');
         }
 
@@ -711,31 +718,31 @@ class Company {
         imagepng($favicon, $uploadDir.'/'.'favicon.ico');
 
         $this->writeFile($manifest, 'manifest.json', $uploadDir);
-        $this->writeFile($browserconfig , 'browserconfig.xml', $uploadDir);
+        $this->writeFile($browserconfig, 'browserconfig.xml', $uploadDir);
 
     }
 
     /**
-     * @param $path String
-     * @param $image resource
-     * @param $newwidth int
-     * @param $newheight int
+     * @param string $path
+     * @param resource $image
+     * @param integer $newWidth
+     * @param integer $newHeight
      * @return resource
      */
-    private function resizeImage($path, $image, $newwidth, $newheight)
+    private function resizeImage($path, $image, $newWidth, $newHeight)
     {
         list($width, $height) = getimagesize($path);
 
-        $thumb = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresized($thumb, $image, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+        $thumb = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresized($thumb, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
         return $thumb;
     }
 
     /**
-     * @param $file String
-     * @param $fileName String
-     * @param $path String
+     * @param string $file
+     * @param string $fileName
+     * @param string $path
      */
     private function writeFile($file, $fileName, $path)
     {

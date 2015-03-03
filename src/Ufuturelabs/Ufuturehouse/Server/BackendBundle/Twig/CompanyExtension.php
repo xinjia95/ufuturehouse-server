@@ -2,7 +2,6 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Twig;
 
-
 use Doctrine\ORM\EntityManager;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
 

@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,11 +46,10 @@ class Email
      */
     private $description;
 
-    function __toString()
+    public function __toString()
     {
         return $this->getEmail();
     }
-
 
     /**
      * @return int
@@ -101,7 +100,7 @@ class Email
     }
 
     /**
-     * @param Person $person
+     * @param Person|null $person
      */
     public function setPerson($person)
     {

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: avegao
- * Date: 03/03/2015
- * Time: 11:17
- */
 
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Twig;
-
 
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
@@ -38,9 +31,6 @@ class HousingTypeExtension extends \Twig_Extension
      */
     public function getHousingType(Housing $object)
     {
-        /** @var string $type */
-        $type = null;
-
         switch (get_class($object))
         {
             case 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat':
@@ -131,7 +121,7 @@ class HousingTypeExtension extends \Twig_Extension
                 $type = 'navbar.housing.floor.non_urban';
                 break;
             default:
-                throw new \Exception($object.' not is a housing class child');
+                $type = 'housing';
                 break;
         }
 

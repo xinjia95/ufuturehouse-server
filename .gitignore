@@ -77,3 +77,22 @@ $RECYCLE.BIN/
 # PHPStorm
 # ========================
 .idea
+
+# Favicons
+web/apple-touch-icon-76x76.png
+web/apple-touch-icon-152x152.png
+web/apple-touch-icon-144x144.png
+web/apple-touch-icon-60x60.png
+web/browserconfig.xml
+web/apple-touch-icon-120x120.png
+web/android-chrome-192x192.png
+web/favicon.ico
+web/mstile-144x144.png
+web/favicon-96x96.png
+web/apple-touch-icon-180x180.png
+web/apple-touch-icon-72x72.png
+web/favicon-32x32.png
+web/apple-touch-icon-57x57.png
+web/favicon-16x16.png
+web/apple-touch-icon-114x114.png
+web/manifest.json
