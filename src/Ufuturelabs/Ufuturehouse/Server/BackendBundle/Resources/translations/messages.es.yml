@@ -68,13 +68,52 @@ control_panel.people.address.zip_code: 'Código postal'
 control_panel.people.address.state: Provincia
 control_panel.people.bank_account.holder: Titular
 control_panel.people.bank_account.bank_account_number: IBAN
-control_panel.user.username: Nombre de usuario
+control_panel.user.username: 'Nombre de usuario'
 control_panel.user.email: Email
 control_panel.user.name: Nombre
 control_panel.user.surname: Apellidos
 control_panel.user.enabled: Activado
-control_panel.user.last_login: Última sesión
-control_panel.user.delete_confirmation: ¿Realmente quiere eliminar al usuario "%username%"?
-control_panel.users.title: Gestión de usuarios
-control_panel.users.create: Creación de usuario
+control_panel.user.last_login: 'Última sesión'
+control_panel.user.delete_confirmation: '¿Realmente quiere eliminar al usuario "%username%"?'
+control_panel.users.title: 'Gestión de usuarios'
+control_panel.users.create: 'Creación de usuario'
 save: Guardar
+navbar.housing.commercial.archive: Archivo
+navbar.housing.commercial.commercial_property: Local comercial
+navbar.housing.commercial.storehouse: Almacén
+navbar.housing.floor.urban: Suelo urbano
+navbar.housing.floor.non_urban: Suelo no urbano
+navbar.housing.residence.vertical.apartment: Apartamento
+navbar.housing.residence.vertical.attic: Buhardilla
+navbar.housing.residence.vertical.duplex: Dúplex
+navbar.housing.residence.vertical.firts_floor: Bajo
+navbar.housing.residence.vertical.flat: Piso
+navbar.housing.residence.vertical.loft: Loft
+navbar.housing.residence.vertical.penthouse: Ático
+navbar.housing.residence.vertical.penthouse_duplex: Ático dúplex
+navbar.housing.residence.vertical.study: Estudio
+navbar.housing.residence.horizontal.bungalow: Bungalow
+navbar.housing.residence.horizontal.castle: Castillo
+navbar.housing.residence.horizontal.country_house: Casa de campo
+navbar.housing.residence.horizontal.detached_house: Chalet
+navbar.housing.residence.horizontal.house: Casa
+navbar.housing.residence.horizontal.ranch: Finca
+navbar.housing.residence.horizontal.semidetached_house: Pareado
+navbar.housing.residence.horizontal.tower: Torre
+navbar.housing.residence.horizontal.townhouse: Adosado
+navbar.housing.residence.horizontal.urban_development_detached_house: Chalet de urbanización
+navbar.housing.residence.horizontal.villa: Villa
+navbar.housing.garage: Garaje
+navbar.housing.office: Oficina
+navbar.housing.storage: Trastero
+navbar.housing.warehouse: Nave industrial
+backend.index.web_administration: Administración web
+backend.index.quick_search: Búsqueda rápida
+control_panel.search.filter_by: Filtrar por
+control_panel.search: Buscar
+backend.index.new_housing: Nuevo inmueble
+backend.index.housing_type_select: Seleccionar tipo inmueble
+backend.index.last_housings: Últimos inmuebles
+control_panel.people.legal.contact_person: Persona de contacto
+edit: Editar
+control_panel.people.users.title: Gestión de usuarios
