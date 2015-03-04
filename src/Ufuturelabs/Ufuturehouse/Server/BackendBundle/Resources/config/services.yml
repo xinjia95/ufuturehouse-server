@@ -4,3 +4,7 @@ services:
         arguments: [@doctrine.orm.entity_manager]
         tags:
             - { name: twig.extension }
+
+    ufuturehouse.util:
+        class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util
+        arguments: [@doctrine.orm.entity_manager]

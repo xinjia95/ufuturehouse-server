@@ -28,6 +28,23 @@ class ConfigurationController extends Controller
 
         if ($form->isValid())
         {
+            /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
+            $util = $this->get('ufuturehouse.util');
+
+            if ($company->getLogoPath() !== null && $company->getLogo() !== null)
+            {
+                $util->removeUploadedFile($util->getAbsoluteUploadImagesDir().'/'.$company->getLogoPath());
+                $company->setLogoPath(null);
+            }
+
+            if ($company->getLogo() !== null)
+            {
+                $company->setLogoPath($util->generateFilename($company->getLogo()->getClientOriginalExtension()));
+                $util->uploadFile($company->getLogo(), $util->getAbsoluteUploadImagesDir(), $company->getLogoPath());
+                $util->generateFavicons($util->getAbsoluteUploadImagesDir().'/'.$company->getLogoPath(), $company->getLogo());
+                $company->setLogo(null);
+            }
+
             $em->persist($company);
             $em->flush();
         }
