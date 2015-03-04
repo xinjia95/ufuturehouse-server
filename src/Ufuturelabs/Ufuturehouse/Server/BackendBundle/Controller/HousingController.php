@@ -29,11 +29,17 @@ class HousingController extends Controller
             /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
 
+            /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
+            $util = $this->get('ufuturehouse.util');
+
             foreach ($flat->getImages() as $image)
             {
                 if ($image->getImage() !== null)
                 {
-
+                    $image->setPath($util->generateFilename($image->getImage()->getClientOriginalExtension()));
+                    $util->uploadFile($image->getImage(), $util->getAbsoluteUploadImagesDir(), $image->getPath());
+                    $util->generateFavicons($util->getAbsoluteUploadImagesDir().'/'.$image->getPath(), $image->getImage());
+                    $image->setImage(null);
                 }
             }
 
