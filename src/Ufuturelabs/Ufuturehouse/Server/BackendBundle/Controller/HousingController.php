@@ -38,7 +38,6 @@ class HousingController extends Controller
                 {
                     $image->setPath($util->generateFilename($image->getImage()->getClientOriginalExtension()));
                     $util->uploadFile($image->getImage(), $util->getAbsoluteUploadImagesDir(), $image->getPath());
-                    $util->generateFavicons($util->getAbsoluteUploadImagesDir().'/'.$image->getPath(), $image->getImage());
                     $image->setImage(null);
                 }
             }
