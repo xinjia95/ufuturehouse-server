@@ -2,6 +2,8 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
+use Ivory\GoogleMap\Overlays\Animation;
+use Ivory\GoogleMap\Overlays\Marker;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence\ResidenceVertical\FlatType;
@@ -83,8 +85,6 @@ class HousingController extends Controller
             throw $this->createNotFoundException('Unable to find this flat');
         }
 
-        $originalImages = $flat->getImages();
-
         /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
 
@@ -97,9 +97,39 @@ class HousingController extends Controller
             /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
             $util = $this->get('ufuturehouse.util');
 
+            $locale = $this->container->getParameter('locale');
+
+            $housingType = $this->get('translator')->trans(
+                $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
+                null,
+                null,
+                $locale
+            );
+
+            if ($flat->isOnSale() && $flat->isForRent())
+            {
+                $housingStatus = 'backend.housing.on_sale_rent';
+            }
+            elseif ($flat->isOnSale())
+            {
+                $housingStatus = 'backend.housing.on_sale';
+            }
+            elseif ($flat->isForRent())
+            {
+                $housingStatus = 'backend.housing.for_rent';
+            }
+            else
+            {
+                $housingStatus = '';
+            }
+
+            $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+
+            $flat->setSlug($this->get('slugify')->slugify($slug));
+
             foreach ($flat->getImages() as $image)
             {
-                if ($image->getId() == null && $image->getImage() !== null)
+                if ($image->getId() === null && $image->getImage() !== null)
                 {
                     $image->setPath($util->generateFilename($image->getImage()->getClientOriginalExtension()));
                     $util->uploadFile($image->getImage(), $util->getAbsoluteUploadImagesDir(), $image->getPath());
@@ -134,8 +164,26 @@ class HousingController extends Controller
             throw $this->createNotFoundException('Unable to find this flat');
         }
 
+        $map = $this->get('ivory_google_map.map');
+
+        $marker = new Marker();
+        $marker->setPrefixJavascriptVariable('marker_');
+        $marker->setPosition(40.488132, -3.364704, true);
+        $marker->setAnimation(Animation::DROP);
+        $marker->setOptions(array(
+            'clickable' => false,
+            'flat'      => true,
+        ));
+
+        $map->setCenter(40.488132, -3.364704, true);
+        $map->setMapOption('zoom', 17);
+        $map->setLanguage($this->container->getParameter('locale'));
+        $map->addMarker($marker);
+
         return $this->render('BackendBundle:Housing/residence/vertical/flat:view.html.twig', array(
-            'flat' => $flat
+            'housing' => $flat,
+            'routes' => 'backend_housing_residence_vertical_flat_',
+            'map' => $map,
         ));
     }
 

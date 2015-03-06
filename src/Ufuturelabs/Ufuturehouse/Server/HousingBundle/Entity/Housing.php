@@ -252,11 +252,17 @@ class Housing
      */
     private $images;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
     }
-
 
     /**
      * @return string
@@ -673,9 +679,25 @@ class Housing
     }
 
     /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
      * @param Image $image
      */
-    public  function removeImage(Image $image)
+    public function removeImage(Image $image)
     {
         $this->getImages()->removeElement($image);
         $util = new Util();

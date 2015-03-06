@@ -1,7 +1,120 @@
-{% extends "::base.html.twig" %}
+{% extends "@Backend/Default/admin.html.twig" %}
 
-{% block title %}BackendBundle:Housing:view{% endblock %}
+{% block article %}
+    <div class="container">
+        <h1>## {{ get_housing_type(housing) | trans }}
+            {% if housing.onSale %}
+                {{ 'backend.housing.on_sale' | trans | lower}}
+            {% elseif housing.forRent %}
+                {{ 'backend.housing.for_rent' | trans | lower }}
+            {% endif %}
+            en {{ housing.city }}
+            {% if housing.zone is not null %}
+            - {{ housing.zone }}
+            {% endif %}##
+        </h1>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="carousel-housing-images" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {% set slide = 0 %}
+                                {% for image in housing.images %}
+                                    {% if slide == 0 %}
+                                        <li data-target="#carousel-housing-images" data-slide-to="0" class="active"></li>
+                                    {% else %}
+                                        <li data-target="#carousel-housing-images" data-slide-to="{{ slide }}"></li>
+                                    {% endif %}
+                                    {% set slide = slide + 1 %}
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                {% set slide = 0 %}
+                                {% for image in housing.images %}
+                                    {% if slide == 0 %}
+                                        <div class="item active">
+                                            <img src="{{ asset('uploads/images/' ~ image.path) }}" alt="Housing image {{ slide }}">
+                                        </div>
+                                    {% else %}
+                                        <div class="item">
+                                            <img src="{{ asset('uploads/images/' ~ image.path) }}" alt="Housing image {{ slide }}">
+                                        </div>
+                                    {% endif %}
+                                    {% set slide = slide + 1 %}
+                                {% endfor %}
+                            </div>
+                            <a class="left carousel-control" href="#carousel-housing-images" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-housing-images" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        {{ google_map(map) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="btn-group">
+                    <a href="{{ path(routes ~ 'edit', { 'id': housing.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ housing.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div>
+                    <p><b>ID:</b> {{ housing.id }}</p>
+                    <p><b>Superficie:</b> {{ housing.id }} m<sup>2</sup></p>
+                    <p><b>Estado inmueble:</b> {{ housing.state }}</p>
+                    <p><b>Precio:</b> {{ housing.price | localizedcurrency('EUR') }}</p>
+                    {% if housing.priceOffer is not null %}
+                        <p><b>Precio en oferta:</b> {{ housing.priceOffer | localizedcurrency('EUR') }}</p>
+                    {% endif %}
+                    <p><b>Propietarios:</b></p>
+                        <ul>
+                            {% for owner in housing.owners %}
+                                <li><a href="#" class="btn-view-person" data-id="{{ owner.id }}">{{ owner }}</a></li>
+                            {% endfor %}
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Housing:view page</h1>
+{% block javascripts %}
+    <script type="application/javascript">
+        $('.btn-view-person').click(function() {
+
+            var $button = $(this);
+            $('#alertErrorView').remove();
+
+            var $id = $button.data('id');
+
+            $.ajax({
+                url: Routing.generate('backend_people_physical_view', { id: $id }),
+                method: 'GET',
+                success: function($response) {
+
+                    $('#modalViewPerson').remove();
+
+                    $('h1').before($response);
+
+                    $('#modalViewPerson').modal();
+                },
+                error: function() {
+                    $('h1').after(
+                            '<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +
+                            '{{ 'control_panel.people.view.error' | trans }}' +
+                            '</div>'
+                    );
+                }
+            });
+
+        });
+    </script>
 {% endblock %}

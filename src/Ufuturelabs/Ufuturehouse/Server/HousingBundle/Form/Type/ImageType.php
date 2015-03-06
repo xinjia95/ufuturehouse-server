@@ -14,7 +14,7 @@ class ImageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if (isset($options['data']) && null == $options['data']->getId())
+        if (isset($options['data']) && null === $options['data']->getId())
         {
             $builder
                 ->add('image', 'file', array(

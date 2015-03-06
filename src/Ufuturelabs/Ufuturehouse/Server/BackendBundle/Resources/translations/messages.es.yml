@@ -118,7 +118,8 @@ control_panel.people.legal.contact_person: Persona de contacto
 edit: Editar
 control_panel.people.users.title: Gestión de usuarios
 backend.housing.on_sale: En venta
-backend.housing.for_rent: En alquiler
+backend.housing.for_rent: En alquiler3
+backend.housing.on_sale_rent: Alquiler con opción a compra
 backend.housing.sold: Vendido
 backend.housing.rented: Alquilado
 control_panel.search.state: Provincia
