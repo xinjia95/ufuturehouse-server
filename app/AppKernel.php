@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Elao\Bundle\FormTranslationBundle\ElaoFormTranslationBundle(),
             new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

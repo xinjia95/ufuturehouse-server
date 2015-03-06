@@ -32,7 +32,8 @@
         "xinjia/spain-validator-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "2.0.*@dev",
         "elao/form-translation-bundle": "1.2.*",
-        "cocur/slugify": "~1.0"
+        "cocur/slugify": "~1.0",
+        "egeloen/google-map-bundle": "~2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
