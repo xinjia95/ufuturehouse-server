@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Class Image
  * @package Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity
@@ -49,6 +50,11 @@ class Image
      */
     private $housing;
 
+    public function __toString()
+    {
+        return $this->path;
+    }
+
     /**
      * @return int
      */
@@ -84,7 +90,7 @@ class Image
     /**
      * @param UploadedFile $image
      */
-    public function setImage($image)
+    public function setImage(UploadedFile $image = null)
     {
         $this->image = $image;
     }

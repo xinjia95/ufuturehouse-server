@@ -14,7 +14,7 @@ class Util
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em = null)
     {
         $this->em = $em;
     }

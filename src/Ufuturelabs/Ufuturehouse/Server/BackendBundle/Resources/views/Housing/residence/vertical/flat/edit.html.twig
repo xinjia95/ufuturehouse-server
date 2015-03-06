@@ -1,7 +1,108 @@
-{% extends "::base.html.twig" %}
+{% extends "@Backend/Default/admin.html.twig" %}
 
-{% block title %}BackendBundle:Housing:edit{% endblock %}
+{% form_theme form _self %}
 
-{% block body %}
-<h1>Welcome to the Housing:edit page</h1>
+{% macro image_prototype() %}
+    {% spaceless %}
+        <div class="form-group" style="margin-top: 15px;margin-bottom: -15px;">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <input type="file" id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images___name___image" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[images][__name__][image]" required="required" accept="image/*" />
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label required">{{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.images.label' | trans({}, 'forms') }}</label>
+        <div id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images" class="images" data-prototype="{{ _self.image_prototype()|e }}">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10 text-center">
+                    {% set rowAux = 0 %}
+                    {% for image in form.children %}
+                        {% if rowAux == 0 %}
+                            <div class="row" style="margin-top:15px;">
+                        {% endif %}
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="well well-sm">
+                                <img src="{{ asset('uploads/images/' ~ image.vars.value.path) }}" alt="" width="128px" height="100px" class="img-thumbnail" />
+                                <button type="button" class="close remove-tag">&times;</button>
+                                {{ form_widget(image, { 'hidden': true }) }}
+                            </div>
+                            {{ form_errors(image) }}
+                        </div>
+                        {% if rowAux < 2 %}
+                            {% set rowAux = rowAux + 1 %}
+                        {% else %}
+                            {% set rowAux = 0 %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block article %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-warning" style="margin-bottom: 30px;" value="{{ 'edit' | trans() }}">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript">
+        var $addTagLinkImages = $('<a href="#" type="button" class="btn btn-sm btn-info" style="margin-left: 5px;"><span class="glyphicon glyphicon-plus"></span></a>');
+        var $newLinkLiImages = $('<li style="list-style: none;"></li>').append($addTagLinkImages);
+
+        $(document).ready(function() {
+
+            $('form').attr('enctype', 'multipart/form-data');
+
+            $('.remove-tag').click(function(e) {
+                e.preventDefault();
+                $(this).parent().remove();
+                return false;
+            });
+
+            var $collectionHolderImages = $('div.images');
+            $collectionHolderImages.before($newLinkLiImages);
+            $collectionHolderImages.data('index', $collectionHolderImages.find(':input').length);
+
+            $addTagLinkImages.on('click', function(e) {
+                e.preventDefault();
+                addTagForm($collectionHolderImages, $newLinkLiImages);
+            });
+
+            $('#{{ form.parkingSpacesPriceIncluded.vars.id }}').click(function () {
+                $('#{{ form.parkingSpacesPrice.vars.id }}').prop('disabled', !this.checked);
+            });
+
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            var newForm = prototype.replace(/__name__/g, index);
+
+            $collectionHolder.data('index', index + 1);
+
+            var $newFormLi = $('<li style="list-style: none;"></li>').append(newForm);
+            $newLinkLi.after($newFormLi);
+
+            $('.remove-tag').click(function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+                return false;
+            });
+        }
+    </script>
 {% endblock %}

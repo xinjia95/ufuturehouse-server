@@ -4,6 +4,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
 
 /**
  * Inmueble
@@ -247,7 +248,7 @@ class Housing
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Image", mappedBy="housing", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Image", mappedBy="housing", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $images;
 
@@ -677,38 +678,7 @@ class Housing
     public  function removeImage(Image $image)
     {
         $this->getImages()->removeElement($image);
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUploadImages()
-    {
-        foreach ($this->getImages() as $image)
-        {
-            $image->preUpload();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function uploadImages()
-    {
-        foreach ($this->getImages() as $image)
-        {
-            $image->upload();
-        }
-    }
-
-    /** @ORM\PostRemove() */
-    public function removeUploadImages()
-    {
-        foreach ($this->getImages() as $image)
-        {
-            $image->removeUpload();
-        }
+        $util = new Util();
+        $util->removeUploadedFile($util->getUploadImagesDir().'/'.$image->getPath());
     }
 }

@@ -1,7 +1,152 @@
-{% extends "::base.html.twig" %}
+{% extends 'BackendBundle:Default:admin.html.twig' %}
 
-{% block title %}BackendBundle:Housing:index{% endblock %}
+{% block title %}{{ parent() }} - {{ 'control_panel.housing.title' | trans }}{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Housing:index page</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/backend/css/ladda-themeless.min.css') }}" />
+{% endblock %}
+
+{% block article %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('backend_index') }}">{{ 'control_panel.title' | trans }}</a></li>
+            <li class="active">{{ 'control_panel.housing.title' | trans }}</a></li>
+        </ol>
+        <div class="row">
+            <div class="col-xs-1">
+                <a type="button" class="btn btn-primary" href="{{ path(routes ~ 'create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">{{ 'control_panel.search.filter_by' | trans }}</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#bussinessName">{{ 'control_panel.people.legal.bussiness_name' | trans }}</a></li>
+                            <li><a href="#cif">{{ 'control_panel.people.legal.cif' | trans }}</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="{{ 'control_panel.search' | trans }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'control_panel.housing.id' | trans }}</th>
+                    <th>{{ 'control_panel.housing.city_zone' | trans }}</th>
+                    <th>{{ 'control_panel.housing.price' | trans }}</th>
+                    <th>{{ 'control_panel.housing.price_offer' | trans }}</th>
+                    <th>{{ 'control_panel.housing.floor_area' | trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for housing in housings %}
+                        <tr>
+                            <td>{{ housing.id }}</td>
+                            <td>{{ housing.city ~ ' - ' ~ housing.zone }}</td>
+                            <td>{{ housing.price | localizedcurrency('EUR') }}</td>
+                            <td>
+                                {% if housing.priceOffer is not null %}
+                                    {{ housing.price | localizedcurrency('EUR') }}
+                                {% endif %}
+                            </td>
+                            <td>{{ housing.floorArea }} m<sup>2</sup></td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn btn-primary ladda-button" data-style="zoom-in" data-id="{{ housing.id }}">
+                                        <span class="ladda-label">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        </span>
+                                    </button>
+                                    <a href="{{ path(routes ~ 'edit', { 'id': housing.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ housing.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% for housing in housings %}
+            <div class="modal fade" id="modal-delete-{{ housing.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">{{ 'control_panel.delete' | trans }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ 'control_panel.housing.delete_confirmation' | trans }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'control_panel.close' | trans }}</button>
+                            <a class="btn btn-danger" href="{{ path(routes ~ 'delete', {'id': housing.id}) }}">{{ 'control_panel.delete' | trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/spin.min.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/ladda.min.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('bundles/backend/js/ladda.jquery.min.js') }}"></script>
+    <script type="application/javascript">
+        $(document).ready(function() {
+
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+
+            {#$('.btn-view-person').click(function() {#}
+
+                {#var $button = $(this);#}
+                {#$('#alertErrorView').remove();#}
+
+                {#var $ladda = Ladda.create(document.querySelector('.btn-view-person'));#}
+                {#$ladda.start();#}
+
+                {#var $id = $button.data('id');#}
+
+                {#$.ajax({#}
+                    {#url: Routing.generate('backend_people_physical_view', { id: $id }),#}
+                    {#method: 'GET',#}
+                    {#success: function($response) {#}
+                        {#$ladda.stop();#}
+
+                        {#$('#modalViewPerson').remove();#}
+
+                        {#$('.table').before($response);#}
+
+                        {#$('#modalViewPerson').modal();#}
+                    {#},#}
+                    {#error: function() {#}
+                        {#$ladda.stop();#}
+                        {#$('.table').before(#}
+                                {#'<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +#}
+                                {#'{{ 'control_panel.people.view.error' | trans }}' +#}
+                                {#'</div>'#}
+                        {#);#}
+                    {#}#}
+                {#});#}
+
+            {#});#}
+
+        });
+    </script>
 {% endblock %}

@@ -136,3 +136,8 @@ backend.housing.status: Estado
 backend.housing.city_zone: Ciudad - Zona
 backend.housing.price: Precio
 housing: Inmueble
+control_panel.housing.id: ID
+control_panel.housing.city_zone: Ciudad - Zona
+control_panel.housing.price: Precio
+control_panel.housing.price_offer: Precio en oferta
+control_panel.housing.floor_area: Superficie
