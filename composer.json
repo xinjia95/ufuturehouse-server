@@ -31,7 +31,8 @@
         "components/bootstrap": "~3.3",
         "xinjia/spain-validator-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "2.0.*@dev",
-        "elao/form-translation-bundle": "1.2.*"
+        "elao/form-translation-bundle": "1.2.*",
+        "cocur/slugify": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
