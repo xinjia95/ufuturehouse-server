@@ -115,10 +115,10 @@ class HousingTypeExtension extends \Twig_Extension
                 $type = 'navbar.housing.storage';
                 break;
             case 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\NonUrbanFloor':
-                $type = 'navbar.housing.floor.urban';
+                $type = 'navbar.housing.floor.non_urban';
                 break;
             case 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\UrbanFloor':
-                $type = 'navbar.housing.floor.non_urban';
+                $type = 'navbar.housing.floor.urban';
                 break;
             default:
                 $type = 'housing';
