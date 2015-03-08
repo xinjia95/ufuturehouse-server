@@ -113,3 +113,18 @@ lunetics_locale:
 
 elao_form_translation:
     auto_generate: true
+
+ivory_google_map:
+    geocoder:
+        enabled: true
+        class: "Ivory\GoogleMap\Services\Geocoding\Geocoder"
+        provider:
+            class: "Ivory\GoogleMap\Services\Geocoding\GeocoderProvider"
+            locale: "%locale%"
+
+        adapter: "Geocoder\HttpAdapter\CurlHttpAdapter"
+
+    map:
+        auto_zoom: true
+        language: %locale%
+        type: "hybrid"
