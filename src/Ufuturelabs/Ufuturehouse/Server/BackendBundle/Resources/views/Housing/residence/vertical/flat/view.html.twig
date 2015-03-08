@@ -1,17 +1,35 @@
 {% extends "@Backend/Default/admin.html.twig" %}
 
+{% set housing_type = (get_housing_type(housing) | trans) %}
+
+{% if housing.onSale %}
+    {% set housing_status = ('backend.housing.on_sale' | trans | lower) %}
+{% elseif housing.forRent %}
+    {% set housing_status = ('backend.housing.for_rent' | trans | lower) %}
+{% endif %}
+
+{% if housing.zone is not null %}
+    {% set city_zone = housing.city ~ ' - ' ~ housing.zone %}
+{% else %}
+    {% set city_zone = housing.city %}
+{% endif %}
+
+{% block title %}
+    {{ parent() ~ ' - ' ~ ('control_panel.housing.view.title' | trans({
+        '%housing_type%': housing_type,
+        '%housing_status%': housing_status,
+        '%city_zone%': city_zone
+    })) }}
+{% endblock %}
+
 {% block article %}
     <div class="container">
-        <h1>## {{ get_housing_type(housing) | trans }}
-            {% if housing.onSale %}
-                {{ 'backend.housing.on_sale' | trans | lower}}
-            {% elseif housing.forRent %}
-                {{ 'backend.housing.for_rent' | trans | lower }}
-            {% endif %}
-            en {{ housing.city }}
-            {% if housing.zone is not null %}
-            - {{ housing.zone }}
-            {% endif %}##
+        <h1>
+            {{ 'control_panel.housing.view.title' | trans({
+                '%housing_type%': housing_type,
+                '%housing_status%': housing_status,
+                '%city_zone%': city_zone
+            }) }}
         </h1>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -55,9 +73,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        {{ google_map(map) }}
+                <div class="row map-row">
+                    <div class="col-sm-12 map">
+                        {{ google_map_container(map) }}
                     </div>
                 </div>
             </div>
@@ -66,21 +84,142 @@
                     <a href="{{ path(routes ~ 'edit', { 'id': housing.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
                     <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ housing.id }}"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
-                <div>
+                <div class="housing-data">
                     <p><b>ID:</b> {{ housing.id }}</p>
-                    <p><b>Superficie:</b> {{ housing.id }} m<sup>2</sup></p>
+                    <p><b>Superficie:</b> {{ housing.floorArea }} m<sup>2</sup></p>
                     <p><b>Estado inmueble:</b> {{ housing.state }}</p>
                     <p><b>Precio:</b> {{ housing.price | localizedcurrency('EUR') }}</p>
                     {% if housing.priceOffer is not null %}
                         <p><b>Precio en oferta:</b> {{ housing.priceOffer | localizedcurrency('EUR') }}</p>
                     {% endif %}
-                    <p><b>Propietarios:</b></p>
+                    <p>
+                        <b>Propietarios:</b>
                         <ul>
                             {% for owner in housing.owners %}
                                 <li><a href="#" class="btn-view-person" data-id="{{ owner.id }}">{{ owner }}</a></li>
                             {% endfor %}
                         </ul>
+                    </p>
+                    {% if housing.rentableArea is not null %}
+                        <p><b>Superficie alquilable:</b> {{ housing.rentableArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.usableArea is not null %}
+                        <p><b>Superficie útil:</b> {{ housing.usableArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    <p><b>Dirección:</b> {{ housing.address }}</p>
+                    {% if housing.buildingYear is not null %}
+                        <p><b>Año de construcción:</b> {{ housing.buildingYear }} </p>
+                    {% endif %}
+                    {% if housing.availabilityDate is not null %}
+                        <p><b>Fecha de disponibilidad:</b> {{ housing.availabilityDate | localizeddate('short', 'none') }} </p>
+                    {% endif %}
+                    {% if housing.bankProperty is not null and housing.bankProperty %}
+                        <p><b>Propiedad del banco:</b> {{ housing.bankProperty }}</p>
+                    {% endif %}
+                    {% if housing.luxuryProperty is not null and housing.luxuryProperty %}
+                        <p><b>Propiedad de lujo:</b> {{ housing.luxuryProperty }}</p>
+                    {% endif %}
+                    {% if housing.orientation is not null %}
+                        <p><b>Orientación:</b> {{ housing.orientation }} </p>
+                    {% endif %}
+                    {% if housing.bedroomsNumber is not null and housing.bedroomsNumber > 0 %}
+                        <p><b>Número de dormitorios:</b> {{ housing.bedroomsNumber }} </p>
+                    {% endif %}
+                    {% if housing.bathroomsNumber is not null and housing.bathroomsNumber > 0 %}
+                        <p><b>Número de baños:</b> {{ housing.bathroomsNumber }} </p>
+                    {% endif %}
+                    {% if housing.toiletsNumber is not null and housing.toiletsNumber > 0 %}
+                        <p><b>Número de dormitorios:</b> {{ housing.bedroomsNumber }} </p>
+                    {% endif %}
+                    {% if housing.sittingroomsNumber is not null and housing.sittingroomsNumber > 0 %}
+                        <p><b>Número de salones:</b> {{ housing.sittingroomsNumber }} </p>
+                    {% endif %}
+                    {% if housing.kitchensNumber is not null and housing.kitchensNumber > 0 %}
+                        <p><b>Número de cocinas:</b> {{ housing.kitchensNumber }} </p>
+                    {% endif %}
+                    {% if housing.terracesNumber is not null and housing.terracesNumber > 0 %}
+                        <p><b>Número de terrazas:</b> {{ housing.terracesNumber }} </p>
+                    {% endif %}
+                    {% if housing.balconiesNumber is not null and housing.balconiesNumber > 0 %}
+                        <p><b>Número de balcones:</b> {{ housing.balconiesNumber }} </p>
+                    {% endif %}
+                    {% if housing.parkingSpacesNumber is not null and housing.parkingSpacesNumber > 0 %}
+                        <p><b>Número de plazas de garaje:</b> {{ housing.parkingSpacesNumber }} </p>
+                    {% endif %}
+                    {% if housing.sittingroomsArea is not null and housing.sittingroomsArea > 0 %}
+                        <p><b>Superficie de salones:</b> {{ housing.sittingroomsArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.kitchensArea is not null and housing.kitchensArea > 0 %}
+                        <p><b>Superficie de cocinas:</b> {{ housing.kitchensArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.terracesArea is not null and housing.terracesArea > 0 %}
+                        <p><b>Superficie de terrazas:</b> {{ housing.terracesArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.balconiesArea is not null and housing.balconiesArea > 0 %}
+                        <p><b>Superficie de balcones:</b> {{ housing.sittingroomsArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.parkingSpacesArea is not null and housing.parkingSpacesArea > 0 %}
+                        <p><b>Superficie de plazas de aparcamiento:</b> {{ housing.parkingSpacesArea }} m<sup>2</sup></p>
+                    {% endif %}
+                    {% if housing.kitchenType is not null %}
+                        <p><b>Tipo de cocinas:</b> {{ housing.kitchenType }} </p>
+                    {% endif %}
+                    {% if housing.parkingSpaceType is not null %}
+                        <p><b>Tipo plazas de aparcamiento:</b> {{ housing.parkingSpaceType }} </p>
+                    {% endif %}
+                    {% if housing.height is not null %}
+                        <p><b>Altura:</b> {{ housing.height }} </p>
+                    {% endif %}
+                    {% if housing.parkingSpacesPriceIncluded is not null and housing.parkingSpacesPriceIncluded == false and housing.parkingSpacesPrice is not null and housing.parkingSpacesPrice > 0 %}
+                        <p><b>Precio plazas de aparcamiento (precio no incluído):</b> {{ housing.parkingSpacesPrice | localizedcurrency('EUR') }}</p>
+                    {% endif %}
+                    {% if housing.buildingType is not null %}
+                        <p><b>Tipo de construcción:</b> {{ housing.buildingType }} </p>
+                    {% endif %}
+                    {% if housing.hotWaterType is not null %}
+                        <p><b>Tipo agua caliente:</b> {{ housing.hotWaterType }} </p>
+                    {% endif %}
+                    {% if housing.airConditioningType is not null %}
+                        <p><b>Tipo aire acondicionado:</b> {{ housing.airConditioningType }} </p>
+                    {% endif %}
+                    {% if housing.furnished is not null %}
+                        <p><b>Amueblado:</b> {{ housing.furnished }} </p>
+                    {% endif %}
+                    {% if housing.wardrobesNumber is not null and housing.wardrobesNumber > 0 %}
+                        <p><b>Número armarios empotrados:</b> {{ housing.wardrobesNumber }}</p>
+                    {% endif %}
+                    {% if housing.dresser is not null and housing.dresser %}
+                        <p><b>Vestidor:</b> {{ housing.dresser }} </p>
+                    {% endif %}
+                    {% if housing.boxroom is not null and housing.boxroom %}
+                        <p><b>Trastero:</b> {{ housing.boxroom }} </p>
+                    {% endif %}
+                    {% if housing.swimmingPool is not null and housing.swimmingPool %}
+                        <p><b>Piscina:</b> {{ housing.swimmingPool }} </p>
+                    {% endif %}
+                    {% if housing.doorwayState is not null %}
+                        <p><b>Estado portal:</b> {{ housing.doorwayState }} </p>
+                    {% endif %}
+                    {% if housing.furnished is not null %}
+                        <p><b>Amueblado:</b> {{ housing.furnished }} </p>
+                    {% endif %}
+                    <p>
+                        <b>Número ascensores:</b>
+                        {% if housing.elevatorNumber is not null and housing.elevatorNumber > 0 %}
+                            {{ housing.elevatorNumber }}
+                        {% else %}
+                            Sin ascensor
+                        {% endif %}
+                    </p>
+                    {% if housing.clothesLine is not null %}
+                        <p><b>Tendedero:</b> {{ housing.clothesLine }} </p>
+                    {% endif %}
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p><b>Descripción:</b> {{ housing.description }}</p>
             </div>
         </div>
     </div>
@@ -117,4 +256,5 @@
 
         });
     </script>
+    {{ google_map_js(map) }}
 {% endblock %}

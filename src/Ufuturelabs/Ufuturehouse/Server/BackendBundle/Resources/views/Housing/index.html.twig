@@ -2,11 +2,6 @@
 
 {% block title %}{{ parent() }} - {{ 'control_panel.housing.title' | trans }}{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/backend/css/ladda-themeless.min.css') }}" />
-{% endblock %}
-
 {% block article %}
     <div class="container">
         <ol class="breadcrumb">
@@ -62,11 +57,7 @@
                             <td>{{ housing.floorArea }} m<sup>2</sup></td>
                             <td class="text-right">
                                 <div class="btn-group">
-                                    <button class="btn btn-primary ladda-button" data-style="zoom-in" data-id="{{ housing.id }}">
-                                        <span class="ladda-label">
-                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                        </span>
-                                    </button>
+                                    <a class="btn btn-primary" href="{{ path(routes ~ 'view', { 'id': housing.id }) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
                                     <a href="{{ path(routes ~ 'edit', { 'id': housing.id }) }}" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ housing.id }}"><span class="glyphicon glyphicon-remove"></span></a>
                                 </div>
@@ -112,41 +103,6 @@
                 $('.search-panel span#search_concept').text(concept);
                 $('.input-group #search_param').val(param);
             });
-
-            {#$('.btn-view-person').click(function() {#}
-
-                {#var $button = $(this);#}
-                {#$('#alertErrorView').remove();#}
-
-                {#var $ladda = Ladda.create(document.querySelector('.btn-view-person'));#}
-                {#$ladda.start();#}
-
-                {#var $id = $button.data('id');#}
-
-                {#$.ajax({#}
-                    {#url: Routing.generate('backend_people_physical_view', { id: $id }),#}
-                    {#method: 'GET',#}
-                    {#success: function($response) {#}
-                        {#$ladda.stop();#}
-
-                        {#$('#modalViewPerson').remove();#}
-
-                        {#$('.table').before($response);#}
-
-                        {#$('#modalViewPerson').modal();#}
-                    {#},#}
-                    {#error: function() {#}
-                        {#$ladda.stop();#}
-                        {#$('.table').before(#}
-                                {#'<div id="alertErrorView" class="alert alert-danger" role="alert" style="margin-top: 15px">' +#}
-                                {#'{{ 'control_panel.people.view.error' | trans }}' +#}
-                                {#'</div>'#}
-                        {#);#}
-                    {#}#}
-                {#});#}
-
-            {#});#}
-
         });
     </script>
 {% endblock %}

@@ -142,3 +142,4 @@ control_panel.housing.city_zone: Ciudad - Zona
 control_panel.housing.price: Precio
 control_panel.housing.price_offer: Precio en oferta
 control_panel.housing.floor_area: Superficie
+control_panel.housing.view.title: "%housing_type% %housing_status% en %city_zone%"

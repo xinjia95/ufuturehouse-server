@@ -4,6 +4,8 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Controller;
 
 use Ivory\GoogleMap\Overlays\Animation;
 use Ivory\GoogleMap\Overlays\Marker;
+use Ivory\GoogleMap\Services\Geocoding\Geocoder;
+use Ivory\GoogleMap\Services\Geocoding\Result\GeocoderResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence\ResidenceVertical\FlatType;
@@ -44,6 +46,36 @@ class HousingController extends Controller
         {
             /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
+
+            $locale = $this->container->getParameter('locale');
+
+            $housingType = $this->get('translator')->trans(
+                $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
+                null,
+                null,
+                $locale
+            );
+
+            if ($flat->isOnSale() && $flat->isForRent())
+            {
+                $housingStatus = 'backend.housing.on_sale_rent';
+            }
+            elseif ($flat->isOnSale())
+            {
+                $housingStatus = 'backend.housing.on_sale';
+            }
+            elseif ($flat->isForRent())
+            {
+                $housingStatus = 'backend.housing.for_rent';
+            }
+            else
+            {
+                $housingStatus = '';
+            }
+
+            $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+
+            $flat->setSlug($this->get('slugify')->slugify($slug));
 
             /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
             $util = $this->get('ufuturehouse.util');
@@ -97,35 +129,38 @@ class HousingController extends Controller
             /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
             $util = $this->get('ufuturehouse.util');
 
-            $locale = $this->container->getParameter('locale');
-
-            $housingType = $this->get('translator')->trans(
-                $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
-                null,
-                null,
-                $locale
-            );
-
-            if ($flat->isOnSale() && $flat->isForRent())
+            if ($flat->getSlug() === null)
             {
-                $housingStatus = 'backend.housing.on_sale_rent';
-            }
-            elseif ($flat->isOnSale())
-            {
-                $housingStatus = 'backend.housing.on_sale';
-            }
-            elseif ($flat->isForRent())
-            {
-                $housingStatus = 'backend.housing.for_rent';
-            }
-            else
-            {
-                $housingStatus = '';
-            }
+                $locale = $this->container->getParameter('locale');
 
-            $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+                $housingType = $this->get('translator')->trans(
+                    $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
+                    null,
+                    null,
+                    $locale
+                );
 
-            $flat->setSlug($this->get('slugify')->slugify($slug));
+                if ($flat->isOnSale() && $flat->isForRent())
+                {
+                    $housingStatus = 'backend.housing.on_sale_rent';
+                }
+                elseif ($flat->isOnSale())
+                {
+                    $housingStatus = 'backend.housing.on_sale';
+                }
+                elseif ($flat->isForRent())
+                {
+                    $housingStatus = 'backend.housing.for_rent';
+                }
+                else
+                {
+                    $housingStatus = '';
+                }
+
+                $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+
+                $flat->setSlug($this->get('slugify')->slugify($slug));
+            }
 
             foreach ($flat->getImages() as $image)
             {
@@ -164,21 +199,25 @@ class HousingController extends Controller
             throw $this->createNotFoundException('Unable to find this flat');
         }
 
+        /** @var Geocoder $geocoder */
+        $geocoder = $this->get('ivory_google_map.geocoder');
+
+        /** @var GeocoderResponse $geocoderResponse */
+        $geocoderResponse = $geocoder->geocode($flat->getAddress().', '.$flat->getCity().', '.$flat->getLocationState());
+
         $map = $this->get('ivory_google_map.map');
 
-        $marker = new Marker();
-        $marker->setPrefixJavascriptVariable('marker_');
-        $marker->setPosition(40.488132, -3.364704, true);
-        $marker->setAnimation(Animation::DROP);
-        $marker->setOptions(array(
-            'clickable' => false,
-            'flat'      => true,
-        ));
+        foreach ($geocoderResponse->getResults() as $geocoderResult)
+        {
+            $marker = new Marker();
+            $marker->setPosition($geocoderResult->getGeometry()->getLocation());
 
-        $map->setCenter(40.488132, -3.364704, true);
-        $map->setMapOption('zoom', 17);
-        $map->setLanguage($this->container->getParameter('locale'));
-        $map->addMarker($marker);
+            $map->setCenter($geocoderResult->getGeometry()->getLocation());
+            $map->setMapOption('zoom', 17);
+            $map->setStylesheetOption('width', "100%");
+            $map->setStylesheetOption('heigth', "100%");
+            $map->addMarker($marker);
+        }
 
         return $this->render('BackendBundle:Housing/residence/vertical/flat:view.html.twig', array(
             'housing' => $flat,
