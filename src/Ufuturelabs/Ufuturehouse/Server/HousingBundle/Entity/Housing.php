@@ -48,7 +48,7 @@ use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
  *      "urban_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\UrbanFloor",
  * })
  */
-abstract class Housing
+class Housing
 {
     /**
      * @var int
