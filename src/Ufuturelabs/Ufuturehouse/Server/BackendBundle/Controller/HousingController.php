@@ -51,32 +51,26 @@ class HousingController extends Controller
 
             $housingType = $this->get('translator')->trans(
                 $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
-                null,
+                array(),
                 null,
                 $locale
             );
 
             if ($flat->isOnSale() && $flat->isForRent())
-            {
                 $housingStatus = 'backend.housing.on_sale_rent';
-            }
             elseif ($flat->isOnSale())
-            {
                 $housingStatus = 'backend.housing.on_sale';
-            }
             elseif ($flat->isForRent())
-            {
                 $housingStatus = 'backend.housing.for_rent';
-            }
             else
-            {
                 $housingStatus = '';
-            }
 
-            $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+            $dateTime = new \DateTime();
+
+            $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.$dateTime->format('Y-m-d H:i:s');
 
             $flat->setSlug($this->get('slugify')->slugify($slug));
-
+            
             /** @var \Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util $util */
             $util = $this->get('ufuturehouse.util');
 
@@ -135,29 +129,23 @@ class HousingController extends Controller
 
                 $housingType = $this->get('translator')->trans(
                     $this->container->get('twig.extension.housing.get_type')->getHousingType($flat),
-                    null,
+                    array(),
                     null,
                     $locale
                 );
 
                 if ($flat->isOnSale() && $flat->isForRent())
-                {
                     $housingStatus = 'backend.housing.on_sale_rent';
-                }
                 elseif ($flat->isOnSale())
-                {
                     $housingStatus = 'backend.housing.on_sale';
-                }
                 elseif ($flat->isForRent())
-                {
                     $housingStatus = 'backend.housing.for_rent';
-                }
                 else
-                {
                     $housingStatus = '';
-                }
 
-                $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.sha1(uniqid(mt_rand(), true));
+                $dateTime = new \DateTime();
+
+                $slug = $housingType.' '.$housingStatus.' '.$flat->getCity().' '.$flat->getZone().' '.$flat->getFloorArea().'m2 '.$flat->getPrice().' '.$dateTime->format('Y-m-d H:i:s');
 
                 $flat->setSlug($this->get('slugify')->slugify($slug));
             }
