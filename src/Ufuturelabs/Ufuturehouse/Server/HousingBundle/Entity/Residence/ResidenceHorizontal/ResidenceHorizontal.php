@@ -3,16 +3,15 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
 
 /**
- * Castillo
- *
+ * Class ResidenceHorizontal
  * @package Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceHorizontal
- * @since 1.0
  *
  * @ORM\Entity
- * @ORM\Table(name="housings_castles")
+ * @ORM\Table(name="housings_residences_horizontal")
  */
-class Castle extends ResidenceHorizontal
+abstract class ResidenceHorizontal extends Residence
 {
 }

@@ -3,7 +3,6 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor;
 
 use Doctrine\ORM\Mapping AS ORM;
-use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
 /**
  * Suelo urbano
@@ -14,6 +13,6 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
  * @ORM\Entity
  * @ORM\Table(name="housings_urbans_floors")
  */
-class UrbanFloor extends Housing
+class UrbanFloor extends Floor
 {
 }
