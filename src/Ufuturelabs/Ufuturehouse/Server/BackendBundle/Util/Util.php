@@ -11,11 +11,16 @@ class Util
     /** @var EntityManager */
     private $em;
 
+    /** @var string */
+    private $kernelRootDir;
+
     /**
+     * @param string $kernelRootDir
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em = null)
+    public function __construct($kernelRootDir, EntityManager $em = null)
     {
+        $this->kernelRootDir = $kernelRootDir;
         $this->em = $em;
     }
 
@@ -60,6 +65,7 @@ class Util
      */
     public function generateFavicons($path, UploadedFile $file)
     {
+        /** @var Company $company */
         $company = $this->em->getRepository('BackendBundle:Company')->findAll()[0];
 
         switch ($file->getClientMimeType())
@@ -205,7 +211,7 @@ class Util
 
     public function getWebDir()
     {
-        return __DIR__.'/../../../../../../web/';
+        return $this->kernelRootDir.'/../web/';
     }
 
     public function getUploadDir()
@@ -215,7 +221,7 @@ class Util
 
     public function getAbsoluteUploadDir()
     {
-        return $this->getWebDir().'/'.$this->getUploadDir();
+        return $this->getWebDir().''.$this->getUploadDir();
     }
 
     public function getUploadImagesDir()
@@ -225,6 +231,6 @@ class Util
 
     public function getAbsoluteUploadImagesDir()
     {
-        return $this->getWebDir().'/'.$this->getUploadImagesDir();
+        return $this->getWebDir().''.$this->getUploadImagesDir();
     }
 }

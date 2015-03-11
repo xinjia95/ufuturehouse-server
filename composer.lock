@@ -2475,13 +2475,13 @@
             "target-dir": "Xinjia/SpainValidatorBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/xinjia95/SpainValidatorBundle.git",
-                "reference": "6bf97fd85e3dd66a1450892aa6cdce65a4f65b06"
+                "url": "https://github.com/avegao/SpainValidatorBundle.git",
+                "reference": "d7589f84342ad449470c78f52453728d4b8e703b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xinjia95/SpainValidatorBundle/zipball/6bf97fd85e3dd66a1450892aa6cdce65a4f65b06",
-                "reference": "6bf97fd85e3dd66a1450892aa6cdce65a4f65b06",
+                "url": "https://api.github.com/repos/avegao/SpainValidatorBundle/zipball/d7589f84342ad449470c78f52453728d4b8e703b",
+                "reference": "d7589f84342ad449470c78f52453728d4b8e703b",
                 "shasum": ""
             },
             "require": {
@@ -2515,7 +2515,7 @@
                 "symfony",
                 "validator"
             ],
-            "time": "2015-02-10 18:19:04"
+            "time": "2015-03-11 11:44:07"
         }
     ],
     "packages-dev": [
