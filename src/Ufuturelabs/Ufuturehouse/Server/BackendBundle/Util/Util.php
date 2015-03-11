@@ -18,7 +18,7 @@ class Util
      * @param string $kernelRootDir
      * @param EntityManager $em
      */
-    public function __construct($kernelRootDir, EntityManager $em = null)
+    public function __construct($kernelRootDir = null, EntityManager $em = null)
     {
         $this->kernelRootDir = $kernelRootDir;
         $this->em = $em;
