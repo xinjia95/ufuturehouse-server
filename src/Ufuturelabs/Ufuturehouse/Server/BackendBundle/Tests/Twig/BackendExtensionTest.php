@@ -10,7 +10,7 @@ class BackendExtensionTest extends \PHPUnit_Framework_TestCase
     /** @var  BackendExtension */
     private $backendExtension;
 
-    function __construct()
+    public function __construct()
     {
         $this->backendExtension = new BackendExtension();
     }

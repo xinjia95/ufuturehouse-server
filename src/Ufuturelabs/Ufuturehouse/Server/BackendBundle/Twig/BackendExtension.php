@@ -10,7 +10,7 @@ class BackendExtension extends \Twig_Extension
     /** @var HousingTypeExtension */
     private $housingTypeExtension;
 
-    function __construct()
+    public function __construct()
     {
         $this->housingTypeExtension = new HousingTypeExtension();
     }
