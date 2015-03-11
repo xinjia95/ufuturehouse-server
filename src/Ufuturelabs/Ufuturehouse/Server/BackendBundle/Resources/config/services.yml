@@ -5,6 +5,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    twig.extension.backend:
+        class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Twig\BackendExtension
+        tags:
+            - { name: twig.extension }
+
     ufuturehouse.util:
         class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util
         arguments: [@doctrine.orm.entity_manager]
