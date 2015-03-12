@@ -12,4 +12,4 @@ services:
 
     ufuturehouse.util:
         class: Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util
-        arguments: [%kernel.root_dir%, @doctrine.orm.entity_manager]
+        arguments: [%kernel.root_dir%, @service_container]

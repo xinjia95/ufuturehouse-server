@@ -4,15 +4,20 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Tests\Util;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State;
+use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone;
 
 class UtilTest extends KernelTestCase
 {
     /** @var Util */
     private $util;
 
-    /** @var EntityManager */
-    private $em;
+    /** @var ContainerInterface */
+    private $container;
 
     /** @var string */
     private $kernelRootDir;
@@ -21,8 +26,8 @@ class UtilTest extends KernelTestCase
     {
         self::bootKernel();
         $this->kernelRootDir = static::$kernel->getRootDir();
-        $this->em = static::$kernel->getContainer()->get('doctrine')->getManager();
-        $this->util = new Util($this->kernelRootDir, $this->em);
+        $this->container = static::$kernel->getContainer();
+        $this->util = new Util($this->kernelRootDir, $this->container);
     }
 
     public function testGetDirs()
@@ -39,5 +44,37 @@ class UtilTest extends KernelTestCase
         $this->assertNotNull($this->util->generateFilename('jpg'));
         $this->assertNotNull($this->util->generateFilename('png'));
         $this->assertNotNull($this->util->generateFilename('gif'));
+    }
+
+    public function testGenerateHousingSlug()
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine')->getManager();
+
+        /** @var Housing $housing */
+        $housing = $em->getRepository('HousingBundle:Housing')->findLast(1)[0];
+
+        if ($housing === null)
+        {
+            // If not exists create one
+            $housing = new Housing();
+            $housing->setDescription('Description');
+            $housing->setOnSale(true);
+            $housing->setState('Good');
+            $housing->setFloorArea(81);
+            $housing->setAddress('Av. Ajalvir, 8, 28806');
+            $housing->setBuildingYear('1970');
+            $housing->setPrice(87260);
+            $housing->setAvailabilityDate(new \DateTime());
+            $housing->setLocationState(new State());
+            $housing->setCity(new City());
+            $housing->setZone(new Zone());
+
+            $this->assertNotEmpty($this->util->generateHousingSlug($housing));
+        }
+        else
+        {
+            $this->assertEquals($housing->getSlug(), $this->util->generateHousingSlug($housing));
+        }
     }
 }

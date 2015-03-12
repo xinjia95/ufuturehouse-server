@@ -2,26 +2,27 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util;
 
-use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
 class Util
 {
-    /** @var EntityManager */
-    private $em;
+    /** @var Container */
+    private $container;
 
     /** @var string */
     private $kernelRootDir;
 
     /**
-     * @param string $kernelRootDir
-     * @param EntityManager $em
+     * @param string|null $kernelRootDir
+     * @param ContainerInterface $container
      */
-    public function __construct($kernelRootDir = null, EntityManager $em = null)
+    public function __construct($kernelRootDir = null, ContainerInterface $container = null)
     {
         $this->kernelRootDir = $kernelRootDir;
-        $this->em = $em;
+        $this->container = $container;
     }
 
     /**
@@ -66,7 +67,7 @@ class Util
     public function generateFavicons($path, UploadedFile $file)
     {
         /** @var Company $company */
-        $company = $this->em->getRepository('BackendBundle:Company')->findAll()[0];
+        $company = $this->container->get('doctrine')->getManager()->getRepository('BackendBundle:Company')->findAll()[0];
 
         switch ($file->getClientMimeType())
         {
@@ -232,5 +233,47 @@ class Util
     public function getAbsoluteUploadImagesDir()
     {
         return $this->getWebDir().''.$this->getUploadImagesDir();
+    }
+
+    /**
+     * @param Housing $housing
+     * @return string Slug
+     */
+    public function generateHousingSlug(Housing $housing)
+    {
+        $housingType = $this->container->get('translator')->trans(
+            $this->container->get('twig.extension.housing.get_type')->getHousingType($housing),
+            array(),
+            'messages',
+            $this->container->getParameter('locale')
+        );
+
+        if ($housing->isOnSale() && $housing->isForRent())
+            $housingStatus = $this->container->get('translator')->trans(
+                'backend.housing.on_sale_rent',
+                array(),
+                'messages',
+                $this->container->getParameter('locale')
+            );
+        elseif ($housing->isOnSale())
+            $housingStatus = $this->container->get('translator')->trans(
+                'backend.housing.on_sale',
+                array(),
+                'messages',
+                $this->container->getParameter('locale')
+            );
+        elseif ($housing->isForRent())
+            $housingStatus = $this->container->get('translator')->trans(
+                'backend.housing.for_rent',
+                array(),
+                'messages',
+                $this->container->getParameter('locale')
+            );
+        else
+            $housingStatus = '';
+
+        $slug = $housingType.' '.$housingStatus.' '.$housing->getCity().' '.$housing->getZone().' '.$housing->getFloorArea().'m2 '.$housing->getPrice();
+
+        return $this->container->get('slugify')->slugify($slug);
     }
 }
