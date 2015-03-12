@@ -9,7 +9,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
 class Util
 {
-    /** @var Container */
+    /** @var ContainerInterface */
     private $container;
 
     /** @var string */
