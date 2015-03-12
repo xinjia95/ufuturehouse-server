@@ -13,11 +13,13 @@ build:
     dependencies:
           before:
                - mysql -u root -e 'CREATE DATABASE ufuturehouse'
+               - composer install --prefer-source -n
+               - php app/console doctrine:schema:create
 
 before_commands:
     - "composer self-update"
     - "composer install --prefer-source --dev"
-#    - "php app/console ufuturehouse:install"
+    - "php app/console doctrine:schema:create"
 tools:
     external_code_coverage: false
     php_code_coverage:      false
@@ -41,3 +43,5 @@ application:
     project_setup:
         before:
             - mysql -u root -e "CREATE DATABASE ufuturehouse"
+            - composer install --prefer-source -n
+            - php app/console doctrine:schema:create

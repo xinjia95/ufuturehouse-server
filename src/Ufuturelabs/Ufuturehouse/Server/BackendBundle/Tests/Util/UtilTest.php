@@ -51,10 +51,10 @@ class UtilTest extends KernelTestCase
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
 
-        /** @var Housing $housing */
-        $housing = $em->getRepository('HousingBundle:Housing')->findLast(1)[0];
+        /** @var Housing[] $housings */
+        $housings = $em->getRepository('HousingBundle:Housing')->findLast(1);
 
-        if ($housing === null)
+        if ($housings === null)
         {
             // If not exists create one
             $housing = new Housing();
@@ -74,7 +74,7 @@ class UtilTest extends KernelTestCase
         }
         else
         {
-            $this->assertEquals($housing->getSlug(), $this->util->generateHousingSlug($housing));
+            $this->assertEquals($housings[0]->getSlug(), $this->util->generateHousingSlug($housings[0]));
         }
     }
 }
