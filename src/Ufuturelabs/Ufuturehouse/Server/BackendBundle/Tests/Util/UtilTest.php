@@ -66,9 +66,20 @@ class UtilTest extends KernelTestCase
             $housing->setBuildingYear('1970');
             $housing->setPrice(87260);
             $housing->setAvailabilityDate(new \DateTime());
-            $housing->setLocationState(new State());
-            $housing->setCity(new City());
-            $housing->setZone(new Zone());
+
+            $state = new State();
+            $state->setName('State');
+            $housing->setLocationState($state);
+
+            $city = new City();
+            $city->setName('City');
+            $city->setState($state);
+            $housing->setCity($city);
+
+            $zone = new Zone();
+            $zone->setName('Zone');
+            $zone->setCity($city);
+            $housing->setZone($zone);
 
             $this->assertNotEmpty($this->util->generateHousingSlug($housing));
         }
