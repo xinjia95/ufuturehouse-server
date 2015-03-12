@@ -54,7 +54,7 @@ class UtilTest extends KernelTestCase
         /** @var Housing[] $housings */
         $housings = $em->getRepository('HousingBundle:Housing')->findLast(1);
 
-        if ($housings === null)
+        if ($housings === null || count($housings) == 0)
         {
             // If not exists create one
             $housing = new Housing();
