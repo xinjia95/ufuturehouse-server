@@ -58,6 +58,14 @@ class InstallCommand extends ContainerAwareCommand
                     )
                 ),
                 $output);
+            $this->runCommand(
+                'doctrine:fixtures:load',
+                new ArrayInput(array(
+                        'command' => 'doctrine:fixtures:load',
+                        '--fixtures' => 'src\Ufuturelabs\Ufuturehouse\Server\HousingBundle\DataFixtures\ORM',
+                    )
+                ),
+                $output);
             $log->debug('Schema created');
 
             $log->debug('Now the root user is set');

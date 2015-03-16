@@ -3,3 +3,6 @@ services:
         class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Twig\HousingTypeExtension
         tags:
             - { name: twig.extension }
+
+    ufuturehouse.util.catalogue:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil

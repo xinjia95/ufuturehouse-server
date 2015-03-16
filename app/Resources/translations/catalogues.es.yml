@@ -1,0 +1,173 @@
+catalogue:
+    kitchen_type:
+        independent: Cocina independiente
+        small: Cocina pequeña
+        office: Office
+        corner: Cocina de esquina
+        view: A la vista
+        semi_independent: Semi-independiente
+
+    height:
+        main: Principal
+        mezzanine: Entreplanta
+        basement: Sótano
+        subbasement_semibasement: Subsótano / Semisótano
+        firts_floor: Bajo
+
+    orientation:
+         east: Este
+         northeast: Noreste
+         northwest: Noroeste
+         north: Norte
+         west: Oeste
+         south: Sur
+         southeast: Sureste
+         southwest: Suroeste
+         north_northeast: Norte - Noreste
+         north_east: Norte - Este
+         north_southeast: Norte - Sureste
+         north_south: Norte - Sur
+         north_west: Norte - Oeste
+         northeast_east: Noreste - Este
+         northeast_southeast: Noreste - Sureste
+         northeast_south: Noreste - Sur
+         northeast_southwest: Noreste - Suroeste
+         northeast_northwest: Noreste - Noroeste
+         east_southeast: Este - Sureste
+         east_south: Este - Sur
+         east_southwest: Este - Suroeste
+         east_west: Este - Oeste
+         east_northwest: Este - Noroeste
+         southeast_south: Sureste - Sur
+         southeast_southwest: Sureste - Suroeste
+         southeast_west: Sureste - Oeste
+         southeast_northwest: Sureste - Noroeste
+         south_southwest: Sur - Suroeste
+         south_west: Sur - Oeste
+         south_northwest: Sur - Noroeste
+         southwest_west: Suroeste - Oeste
+         southwest_northwest: Suroeste - Noroeste
+         west_northeast: Oeste - Noreste
+         total: Total
+
+    garage_type:
+        covered: Cubierto
+        uncovered: Descubierto
+
+    conservation_status:
+        first_time: A estrenar
+        perfect: Impecable
+        good: Bueno
+        renovate: Renovado
+        remodel: Reformado
+        semiremodel: Semireformado
+        to_remodel: A reformar
+        in_rough: En bruto
+        origin: De origen
+        on_building: En construcción
+        on_proyecto: En proyecto
+
+    doorway_status:
+        singular: Singular
+        good: Bueno
+        regular: Regular
+        bad: Malo
+
+    building_type:
+        economic: Económica
+        civil: Civil
+        middle_manor: Medio señorial
+        manor: Señorial
+        epoch: Época
+        corrala: Corrala # Tipical spanish
+        other: Otras
+
+    housing_category:
+        official_protection: Protección oficial
+        rent_limited_class_1: Renta limitada clase I
+        rent_limited_class_2: Renta limitada clase II
+        free: Libre
+        regional_housing_protection: VPA
+
+    new_building_status:
+        in_short: En breve
+        on_building: En construcción
+        latest_finishes: Últimos acabados
+
+    energy_class:
+        pending: 'En trámite'
+        a_plus: 'A+'
+        a: A
+        b: B
+        c: C
+        d: D
+        e: E
+        f: F
+        g: G
+        exempt: Excento
+
+    emissions_class:
+        a: A
+        b: B
+        c: C
+        d: D
+        e: E
+        f: F
+        g: G
+
+    hot_water_type:
+        yes: Si
+        natural_gas: Por gas natural
+        propane: Propano
+        gasoil: Gasoil
+        carbon: Carbón
+        butane: Bombona de butano
+        electric: Eléctrica
+        solar_panel: Placa solar
+
+    heating_type:
+        central: Central
+        individual: Individual
+        natural_gas: Por gas natural
+        electric: Eléctrica
+        propane: Propano
+        gasoil: Gasoil
+        radiant_wire: Hilo radiante
+        carbon: Carbón
+        night_rate: Tarifa nocturna
+        heat_pump: Bomba de calor
+        preinstallation: Preinstalación
+        gas_point: Toma de gas
+        butane: Butano
+        other: Otros
+
+    air_conditioning:
+        yes: Si
+        centralize: Centralizado
+        individual: Individual
+        combined: Combinado
+        preinstalled: Preinstalado
+        heat_cold: Caliente/Frio
+
+    furnished:
+        all: Todo
+        semifurnished: Semiamueblado
+        kitchen_bathroom: Cocina y baño
+        kitchen: Cocina
+        kitchen_without_appliances: Cocina sin electrodomésticos
+        negotiable: Negociable
+
+    clothes_line:
+        covered: Cubierto
+        uncovered: Descubierto
+
+    garden_type:
+        yes: Si
+        communal: Comunitario
+        private: Privado
+        consolidated: Consolidado
+        panoramic: Panorámico
+        picturesque: Pintoresco
+        easy_maintenance: Fácil mantenimiento
+        spanish: Español
+        tropical: Tropical

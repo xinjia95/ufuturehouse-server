@@ -3,6 +3,10 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ClothesLineCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\DoorwayStateCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\DoorwayStatusCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeightCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
 
 /**
@@ -15,38 +19,66 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence;
 abstract class ResidenceVertical extends Residence
 {
     /**
-     * @var string Estado del portal
+     * @var HeightCatalogue
      *
-     * @ORM\Column(name="doorway_state", type="string", length=30, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeightCatalogue")
+     * @ORM\JoinColumn(name="height_id", referencedColumnName="id", nullable=true)
      */
-    private $doorwayState;
+    private $height;
+
+    /**
+     * @var DoorwayStatusCatalogue Estado del portal
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\DoorwayStatusCatalogue")
+     * @ORM\JoinColumn(name="doorway_status_id", referencedColumnName="id", nullable=true)
+     */
+    private $doorwayStatus;
+
     /**
      * @var int Número de ascensores
      *
      * @ORM\Column(name="elevator_number", type="integer")
      */
     private $elevatorNumber = 0;
+
     /**
-     * @var string Tendedero
+     * @var ClothesLineCatalogue Tendedero
      *
-     * @ORM\Column(name="clothes_line", type="string", length=30, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ClothesLineCatalogue")
+     * @ORM\JoinColumn(name="clothes_line_id", referencedColumnName="id", nullable=true)
      */
     private $clothesLine;
 
     /**
-     * @return string
+     * @return HeightCatalogue
      */
-    public function getDoorwayState()
+    public function getHeight()
     {
-        return $this->doorwayState;
+        return $this->height;
     }
 
     /**
-     * @param string $doorwayState
+     * @param HeightCatalogue $height
      */
-    public function setDoorwayState($doorwayState)
+    public function setHeight($height)
     {
-        $this->doorwayState = $doorwayState;
+        $this->height = $height;
+    }
+
+    /**
+     * @return DoorwayStatusCatalogue
+     */
+    public function getDoorwayStatus()
+    {
+        return $this->doorwayStatus;
+    }
+
+    /**
+     * @param DoorwayStatusCatalogue $doorwayStatus
+     */
+    public function setDoorwayStatus($doorwayStatus)
+    {
+        $this->doorwayStatus = $doorwayStatus;
     }
 
     /**
@@ -66,7 +98,7 @@ abstract class ResidenceVertical extends Residence
     }
 
     /**
-     * @return string
+     * @return ClothesLineCatalogue
      */
     public function getClothesLine()
     {
@@ -74,7 +106,7 @@ abstract class ResidenceVertical extends Residence
     }
 
     /**
-     * @param string $clothesLine
+     * @param ClothesLineCatalogue $clothesLine
      */
     public function setClothesLine($clothesLine)
     {

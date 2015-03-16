@@ -35,7 +35,8 @@
         "cocur/slugify": "~1.0",
         "egeloen/google-map-bundle": "~2.2",
         "willdurand/geocoder": "~2.8",
-        "widop/http-adapter-bundle": "~1.2"
+        "widop/http-adapter-bundle": "~1.2",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

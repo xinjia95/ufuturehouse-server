@@ -5,6 +5,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue;
 
 /**
  * Inmueble
@@ -211,11 +212,10 @@ class Housing
     private $zone;
 
     /**
-     * @var String Orientación geográfica del imnueble
+     * @var OrientationCatalogue Orientación geográfica del imnueble
      *
-     * Los valores posibles se obtienen del catálogo "orientation".
-     *
-     * @ORM\Column(name="orientation", type="string", length=30, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue")
+     * @ORM\JoinColumn(name="orientation_id", referencedColumnName="id", nullable=true)
      */
     private $orientation;
 
