@@ -3,6 +3,12 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\AirConditioningTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\BuildingTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\GardenTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HotWaterTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\KitchenTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 
 /**
@@ -107,29 +113,20 @@ abstract class Residence extends Housing
     private $parkingSpacesArea = 0.00;
 
     /**
-     * @var string Tipo de cocina
+     * @var KitchenTypeCatalogue Tipo de cocina
      *
-     * Los valores posibles se obtienen del catálogo "kitchen-type".
-     *
-     * @ORM\Column(name="kitchen_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\KitchenTypeCatalogue")
+     * @ORM\JoinColumn(name="kitchen_type_id", referencedColumnName="id", nullable=true)
      */
     private $kitchenType;
 
     /**
-     * @var string Tipo de plazas de garaje
+     * @var ParkingSpaceTypeCatalogue Tipo de plazas de garaje
      *
-     * Los valores posibles se obtienen del catálogo "parking-space-type".
-     *
-     * @ORM\Column(name="parking_space_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue")
+     * @ORM\JoinColumn(name="parking_space_type_id", referencedColumnName="id", nullable=true)
      */
     private $parkingSpaceType;
-
-    /**
-     * @var float Altura del edificio
-     *
-     * @ORM\Column(name="height", type="float", precision=5, scale=2, nullable=true)
-     */
-    private $height;
 
     /**
      * @var boolean Indica si el precio de las plazas de garaje está incluido en el precio de la vivienda
@@ -146,29 +143,26 @@ abstract class Residence extends Housing
     private $parkingSpacesPrice;
 
     /**
-     * @var string Tipo de construcción
+     * @var BuildingTypeCatalogue Tipo de construcción
      *
-     * Los valores posibles se obtienen del catálogo "building-type".
-     *
-     * @ORM\Column(name="building_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\BuildingTypeCatalogue")
+     * @ORM\JoinColumn(name="building_type_id", referencedColumnName="id", nullable=true)
      */
     private $buildingType;
 
     /**
-     * @var string Tipo de agua caliente
+     * @var HotWaterTypeCatalogue Tipo de agua caliente
      *
-     * Los valores posibles se obtienen del catálogo "hot-water-type".
-     *
-     * @ORM\Column(name="hot_water_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HotWaterTypeCatalogue")
+     * @ORM\JoinColumn(name="hot_water_type_id", referencedColumnName="id", nullable=true)
      */
     private $hotWaterType;
 
     /**
-     * @var string Tipo de aire acondicionado
+     * @var AirConditioningTypeCatalogue Tipo de aire acondicionado
      *
-     * Los valores posibles se obtienen del catálogo "air-conditioning-type".
-     *
-     * @ORM\Column(name="air_conditioning_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\AirConditioningTypeCatalogue")
+     * @ORM\JoinColumn(name="air_conditioning_type_id", referencedColumnName="id", nullable=true)
      */
     private $airConditioningType;
 
@@ -210,11 +204,10 @@ abstract class Residence extends Housing
     private $swimmingPool;
 
     /**
-     * @var string Tipo de jardín
+     * @var GardenTypeCatalogue Tipo de jardín
      *
-     * Los valores posibles se obtienen del catálogo "garden-type".
-     *
-     * @ORM\Column(name="garden_type", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\GardenTypeCatalogue")
+     * @ORM\JoinColumn(name="garden_type_id", referencedColumnName="id", nullable=true)
      */
     private $gardenType;
 
@@ -427,7 +420,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return KitchenTypeCatalogue
      */
     public function getKitchenType()
     {
@@ -435,7 +428,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $kitchenType
+     * @param KitchenTypeCatalogue $kitchenType
      */
     public function setKitchenType($kitchenType)
     {
@@ -443,7 +436,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return ParkingSpaceTypeCatalogue
      */
     public function getParkingSpaceType()
     {
@@ -451,27 +444,11 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $parkingSpaceType
+     * @param ParkingSpaceTypeCatalogue $parkingSpaceType
      */
     public function setParkingSpaceType($parkingSpaceType)
     {
         $this->parkingSpaceType = $parkingSpaceType;
-    }
-
-    /**
-     * @return float
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * @param float $height
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
     }
 
     /**
@@ -507,7 +484,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return BuildingTypeCatalogue
      */
     public function getBuildingType()
     {
@@ -515,7 +492,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $buildingType
+     * @param BuildingTypeCatalogue $buildingType
      */
     public function setBuildingType($buildingType)
     {
@@ -523,7 +500,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return HotWaterTypeCatalogue
      */
     public function getHotWaterType()
     {
@@ -531,7 +508,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $hotWaterType
+     * @param HotWaterTypeCatalogue $hotWaterType
      */
     public function setHotWaterType($hotWaterType)
     {
@@ -539,7 +516,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return AirConditioningTypeCatalogue
      */
     public function getAirConditioningType()
     {
@@ -547,7 +524,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $airConditioningType
+     * @param AirConditioningTypeCatalogue $airConditioningType
      */
     public function setAirConditioningType($airConditioningType)
     {
@@ -635,7 +612,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return GardenTypeCatalogue
      */
     public function getGardenType()
     {
@@ -643,7 +620,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $gardenType
+     * @param GardenTypeCatalogue $gardenType
      */
     public function setGardenType($gardenType)
     {

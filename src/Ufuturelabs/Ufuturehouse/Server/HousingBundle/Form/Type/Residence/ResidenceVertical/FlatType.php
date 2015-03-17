@@ -132,7 +132,7 @@ class FlatType extends AbstractType
             ->add('gardenType', null, array(
                 'required' => false,
             ))
-            ->add('doorwayState', null, array(
+            ->add('doorwayStatus', null, array(
                 'required' => false,
             ))
             ->add('elevatorNumber')
