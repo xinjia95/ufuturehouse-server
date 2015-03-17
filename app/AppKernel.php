@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Widop\HttpAdapterBundle\WidopHttpAdapterBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
