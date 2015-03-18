@@ -15,7 +15,7 @@ class HousingController extends Controller
         $query = $em->createQuery('SELECT h FROM HousingBundle:Housing h');
 
         $housings = $this->get('knp_paginator')->paginate(
-            $query->,
+            $query,
             $this->get('request')->get('page', 1),
             10
         );

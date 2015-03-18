@@ -1,0 +1,176 @@
+Tipo de cocina:
+	Cocina independiente
+	Cocina pequeña
+	Office
+	Cocina de esquina
+	A la vista
+	Semi-independiente
+
+Altura:
+	Principal
+	Entreplanta
+	Sótano
+	Subsótano / Semisótano
+	Bajo
+	1
+	...
+	55
+
+Orientación:
+	Este
+	Noreste
+	Noroeste
+	Norte
+	Oeste
+	Sur
+	Sureste
+	Suroeste
+	Norte - Noreste
+	Norte - Este
+	Norte - Sureste
+	Norte - Sur
+	Norte - Oeste
+	Noreste - Este
+	Noreste - Sureste
+	Noreste - Sur
+	Noreste - Suroeste
+	Noreste - Noroeste
+	Este - Sureste
+	Este - Sur
+	Este - Suroeste
+	Este - Oeste
+	Este - Noroeste
+	Sureste - Sur
+	Sureste - Suroeste
+	Sureste - Oeste
+	Sureste - Noroeste
+	Sur - Suroeste
+	Sur - Oeste
+	Sur - Noroeste
+	Suroeste - Oeste
+	Suroeste - Noroeste
+	Oeste - Noreste
+	Total
+	
+Tipo garaje:
+	Cubierto
+	Descubierto
+
+Estado conservación:
+	A estrenar
+	Impecable
+	Bueno
+	Renovado
+	Reformado
+	Semireformado
+	A reformar
+	En bruto
+	De origen
+	En construcción
+	En proyecto
+	
+Estado portal:
+	Singular
+	Bueno
+	Regular
+	Malo
+	
+Tipo construcción:
+	Económica
+	Civil
+	Medio señorial
+	Señorial
+	Época
+	Corrala
+	Otras
+	
+Calificación:
+	Protección oficial
+	Renta limitada clase I
+	Renta limitada clase II
+	Libre
+	VPA
+
+Estado obra nueva:
+	En breve
+	En construcción
+	Últimos acabados
+	
+Clase energética:
+	En trámite
+	A+
+	A
+	B
+	C
+	D
+	E
+	F
+	G
+	Excento
+
+Clase emisiones:
+	A
+	B
+	C
+	D
+	E
+	F
+	G
+
+Agua caliente:
+	Si
+	Por gas natural
+	Propano
+	Gasoil
+	Carbón
+	Bombona de butano
+	Eléctrica
+	Placa solar
+
+Calefacción (Central / Individual):
+	Por gas natural
+	Eléctrica
+	Propano
+	Gasoil
+	Hilo radiante
+	Carbón
+	Tarifa nocturna
+	Bomba de calor
+	Preinstalación
+	Toma de gas
+	Butano
+	Otros
+
+Aire acondicionado:
+	Si, tiene
+	No
+	Centralizado
+	Individual
+	Combinado
+	Preinstalado
+	Caliente/Frio
+
+Amueblado:
+	Todo
+	Semiamueblado
+	Cocina y baño
+	Cocina
+	Cocina sin electrodomésticos
+	Negociable
+
+Tendedero:
+	Cubierto
+	Descubierto
+
+Tipo jardín:
+	Si, tiene
+	No
+	Comunitario
+	Privado
+	Consolidado
+	Panorámico
+	Pintoresco
+	Fácil mantenimiento
+	Español
+	Tropical
+	

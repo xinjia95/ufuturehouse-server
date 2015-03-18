@@ -47,6 +47,38 @@
     </div>
 {% endblock %}
 
+{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation">
+            {{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.orientation.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[orientation]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height">
+            {{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.height.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[height]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
 {% block article %}
     <div class="container">
         {{ form_start(form) }}

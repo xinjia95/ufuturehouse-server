@@ -80,6 +80,10 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags: [{ name: 'twig.extension' }]
 
+    text.twig.extension:
+        class: Twig_Extensions_Extension_Text
+        tags: [{ name: 'twig.extension' }]
+
 # FOSUserBundle Configuration
 fos_user:
     db_driver: orm
