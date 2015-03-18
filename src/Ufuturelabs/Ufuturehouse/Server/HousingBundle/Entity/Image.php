@@ -45,7 +45,7 @@ class Image
     /**
      * @var Housing
      *
-     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing")
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing", inversedBy="images")
      * @ORM\JoinColumn(name="housing_id", referencedColumnName="id", nullable=true)
      */
     private $housing;

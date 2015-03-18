@@ -32,7 +32,7 @@ class City
     /**
      * @var State
      *
-     * @ORM\ManyToOne(targetEntity="State")
+     * @ORM\ManyToOne(targetEntity="State", inversedBy="cities")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=false)
      */
     private $state;

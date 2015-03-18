@@ -32,7 +32,7 @@ class Zone
     /**
      * @var City
      *
-     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="zones")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable=false)
      */
     private $city;

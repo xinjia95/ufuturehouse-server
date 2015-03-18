@@ -25,17 +25,19 @@
             {% endif %}
             <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="well housing-offer">
-                    <p><img src="{{ asset('uploads/images/' ~ housing.images.0.path) }}" width="256px" height="200px" alt="{{ 'housing.image' | trans() }}" /></p>
-                    <p>{{ get_housing_type(housing) | trans }}</p>
-                    <p>{{ housing.city ~ '-' ~ housing.zone }}</p>
-                    <p>{{ housing.floorArea }} m<sup>2</sup></p>
-                    <p>
-                        {% if housing.priceOffer is not null and housing.priceOffer > 0 %}
-                            <span class="price-offer">{{ housing.price|localizedcurrency('EUR') }}</span> {{ housing.priceOffer|localizedcurrency('EUR') }}
-                        {% else %}
-                            {{ housing.price|localizedcurrency('EUR') }}
-                        {% endif %}
-                    </p>
+                    <a href="#">
+                        <p><img src="{{ asset('uploads/images/' ~ housing.images.1.path) }}" width="256px" height="200px" class="img-thumbnail" alt="{{ 'housing.image' | trans() }}" /></p>
+                        <p>{{ get_housing_type(housing) | trans }}</p>
+                        <p>{{ housing.city ~ ' - ' ~ housing.zone }}</p>
+                        <p>{{ housing.floorArea }} m<sup>2</sup></p>
+                        <p>
+                            {% if housing.priceOffer is not null and housing.priceOffer > 0 %}
+                                <span class="price-offer">{{ housing.price|localizedcurrency('EUR') }}</span> {{ housing.priceOffer|localizedcurrency('EUR') }}
+                            {% else %}
+                                {{ housing.price|localizedcurrency('EUR') }}
+                            {% endif %}
+                        </p>
+                    </a>
                 </div>
             </div>
             {% if rowAux < 2 %}

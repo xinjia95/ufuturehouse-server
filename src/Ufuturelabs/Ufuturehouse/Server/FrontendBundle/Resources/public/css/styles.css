@@ -19,6 +19,11 @@
     text-align: center;
 }
 
+.housing-offer > a:hover a:visited a:link a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
 footer {
     color: #FFF;
     padding: 20px 0;

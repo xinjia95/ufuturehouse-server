@@ -1,0 +1,59 @@
+{% extends 'FrontendBundle:Default:frontend.html.twig' %}
+
+{% block title %}{{ company.name }}{% endblock %}
+
+{% block article %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3 col-lg-3">## Barra lateral ##</div>
+            <div class="col-sm-12 col-md-9 col-lg-9">
+                {% for housing in housings %}
+                    {% set housing_type = (get_housing_type(housing) | trans) %}
+                    {% if housing.onSale %}
+                        {% set housing_status = ('backend.housing.on_sale' | trans | lower) %}
+                    {% elseif housing.forRent %}
+                        {% set housing_status = ('backend.housing.for_rent' | trans | lower) %}
+                    {% endif %}
+                    {% if housing.zone is not null %}
+                        {% set city_zone = housing.city ~ ' - ' ~ housing.zone %}
+                    {% else %}
+                        {% set city_zone = housing.city %}
+                    {% endif %}
+                    <div class="row">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <img src="{{ asset('uploads/images/' ~ housing.images.0.path) }}" width="256px" height="200px" class="img-thumbnail" alt="{{ 'housing.image' | trans() }}" />
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+                                    <a href="{{ path('frontend_housing_view', {'slug': housing.slug, 'id': housing.id}) }}">
+                                        <h3>
+                                            {{ 'housing.view.title' | trans({
+                                                '%housing_type%': housing_type,
+                                                '%housing_status%': housing_status,
+                                                '%city_zone%': city_zone
+                                            }) | truncate(50) }}
+                                        </h3>
+                                    </a>
+                                    <h4 class="text-right">
+                                        {% if housing.priceOffer is not null and housing.priceOffer > 0 %}
+                                            <span class="price-offer">{{ housing.price|localizedcurrency('EUR') }}</span> {{ housing.priceOffer|localizedcurrency('EUR') }}
+                                        {% else %}
+                                            {{ housing.price|localizedcurrency('EUR') }}
+                                        {% endif %}
+                                    </h4>
+                                    {#<p>{{ housing.bedroomsNumber }} <abbr title="{{ 'housing.bedroorms' | trans }}">{{ 'housing.bedroorms.abbr' | trans }}</abbr> | {{ housing.floorArea }} m<sup>2</sup></p>#}
+                                    <p>{{ housing.description | truncate(300) }}</p>
+                                    <a href="{{ path('frontend_housing_view', {'slug': housing.slug, 'id': housing.id}) }}" class="text-right">{{ 'housing.list.view_more' | trans }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(housings) }}
+        </div>
+    </div>
+{% endblock %}

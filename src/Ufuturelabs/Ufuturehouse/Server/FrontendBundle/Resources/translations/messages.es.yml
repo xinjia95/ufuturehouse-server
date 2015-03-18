@@ -11,3 +11,7 @@ footer.state: Provincia
 footer.telephone: Teléfono de contacto
 footer.fax: Fax
 footer.email: Correo eletrónico
+housing.view.title: "%housing_type% %housing_status% en %city_zone%"
+housing.bedroorms: Dormitorios
+housing.bedroorms.abbr: dorm
+housing.list.view_more: Ver más detalles

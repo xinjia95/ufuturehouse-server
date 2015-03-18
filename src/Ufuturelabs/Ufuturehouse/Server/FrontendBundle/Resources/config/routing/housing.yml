@@ -1,0 +1,7 @@
+frontend_housing_index:
+    path: /
+    defaults: { _controller: FrontendBundle:Housing:index }
+
+frontend_housing_view:
+    path: /{slug}/{id}
+    defaults: { _controller: FrontendBundle:Housing:view }
