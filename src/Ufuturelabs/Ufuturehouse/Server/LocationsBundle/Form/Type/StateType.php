@@ -14,7 +14,10 @@ class StateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text');
+        $builder
+            ->add('name', 'text')
+            ->add('coordinates', 'collection')
+        ;
     }
     
     /**

@@ -2,6 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +44,23 @@ class City
      * @ORM\OneToMany(targetEntity="Zone", mappedBy="id")
      */
     private $zones;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Coordinate", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinTable(
+     *      name="locations_cities_coordinates",
+     *      joinColumns={@ORM\JoinColumn(name="city_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="coordinate_id", referencedColumnName="id")}
+     * )
+     */
+    private $coordinates;
+
+    public function __construct()
+    {
+        $this->coordinates = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -111,5 +129,43 @@ class City
     public function setZones($zones)
     {
         $this->zones = $zones;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCoordinates()
+    {
+        return $this->coordinates;
+    }
+
+    /**
+     * @param ArrayCollection $coordinates
+     */
+    public function setCoordinates($coordinates)
+    {
+        $this->coordinates = $coordinates;
+    }
+
+    /**
+     * @param Coordinate $coordinate
+     * @return City
+     */
+    public function addCoordinate(Coordinate $coordinate)
+    {
+        $this->coordinates->add($coordinate);
+
+        return $this;
+    }
+
+    /**
+     * @param Coordinate $coordinate
+     * @return City
+     */
+    public function removeCoordinate(Coordinate $coordinate)
+    {
+        $this->coordinates->removeElement($coordinate);
+
+        return $this;
     }
 }

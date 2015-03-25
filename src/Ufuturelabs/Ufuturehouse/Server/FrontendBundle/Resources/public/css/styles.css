@@ -44,3 +44,7 @@ footer .social {
 .price-offer {
     text-decoration: line-through;
 }
+
+.map-row {
+    margin-top: 15px;
+}
