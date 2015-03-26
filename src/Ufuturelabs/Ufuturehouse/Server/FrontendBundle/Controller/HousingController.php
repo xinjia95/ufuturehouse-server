@@ -42,12 +42,22 @@ class HousingController extends Controller
         $map->setStylesheetOption('width', "100%");
         $map->setStylesheetOption('heigth', "100%");
 
+        if (!is_null($housing->getZone()))
+        {
+            $coordinates = $housing->getZone()->getCoordinates();
+        }
+        else
+        {
+            $coordinates = $housing->getCity()->getCoordinates();
+        }
+
         $polygon = $this->get('ivory_google_map.polygon');
-        $polygon->addCoordinate(40.497752, -3.378027, true);
-        $polygon->addCoordinate(40.494259, -3.380494, true);
-        $polygon->addCoordinate(40.494192, -3.380352, true);
-        $polygon->addCoordinate(40.492841, -3.380002, true);
-        $polygon->addCoordinate(40.493071, -3.377542, true);
+
+        foreach ($coordinates as $coordinate)
+        {
+            $polygon->addCoordinate($coordinate->getLatitude(), $coordinate->getLongitude(), true);
+        }
+
         $map->addPolygon($polygon);
 
         return $this->render('@Frontend/Housing/view.html.twig', array(

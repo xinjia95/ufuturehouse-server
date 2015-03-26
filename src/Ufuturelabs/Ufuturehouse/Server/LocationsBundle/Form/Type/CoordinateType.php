@@ -5,9 +5,8 @@ namespace Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Coordinate;
 
-class ZoneType extends AbstractType
+class CoordinateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,18 +15,8 @@ class ZoneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('city')
-            ->add('coordinates', 'collection', array(
-                'type' => new CoordinateType(),
-                'by_reference' => false,
-                'prototype' => new Coordinate(),
-                'allow_add' => true,
-                'allow_delete' => true,
-                'attr' => array(
-                    'class' => 'coordinates'
-                ),
-            ))
+            ->add('longitude', 'number')
+            ->add('latitude', 'number')
         ;
     }
     
@@ -37,7 +26,7 @@ class ZoneType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone',
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Coordinate',
             'translation_domain' => 'forms'
         ));
     }
@@ -47,6 +36,6 @@ class ZoneType extends AbstractType
      */
     public function getName()
     {
-        return 'locations_zone';
+        return 'locations_coordinate';
     }
 }
