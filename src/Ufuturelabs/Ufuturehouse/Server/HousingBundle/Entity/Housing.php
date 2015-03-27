@@ -5,6 +5,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ConservationStatusCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue;
 
 /**
@@ -104,13 +105,12 @@ class Housing
     private $rented = false;
 
     /**
-     * @var string Estado del inmueble
+     * @var ConservationStatusCatalogue Estado de conservación del inmueble
      *
-     * Los posibles valores se obtienen del catálogo "state".
-     *
-     * @ORM\Column(name="state", type="string", length=100, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ConservationStatusCatalogue")
+     * @ORM\JoinColumn(name="conservation_status_id", referencedColumnName="id")
      */
-    private $state;
+    private $conservationStatus;
 
     /**
      * @var float Superficie contruida
@@ -258,6 +258,27 @@ class Housing
      * @ORM\Column(name="slug", type="string", length=255, nullable=false)
      */
     private $slug;
+
+    /**
+     * @var float Gastos comunidad mensuales
+     *
+     * @ORM\Column(name="community_charges", type="float", precision=10, scale=2, nullable=true)
+     */
+    private $communityCharges;
+
+    /**
+     * @var float IBI
+     *
+     * @ORM\Column(name="ibi", type="float", precision=10, scale=2, nullable=true)
+     */
+    private $ibi;
+
+    /**
+     * @var boolean Seguridad
+     * 
+     * @ORM\Column(name="security", type="boolean", nullable=false)
+     */
+    private $security = false;
 
     public function __construct()
     {
@@ -601,19 +622,19 @@ class Housing
     }
 
     /**
-     * @return string
+     * @return ConservationStatusCatalogue
      */
-    public function getState()
+    public function getConservationStatus()
     {
-        return $this->state;
+        return $this->conservationStatus;
     }
 
     /**
-     * @param string $state
+     * @param ConservationStatusCatalogue $conservationStatus
      */
-    public function setState($state)
+    public function setConservationStatus($conservationStatus)
     {
-        $this->state = $state;
+        $this->conservationStatus = $conservationStatus;
     }
 
     /**
@@ -694,6 +715,54 @@ class Housing
         $this->slug = $slug;
     }
 
+    /**
+     * @return float
+     */
+    public function getCommunityCharges()
+    {
+        return $this->communityCharges;
+    }
+
+    /**
+     * @param float $communityCharges
+     */
+    public function setCommunityCharges($communityCharges)
+    {
+        $this->communityCharges = $communityCharges;
+    }
+
+    /**
+     * @return float
+     */
+    public function getIbi()
+    {
+        return $this->ibi;
+    }
+
+    /**
+     * @param float $ibi
+     */
+    public function setIbi($ibi)
+    {
+        $this->ibi = $ibi;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSecurity()
+    {
+        return $this->security;
+    }
+
+    /**
+     * @param boolean $security
+     */
+    public function setSecurity($security)
+    {
+        $this->security = $security;
+    }
+    
     /**
      * @param Image $image
      */

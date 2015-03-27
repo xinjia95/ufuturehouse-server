@@ -6,3 +6,105 @@ services:
 
     ufuturehouse.util.catalogue:
         class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil
+
+    ufuturehouse.form.type.catalogue.air_conditioning_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\AirConditioningTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager, Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\AirConditioningTypeCatalogue]
+        tags:
+            - { name: form.type, alias: catalogue_air_conditioning_type }
+
+    ufuturehouse.form.type.catalogue.building_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\BuildingTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_building_type }
+
+    ufuturehouse.form.type.catalogue.clothes_line:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\ClothesLineCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_clothes_line }
+
+    ufuturehouse.form.type.catalogue.conservaton_status:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\ConservationStatusCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_conservation_status }
+
+    ufuturehouse.form.type.catalogue.doorway_status:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\DoorwayStatusCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_doorway_status }
+
+    ufuturehouse.form.type.catalogue.emissions_class:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\EmissionsClassCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_emissions_class }
+
+    ufuturehouse.form.type.catalogue.energy_class:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\EnergyClassCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_energy_class }
+
+    ufuturehouse.form.type.catalogue.furnished:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\FurnishedCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_furnished }
+
+    ufuturehouse.form.type.catalogue.garden_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\GardenTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_garden_type }
+
+    ufuturehouse.form.type.catalogue.heating_distribution:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\HeatingDistributionCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_heating_distribution }
+
+    ufuturehouse.form.type.catalogue.heating_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\HeatingTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_heating_type }
+
+    ufuturehouse.form.type.catalogue.height:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\HeightCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_height }
+
+    ufuturehouse.form.type.catalogue.hot_water_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\HotWaterTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_hot_water_type }
+
+    ufuturehouse.form.type.catalogue.housing_category:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\HousingCategoryCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_housing_category }
+
+    ufuturehouse.form.type.catalogue.kitchen_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\KitchenTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_kitchen_type }
+
+    ufuturehouse.form.type.catalogue.orientation:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\OrientationCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_orientation }
+
+    ufuturehouse.form.type.catalogue.parking_space_type:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\ParkingSpaceTypeCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_parking_space_type }

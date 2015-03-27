@@ -1,83 +1,6 @@
 {% extends "@Backend/Default/admin.html.twig" %}
 
-{% form_theme form _self %}
-
-{% macro image_prototype() %}
-    <div class="form-group" style="margin-top: 15px;margin-bottom: -15px;">
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <input type="file" id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images___name___image" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[images][__name__][image]" required="required" accept="image/*" />
-            </div>
-            <div class="col-sm-1">
-                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
-            </div>
-        </div>
-    </div>
-{% endmacro %}
-
-{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images_row %}
-    <div class="form-group">
-        <label class="col-sm-2 control-label required">{{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.images.label' | trans({}, 'forms') }}</label>
-        <div id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_images" class="images" data-prototype="{{ _self.image_prototype()|e }}">
-            <div class="row">
-                <div class="col-sm-offset-2 col-sm-10 text-center">
-                    {% set rowAux = 0 %}
-                    {% for image in form.children %}
-                        {% if rowAux == 0 %}
-                            <div class="row" style="margin-top:15px;">
-                        {% endif %}
-                        <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="well well-sm">
-                                <img src="{{ asset('uploads/images/' ~ image.vars.value.path) }}" alt="" width="128px" height="100px" class="img-thumbnail" />
-                                <button type="button" class="close remove-tag">&times;</button>
-                                {{ form_widget(image, { 'hidden': true }) }}
-                            </div>
-                            {{ form_errors(image) }}
-                        </div>
-                        {% if rowAux < 2 %}
-                            {% set rowAux = rowAux + 1 %}
-                        {% else %}
-                            {% set rowAux = 0 %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation_row %}
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation">
-            {{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.orientation.label' | trans({}, 'forms') }}
-        </label>
-        <div class="col-sm-10">
-            <select id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_orientation" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[orientation]" class="form-control">
-                <option value=""></option>
-                {% for choice in form.vars.choices %}
-                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-{% endblock %}
-
-{% block _ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height_row %}
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height">
-            {{ 'form.ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat.children.height.label' | trans({}, 'forms') }}
-        </label>
-        <div class="col-sm-10">
-            <select id="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat_height" name="ufuturelabs_ufuturehouse_server_housingbundle_residence_residencevertical_flat[height]" class="form-control">
-                <option value=""></option>
-                {% for choice in form.vars.choices %}
-                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-{% endblock %}
+{#{% form_theme form "HousingBundle:Catalogues:catalogues_form.html.twig" %}#}
 
 {% block article %}
     <div class="container">
@@ -113,7 +36,7 @@
             });
 
             $('#{{ form.parkingSpacesPriceIncluded.vars.id }}').click(function () {
-                $('#{{ form.parkingSpacesPrice.vars.id }}').prop('disabled', !this.checked);
+                $('#{{ form.parkingSpacesPrice.vars.id }}').prop('disabled', this.checked);
             });
 
         });

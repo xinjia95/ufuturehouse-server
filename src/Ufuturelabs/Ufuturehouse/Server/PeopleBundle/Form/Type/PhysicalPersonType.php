@@ -83,6 +83,6 @@ class PhysicalPersonType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_physicalperson';
+        return 'people_physicalperson';
     }
 }

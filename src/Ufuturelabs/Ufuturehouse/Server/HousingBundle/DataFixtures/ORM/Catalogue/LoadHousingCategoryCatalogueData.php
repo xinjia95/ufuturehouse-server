@@ -13,9 +13,11 @@ class LoadHousingCategoryCatalogueData implements FixtureInterface
     function load(ObjectManager $manager)
     {
         $catalogues = array(
-            new HousingCategoryCatalogue('catalogue.building_type.in_short'),
-            new HousingCategoryCatalogue('catalogue.building_type.on_building'),
-            new HousingCategoryCatalogue('catalogue.building_type.latest_finishes'),
+            new HousingCategoryCatalogue('catalogue.housing_category.official_protection'),
+            new HousingCategoryCatalogue('catalogue.housing_category.rent_limited_class_1'),
+            new HousingCategoryCatalogue('catalogue.housing_category.rent_limited_class_2'),
+            new HousingCategoryCatalogue('catalogue.housing_category.free'),
+            new HousingCategoryCatalogue('catalogue.housing_category.regional_housing_protection'),
         );
 
         CatalogueUtil::createCatalogues($catalogues, $manager);

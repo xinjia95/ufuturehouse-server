@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EmissionsClassCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil;
 
-class LoadEmissionsCatalogueData implements FixtureInterface
+class LoadEmissionsClassCatalogueData implements FixtureInterface
 {
     /** {@inheritDoc} */
     function load(ObjectManager $manager)

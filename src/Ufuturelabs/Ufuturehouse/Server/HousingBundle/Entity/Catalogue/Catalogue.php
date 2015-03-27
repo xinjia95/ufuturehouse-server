@@ -22,6 +22,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *      "energy_class"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EnergyClassCatalogue",
  *      "furnished"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\FurnishedCatalogue",
  *      "garden_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\GardenTypeCatalogue",
+ *      "heating_distribution"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingDistributionCatalogue",
  *      "heating_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingTypeCatalogue",
  *      "hot_water_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HotWaterTypeCatalogue",
  *      "housing_category"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HousingCategoryCatalogue",
@@ -31,7 +32,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *      "parking_space_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue"
  * })
  */
-abstract class Catalogue
+class Catalogue
 {
     /**
      * @var int

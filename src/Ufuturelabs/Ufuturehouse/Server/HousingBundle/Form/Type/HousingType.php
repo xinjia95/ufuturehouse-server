@@ -5,6 +5,7 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Image;
 
 class HousingType extends AbstractType
 {
@@ -20,24 +21,39 @@ class HousingType extends AbstractType
             ->add('forRent')
             ->add('sold')
             ->add('rented')
-            ->add('state')
+            ->add('conservationStatus', 'catalogue_conservation_status')
             ->add('floorArea')
             ->add('rentableArea')
             ->add('usableArea')
             ->add('address')
             ->add('buildingYear')
-            ->add('price')
-            ->add('priceOffer')
+            ->add('price', 'money')
+            ->add('priceOffer', 'money')
             ->add('bankProperty')
-            ->add('availabilityDate')
+            ->add('availabilityDate', 'date', array(
+                'required' => false,
+            ))
             ->add('luxuryProperty')
-            ->add('orientation')
             ->add('outside')
             ->add('inside')
+            ->add('communityCharges', 'money')
+            ->add('ibi', 'money')
+            ->add('security')
             ->add('locationState')
             ->add('city')
             ->add('zone')
+            ->add('orientation', 'catalogue_orientation')
             ->add('owners')
+            ->add('images', 'collection', array(
+                'type' => new ImageType(),
+                'by_reference' => false,
+                'prototype' => new Image(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'attr' => array(
+                    'class' => 'images'
+                ),
+            ))
         ;
     }
     
@@ -47,7 +63,8 @@ class HousingType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing',
+            'translation_domain' => 'forms',
         ));
     }
 
@@ -56,6 +73,6 @@ class HousingType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_housingbundle_housing';
+        return 'housing';
     }
 }

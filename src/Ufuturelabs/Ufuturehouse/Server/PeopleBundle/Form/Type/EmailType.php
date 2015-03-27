@@ -36,6 +36,6 @@ class EmailType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_email';
+        return 'people_email';
     }
 }

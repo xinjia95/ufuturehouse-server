@@ -36,6 +36,6 @@ class PhonenumberType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_phonenumber';
+        return 'people_phonenumber';
     }
 }

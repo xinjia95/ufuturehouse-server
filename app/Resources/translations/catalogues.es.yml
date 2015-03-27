@@ -50,7 +50,7 @@ catalogue:
          west_northeast: Oeste - Noreste
          total: Total
 
-    garage_type:
+    parking_space_type:
         covered: Cubierto
         uncovered: Descubierto
 
@@ -125,9 +125,11 @@ catalogue:
         electric: Eléctrica
         solar_panel: Placa solar
 
-    heating_type:
+    heating_distribution:
         central: Central
         individual: Individual
+
+    heating_type:
         natural_gas: Por gas natural
         electric: Eléctrica
         propane: Propano

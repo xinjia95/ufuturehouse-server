@@ -39,6 +39,6 @@ class AddressType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_address';
+        return 'people_address';
     }
 }

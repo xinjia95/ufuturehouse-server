@@ -1,0 +1,87 @@
+{% extends 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block catalogue_widget %}
+<select id="{{ form.vars.id }}" name="housing[{{ form.vars.full_name }}]" class="form-control">
+    <option value=""></option>
+    {% for choice in form.vars.choices %}
+        {% set id = 0 %}
+        {% set label = 'label_not_found' %}
+        {% for value in choice %}
+            {% if value.data == 'id' %}
+                {% set id = value.label %}
+            {% elseif value.data == 'value' %}
+                {% set label = value.label %}
+            {% endif %}
+        {% endfor %}
+        <option value="{{ id }}">{{ (label | trans({}, 'catalogues')) }}</option>
+    {% endfor %}
+</select>
+{% endblock %}
+
+{% block catalogue_air_conditioning_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_building_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_clothes_line_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_conservation_status_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_doorway_status_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_emissions_class_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_energy_class_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_furnished_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_garden_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_heating_distribution_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_heating_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_height_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_hot_water_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_housing_category_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_kitchen_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_orientation_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}
+
+{% block catalogue_parking_space_type_widget %}
+    {{ block('catalogue_widget') }}
+{% endblock %}

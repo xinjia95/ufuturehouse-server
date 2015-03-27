@@ -12,7 +12,7 @@
         {{ form_start(form) }}
         {{ form_errors(form) }}
         <fieldset>
-            <legend>{{ 'form.users.user_data' | trans({}, 'forms') }}</legend>
+            <legend>{{ 'form.user.user_data' | trans({}, 'forms') }}</legend>
             {{ form_row(form.username) }}
             {{ form_row(form.password) }}
             {{ form_row(form.roles) }}
@@ -20,7 +20,7 @@
             {{ form_row(form.locked) }}
         </fieldset>
         <fieldset>
-            <legend>{{ 'form.users.personal_data' | trans({}, 'forms') }}</legend>
+            <legend>{{ 'form.user.personal_data' | trans({}, 'forms') }}</legend>
             {{ form_row(form.name) }}
             {{ form_row(form.surname) }}
             {{ form_row(form.email) }}

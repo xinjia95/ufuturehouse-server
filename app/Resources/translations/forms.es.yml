@@ -1,0 +1,148 @@
+form:
+    user:
+        user_data: 'Datos de usuario'
+        personal_data: 'Datos personales'
+        children:
+            username.label: 'Nombre de usuario'
+            password.children.first.label: Contraseña
+            password.children.second.label: 'Repetir contraseña'
+            enabled.label: 'Cuenta activada'
+            locked.label: 'Cuenta bloqueada'
+            roles.label: 'Roles de usuario'
+            name.label: Nombre
+            surname.label: Apellidos
+            email.label: 'Correo electrónico'
+            telephone.label: Teléfono
+            update.label: 'Actualizar perfil'
+
+    company:
+        children:
+            name.label: 'Nombre compañía'
+            street.label: Calle
+            city.label: Ciudad
+            zipCode.label: 'Código postal'
+            state.label: Provincia
+            telephone.label: Teléfono
+            fax.label: Fax
+            email.label: 'Correo electrónico'
+            logo.label: Logotipo
+            facebook.label: Facebook
+            twitter.label: Twitter
+            googlePlus.label: 'Google +'
+            googleMaps.label: 'Google Maps'
+            tumblr.label: Tumblr
+            pinterest.label: Pinterest
+            flickr.label: Flickr
+            youtube.label: YouTube
+            linkedin.label: LinkedIn
+            primaryColor.label: 'Color primario'
+            secundaryColor.label: 'Color secundario'
+            submit.label: 'Guardar configuración'
+
+    people_physicalperson:
+        children:
+            firstname.label: Nombre
+            surname.label: 'Primer apellido'
+            secondSurname.label: 'Segundo apellido'
+            birthday.label: 'Fecha de nacimiento'
+            dni.label: DNI
+            emails.label: ''
+            emails.prototype.children.email.label: 'Correo electrónico'
+            emails.prototype.children.description.label: Descripción
+            phonenumbers.label: ''
+            phonenumbers.prototype.children.number.label: 'Número de teléfono'
+            phonenumbers.prototype.children.description.label: Descripción
+            addresses.label: ''
+            addresses.prototype.children.street.label: Calle
+            addresses.prototype.children.city.label: Ciudad
+            addresses.prototype.children.zipCode.label: 'Código postal'
+            addresses.prototype.children.state.label: Provincia
+            addresses.prototype.children.description.label: Descripción
+            bankAccounts.label: ''
+            bankAccounts.prototype.children.holder.label: Propietario
+            bankAccounts.prototype.children.banckAccountNumber.label: 'Código de cuenta bancaria (IBAN)'
+            bankAccounts.prototype.children.description.label: Descripción
+
+    state:
+        children:
+            name.label: Nombre
+
+    city:
+        children:
+            name.label: Nombre
+            state.label: Provincia
+
+    zone:
+        children:
+            name.label: Nombre
+            city.label: Ciudad
+
+    housing:
+        children:
+            description.label: Descripción
+            onSale.label: 'Para vender'
+            forRent.label: 'Para alquilar'
+            sold.label: Vendido
+            rented.label: Alquilado
+            state.label: 'Estado inmueble'
+            floorArea.label: 'Superficie contruida'
+            rentableArea.label: 'Superficie alquilable'
+            usableArea.label: 'Superficie útil'
+            address.label: Dirección
+            buildingYear.label: 'Año de construcción'
+            price.label: Precio
+            priceOffer.label: 'Precio en oferta'
+            bankProperty.label: 'Propiedad del banco'
+            availabilityDate.label: 'Fecha de disponibilidad'
+            luxuryProperty.label: 'Propiedad de lujo'
+            orientation.label: Orientación
+            outside.label: Exterior
+            inside.label: Interior
+            locationState.label: Provincia
+            city.label: Ciudad
+            zone.label: Zona
+            owners.label: Propietarios
+            bedroomsNumber.label: 'Número de dormitorios'
+            bathroomsNumber.label: 'Número de baños'
+            toiletsNumber.label: 'Número de aseos'
+            sittingroomsNumber.label: 'Número de salones'
+            kitchensNumber.label: 'Número de cocinas'
+            terracesNumber.label: 'Número de terrazas'
+            balconiesNumber.label: 'Número de balcones'
+            parkingSpacesNumber.label: 'Número de plazas de aparcamiento'
+            sittingroomsArea.label: 'Superficie de salones'
+            kitchensArea.label: 'Superficie de cocinas'
+            terracesArea.label: 'Superficie de terrazas'
+            balconiesArea.label: 'Superficie de balcones'
+            parkingSpacesArea.label: 'Superficie plazas de aparcamiento'
+            kitchenType.label: 'Tipo de cocinas'
+            parkingSpaceType.label: 'Tipo plazas de aparcamiento'
+            height.label: Altura
+            parkingSpacesPriceIncluded.label: 'Plazas de aparcamiento incluidas en el precio'
+            parkingSpacesPrice.label: 'Precio plazas de aparcamiento'
+            buildingType.label: 'Tipo de contrucción'
+            hotWaterType.label: 'Tipo agua caliente'
+            airConditioningType.label: 'Tipo aire acondicionado'
+            furnished.label: Amueblado
+            wardrobesNumber.label: 'Número de armarios empotrados'
+            dresser.label: Vestidor
+            boxroom.label: Trastero
+            swimmingPool.label: Piscina
+            gardenType.label: 'Tipo de jardín'
+            doorwayStatus.label: 'Estado del portal'
+            elevatorNumber.label: 'Número de ascensores'
+            clothesLine.label: Tendedero
+            images.label: Imágenes
+            communityCharges.label: Gastos de comunidad
+            ibi.label: IBI
+            consumptionRate.label: Índice de consumo energético
+            emissionsRate.label: Índice de emisiones
+            category.label: Calificación
+            energyClass.label: Clase energética
+            emissionsClass.label: Clase de emisiones
+            heatingDistribution.label: Distribución de calefacción
+            heatingType.label: Tipo de calefacción
+            concierge.label: Conserje
+            securityDoor.label: Puerta de seguridad
+            security.label: Seguridad
+            conservationStatus.label: Estado de conservación

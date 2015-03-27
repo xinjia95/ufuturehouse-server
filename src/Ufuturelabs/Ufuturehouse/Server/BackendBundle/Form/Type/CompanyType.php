@@ -63,6 +63,6 @@ class CompanyType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_backendbundle_company';
+        return 'company';
     }
 }

@@ -1,0 +1,269 @@
+{% block _housing_orientation_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_orientation">
+            {{ 'form.housing.children.orientation.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_orientation" name="housing[orientation]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_kitchenType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_kitchenType">
+            {{ 'form.housing.children.kitchenType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_kitchenType" name="housing[kitchenType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_parkingSpaceType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_parkingSpaceType">
+            {{ 'form.housing.children.parkingSpaceType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_parkingSpaceType" name="housing[parkingSpaceType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_height_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_height">
+            {{ 'form.housing.children.height.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_height" name="housing[height]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_buildingType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_buildingType">
+            {{ 'form.housing.children.buildingType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_buildingType" name="housing[buildingType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_hotWaterType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_hotWaterType">
+            {{ 'form.housing.children.hotWaterType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_hotWaterType" name="housing[hotWaterType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_airConditioningType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_airConditioningType">
+            {{ 'form.housing.children.airConditioningType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_airConditioningType" name="housing[airConditioningType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_furnished_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_furnished">
+            {{ 'form.housing.children.furnished.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_furnished" name="housing[furnished]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_category_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_category">
+            {{ 'form.housing.children.category.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_category" name="housing[category]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_gardenType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_gardenType">
+            {{ 'form.housing.children.gardenType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_gardenType" name="housing[gardenType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_energyClass_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_energyClass">
+            {{ 'form.housing.children.energyClass.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_energyClass" name="housing[energyClass]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_emissionsClass_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_emissionsClass">
+            {{ 'form.housing.children.emissionsClass.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_emissionsClass" name="housing[emissionsClass]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _housing_heatingDistribution_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_heatingDistribution">
+            {{ 'form.housing.children.heatingDistribution.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_heatingDistribution" name="housing[heatingDistribution]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block _housing_heatingType_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="housing_heatingType">
+            {{ 'form.housing.children.heatingType.label' | trans({}, 'forms') }}
+        </label>
+        <div class="col-sm-10">
+            <select id="housing_heatingType" name="housing[heatingType]" class="form-control">
+                <option value=""></option>
+                {% for choice in form.vars.choices %}
+                    <option value="{{ choice.value }}">{{ (choice.label | trans({}, 'catalogues')) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% macro image_prototype() %}
+    <div class="form-group" style="margin-top: 15px;margin-bottom: -15px;">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <input type="file" id="housing_images___name___image" name="housing[images][__name__][image]" required="required" accept="image/*" />
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="close remove-tag" style="margin-bottom: 15px;">&times;</button>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% block _housing_images_row %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label required">{{ 'form.housing.children.images.label' | trans({}, 'forms') }}</label>
+        <div id="housing_images" class="images" data-prototype="{{ _self.image_prototype()|e }}">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10 text-center">
+                    {% set rowAux = 0 %}
+                    {% for image in form.children %}
+                        {% if rowAux == 0 %}
+                            <div class="row" style="margin-top:15px;">
+                        {% endif %}
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="well well-sm">
+                                <img src="{{ asset('uploads/images/' ~ image.vars.value.path) }}" alt="" width="128px" height="100px" class="img-thumbnail" />
+                                <button type="button" class="close remove-tag">&times;</button>
+                                {{ form_widget(image, { 'hidden': true }) }}
+                            </div>
+                            {{ form_errors(image) }}
+                        </div>
+                        {% if rowAux < 2 %}
+                            {% set rowAux = rowAux + 1 %}
+                        {% else %}
+                            {% set rowAux = 0 %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

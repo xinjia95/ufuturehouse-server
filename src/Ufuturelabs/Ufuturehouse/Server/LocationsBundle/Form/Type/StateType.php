@@ -36,6 +36,6 @@ class StateType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_locationsbundle_state';
+        return 'state';
     }
 }

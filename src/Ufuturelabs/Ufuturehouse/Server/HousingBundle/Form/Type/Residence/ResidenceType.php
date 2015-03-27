@@ -2,11 +2,12 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Residence;
 
-use Symfony\Component\Form\AbstractType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\HousingType;
 
-class ResidenceType extends AbstractType
+class ResidenceType extends HousingType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,6 +15,7 @@ class ResidenceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder
             ->add('bedroomsNumber')
             ->add('bathroomsNumber')
@@ -28,20 +30,27 @@ class ResidenceType extends AbstractType
             ->add('terracesArea')
             ->add('balconiesArea')
             ->add('parkingSpacesArea')
-            ->add('kitchenType')
-            ->add('parkingSpaceType')
-            ->add('height')
             ->add('parkingSpacesPriceIncluded')
             ->add('parkingSpacesPrice')
-            ->add('buildingType')
-            ->add('hotWaterType')
-            ->add('airConditioningType')
-            ->add('furnished')
             ->add('wardrobesNumber')
             ->add('dresser')
             ->add('boxroom')
             ->add('swimmingPool')
-            ->add('gardenType')
+            ->add('consumptionRate')
+            ->add('emissionsRate')
+            ->add('securityDoor')
+            ->add('kitchenType', 'catalogue_kitchen_type')
+            ->add('parkingSpaceType', 'catalogue_parking_space_type')
+            ->add('buildingType', 'catalogue_building_type')
+            ->add('hotWaterType', 'catalogue_hot_water_type')
+            ->add('airConditioningType', 'catalogue_air_conditioning_type')
+            ->add('furnished', 'catalogue_furnished')
+            ->add('gardenType', 'catalogue_garden_type')
+            ->add('category', 'catalogue_housing_category')
+            ->add('energyClass', 'catalogue_energy_class')
+            ->add('emissionsClass', 'catalogue_emissions_class')
+            ->add('heatingDistribution', 'catalogue_heating_distribution')
+            ->add('heatingType', 'catalogue_heating_type')
         ;
     }
     
@@ -51,7 +60,8 @@ class ResidenceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence'
+            'data_class' => 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\Residence',
+            'translation_domain' => 'forms',
         ));
     }
 
@@ -60,6 +70,6 @@ class ResidenceType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_housingbundle_residence_residence';
+        return 'residence';
     }
 }

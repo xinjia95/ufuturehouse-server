@@ -56,6 +56,6 @@ class UserProfileType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_backendbundle_user';
+        return 'user';
     }
 }

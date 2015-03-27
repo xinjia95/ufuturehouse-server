@@ -36,6 +36,6 @@ class CoordinateType extends AbstractType
      */
     public function getName()
     {
-        return 'locations_coordinate';
+        return 'coordinate';
     }
 }

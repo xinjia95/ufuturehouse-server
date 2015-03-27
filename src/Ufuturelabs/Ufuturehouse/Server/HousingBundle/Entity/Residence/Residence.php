@@ -5,8 +5,14 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence;
 use Doctrine\ORM\Mapping AS ORM;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\AirConditioningTypeCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\BuildingTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EmissionsClassCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EnergyClassCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\FurnishedCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\GardenTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingDistributionCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingTypeCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HotWaterTypeCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HousingCategoryCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\KitchenTypeCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
@@ -167,11 +173,10 @@ abstract class Residence extends Housing
     private $airConditioningType;
 
     /**
-     * @var string Amueblado
+     * @var FurnishedCatalogue Amueblado
      *
-     * Descripción de los muebles
-     *
-     * @ORM\Column(name="furnished", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\FurnishedCatalogue")
+     * @ORM\JoinColumn(name="air_conditioning_type_id", referencedColumnName="id", nullable=true)
      */
     private $furnished;
 
@@ -210,6 +215,67 @@ abstract class Residence extends Housing
      * @ORM\JoinColumn(name="garden_type_id", referencedColumnName="id", nullable=true)
      */
     private $gardenType;
+
+    /**
+     * @var HousingCategoryCatalogue Calificación
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HousingCategoryCatalogue")
+     * @ORM\JoinColumn(name="housing_type_id", referencedColumnName="id", nullable=true)
+     */
+    private $category;
+
+    /**
+     * @var EnergyClassCatalogue Clase energética
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EnergyClassCatalogue")
+     * @ORM\JoinColumn(name="energy_class_id", referencedColumnName="id", nullable=false)
+     */
+    private $energyClass;
+
+    /**
+     * @var float Índice de consumo energético medido en kWh/m2 año
+     *
+     * @ORM\Column(name="consumption_rate", type="float", nullable=true)
+     */
+    private $consumptionRate;
+
+    /**
+     * @var EmissionsClassCatalogue Clase de emisiones
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\EmissionsClassCatalogue")
+     * @ORM\JoinColumn(name="emissions_class_id", referencedColumnName="id", nullable=false)
+     */
+    private $emissionsClass;
+
+    /**
+     * @var float Índice de emisiones medido en kg CO2/m2 año
+     *
+     * @ORM\Column(name="emissions_rate", type="float", nullable=true)
+     */
+    private $emissionsRate;
+
+    /**
+     * @var HeatingDistributionCatalogue Tipo distribución calefacción
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingDistributionCatalogue")
+     * @ORM\JoinColumn(name="heating_distribution_id", referencedColumnName="id", nullable=false)
+     */
+    private $heatingDistribution;
+
+    /**
+     * @var HeatingTypeCatalogue Tipo calefacción
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeatingTypeCatalogue")
+     * @ORM\JoinColumn(name="heating_type_id", referencedColumnName="id", nullable=false)
+     */
+    private $heatingType;
+
+    /**
+     * @var boolean Puerta de seguridad
+     *
+     * @ORM\Column(name="security_door", type="boolean", nullable=false)
+     */
+    private $securityDoor = false;
 
     /**
      * @return int
@@ -532,7 +598,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @return string
+     * @return FurnishedCatalogue
      */
     public function getFurnished()
     {
@@ -540,7 +606,7 @@ abstract class Residence extends Housing
     }
 
     /**
-     * @param string $furnished
+     * @param FurnishedCatalogue $furnished
      */
     public function setFurnished($furnished)
     {
@@ -625,5 +691,133 @@ abstract class Residence extends Housing
     public function setGardenType($gardenType)
     {
         $this->gardenType = $gardenType;
+    }
+
+    /**
+     * @return HousingCategoryCatalogue
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param HousingCategoryCatalogue $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return EnergyClassCatalogue
+     */
+    public function getEnergyClass()
+    {
+        return $this->energyClass;
+    }
+
+    /**
+     * @param EnergyClassCatalogue $energyClass
+     */
+    public function setEnergyClass($energyClass)
+    {
+        $this->energyClass = $energyClass;
+    }
+
+    /**
+     * @return float
+     */
+    public function getConsumptionRate()
+    {
+        return $this->consumptionRate;
+    }
+
+    /**
+     * @param float $consumptionRate
+     */
+    public function setConsumptionRate($consumptionRate)
+    {
+        $this->consumptionRate = $consumptionRate;
+    }
+
+    /**
+     * @return EmissionsClassCatalogue
+     */
+    public function getEmissionsClass()
+    {
+        return $this->emissionsClass;
+    }
+
+    /**
+     * @param EmissionsClassCatalogue $emissionsClass
+     */
+    public function setEmissionsClass($emissionsClass)
+    {
+        $this->emissionsClass = $emissionsClass;
+    }
+
+    /**
+     * @return float
+     */
+    public function getEmissionsRate()
+    {
+        return $this->emissionsRate;
+    }
+
+    /**
+     * @param float $emissionsRate
+     */
+    public function setEmissionsRate($emissionsRate)
+    {
+        $this->emissionsRate = $emissionsRate;
+    }
+
+    /**
+     * @return HeatingDistributionCatalogue
+     */
+    public function getHeatingDistribution()
+    {
+        return $this->heatingDistribution;
+    }
+
+    /**
+     * @param HeatingDistributionCatalogue $heatingDistribution
+     */
+    public function setHeatingDistribution($heatingDistribution)
+    {
+        $this->heatingDistribution = $heatingDistribution;
+    }
+
+    /**
+     * @return HeatingTypeCatalogue
+     */
+    public function getHeatingType()
+    {
+        return $this->heatingType;
+    }
+
+    /**
+     * @param HeatingTypeCatalogue $heatingType
+     */
+    public function setHeatingType($heatingType)
+    {
+        $this->heatingType = $heatingType;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSecurityDoor()
+    {
+        return $this->securityDoor;
+    }
+
+    /**
+     * @param boolean $securityDoor
+     */
+    public function setSecurityDoor($securityDoor)
+    {
+        $this->securityDoor = $securityDoor;
     }
 }

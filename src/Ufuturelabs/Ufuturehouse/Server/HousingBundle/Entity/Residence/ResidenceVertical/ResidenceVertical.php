@@ -37,9 +37,9 @@ abstract class ResidenceVertical extends Residence
     /**
      * @var int Número de ascensores
      *
-     * @ORM\Column(name="elevator_number", type="integer")
+     * @ORM\Column(name="elevator_number", type="integer", nullable=true)
      */
-    private $elevatorNumber = 0;
+    private $elevatorNumber;
 
     /**
      * @var ClothesLineCatalogue Tendedero
@@ -48,6 +48,13 @@ abstract class ResidenceVertical extends Residence
      * @ORM\JoinColumn(name="clothes_line_id", referencedColumnName="id", nullable=true)
      */
     private $clothesLine;
+
+    /**
+     * @var boolean Conserje
+     *
+     * @ORM\Column(name="concierge", type="boolean", nullable=false)
+     */
+    private $concierge = false;
 
     /**
      * @return HeightCatalogue
@@ -111,5 +118,21 @@ abstract class ResidenceVertical extends Residence
     public function setClothesLine($clothesLine)
     {
         $this->clothesLine = $clothesLine;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isConcierge()
+    {
+        return $this->concierge;
+    }
+
+    /**
+     * @param boolean $concierge
+     */
+    public function setConcierge($concierge)
+    {
+        $this->concierge = $concierge;
     }
 }

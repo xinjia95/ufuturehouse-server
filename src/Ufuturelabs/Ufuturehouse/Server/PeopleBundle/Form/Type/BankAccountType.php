@@ -37,6 +37,6 @@ class BankAccountType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_peoplebundle_bankaccount';
+        return 'people_bankaccount';
     }
 }

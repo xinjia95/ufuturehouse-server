@@ -47,6 +47,6 @@ class ZoneType extends AbstractType
      */
     public function getName()
     {
-        return 'locations_zone';
+        return 'zone';
     }
 }

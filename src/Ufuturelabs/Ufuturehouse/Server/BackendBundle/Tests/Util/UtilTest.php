@@ -60,7 +60,7 @@ class UtilTest extends KernelTestCase
             $housing = new Housing();
             $housing->setDescription('Description');
             $housing->setOnSale(true);
-            $housing->setState('Good');
+            $housing->setConservationStatus('Good');
             $housing->setFloorArea(81);
             $housing->setAddress('Av. Ajalvir, 8, 28806');
             $housing->setBuildingYear('1970');

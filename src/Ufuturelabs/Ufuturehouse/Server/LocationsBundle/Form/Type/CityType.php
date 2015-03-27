@@ -36,6 +36,6 @@ class CityType extends AbstractType
      */
     public function getName()
     {
-        return 'ufuturelabs_ufuturehouse_server_locationsbundle_city';
+        return 'city';
     }
 }
