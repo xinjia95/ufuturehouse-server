@@ -5,17 +5,24 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class HeatingTypeCatalogueType extends CatalogueType
+class HeatingTypeCatalogueType extends AbstractCatalogueType
 {
+    /**
+     * @param EntityManager $em
+     */
     public function __construct(EntityManager $em)
     {
-        parent::__construct($em, parent::CATALOGUE_NAMESPACE.'HeatingTypeCatalogue');
+        parent::__construct($em);
     }
 
     /** {@inheritdoc} */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        $choices = $this->em->getRepository('HousingBundle:Catalogue\HeatingTypeCatalogue')->findAll();
+
+        $resolver->setDefaults(array(
+            'choices' => $choices,
+        ));
     }
 
     /** {@inheritdoc} */

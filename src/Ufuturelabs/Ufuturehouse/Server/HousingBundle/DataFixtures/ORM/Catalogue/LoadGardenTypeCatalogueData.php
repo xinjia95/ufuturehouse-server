@@ -10,7 +10,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil;
 class LoadGardenTypeCatalogueData implements FixtureInterface
 {
     /** {@inheritDoc} */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $catalogues = array(
             new GardenTypeCatalogue('catalogue.garden_type.yes'),

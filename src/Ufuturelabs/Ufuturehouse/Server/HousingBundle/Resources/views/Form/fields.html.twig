@@ -1,21 +1,12 @@
 {% extends 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block catalogue_widget %}
-<select id="{{ form.vars.id }}" name="housing[{{ form.vars.full_name }}]" class="form-control">
-    <option value=""></option>
-    {% for choice in form.vars.choices %}
-        {% set id = 0 %}
-        {% set label = 'label_not_found' %}
-        {% for value in choice %}
-            {% if value.data == 'id' %}
-                {% set id = value.label %}
-            {% elseif value.data == 'value' %}
-                {% set label = value.label %}
-            {% endif %}
+    <select id="{{ form.vars.id }}" name="housing[{{ form.vars.full_name }}]" class="form-control">
+        <option value=""></option>
+        {% for choice in form.vars.choices %}
+            <option value="{{ choice.label.id }}">{{ (choice.label.value | trans({}, 'catalogues')) }}</option>
         {% endfor %}
-        <option value="{{ id }}">{{ (label | trans({}, 'catalogues')) }}</option>
-    {% endfor %}
-</select>
+    </select>
 {% endblock %}
 
 {% block catalogue_air_conditioning_type_widget %}

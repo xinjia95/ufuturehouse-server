@@ -3,7 +3,7 @@
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ConservationStatusCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue;
@@ -478,7 +478,7 @@ class Housing
     }
 
     /**
-     * @return String
+     * @return OrientationCatalogue
      */
     public function getOrientation()
     {
@@ -486,7 +486,7 @@ class Housing
     }
 
     /**
-     * @param String $orientation
+     * @param OrientationCatalogue $orientation
      */
     public function setOrientation($orientation)
     {

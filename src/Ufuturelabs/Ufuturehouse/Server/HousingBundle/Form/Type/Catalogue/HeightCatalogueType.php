@@ -5,17 +5,24 @@ namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class HeightCatalogueType extends CatalogueType
+class HeightCatalogueType extends AbstractCatalogueType
 {
+    /**
+     * @param EntityManager $em
+     */
     public function __construct(EntityManager $em)
     {
-        parent::__construct($em, parent::CATALOGUE_NAMESPACE.'HeightCatalogue');
+        parent::__construct($em);
     }
 
     /** {@inheritdoc} */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        $choices = $this->em->getRepository('HousingBundle:Catalogue\HeightCatalogue')->findAll();
+
+        $resolver->setDefaults(array(
+            'choices' => $choices,
+        ));
     }
 
     /** {@inheritdoc} */

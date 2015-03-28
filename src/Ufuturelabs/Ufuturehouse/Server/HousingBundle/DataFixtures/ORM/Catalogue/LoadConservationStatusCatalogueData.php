@@ -10,7 +10,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil;
 class LoadConservationStatusCatalogueData implements FixtureInterface
 {
     /** {@inheritDoc} */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $catalogues = array(
             new ConservationStatusCatalogue('catalogue.conservation_status.first_time'),

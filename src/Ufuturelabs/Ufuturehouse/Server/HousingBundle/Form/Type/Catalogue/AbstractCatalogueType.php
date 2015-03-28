@@ -12,28 +12,23 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\Catalogue;
  * @package Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue
  * @since 1.0
  */
-class CatalogueType extends AbstractType
+abstract class AbstractCatalogueType extends AbstractType
 {
-    const CATALOGUE_NAMESPACE = 'Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\\';
-
     /** @var EntityManager $em */
-    private $em;
+    protected $em;
 
-    /** @var Catalogue $catalogue */
-    private $catalogue;
-
-    public function __construct(EntityManager $em, $catalogue)
+    /**
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
     {
         $this->em = $em;
-        $this->catalogue = $catalogue;
     }
 
     /** {@inheritdoc} */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $dql = 'SELECT c FROM HousingBundle:Catalogue\Catalogue c WHERE c INSTANCE OF '.$this->catalogue;
-        $query = $this->em->createQuery($dql);
-        $choices = $query->getArrayResult();
+        $choices = $this->em->getRepository('HousingBundle:Catalogue\Catalogue')->findAll();
 
         $resolver->setDefaults(array(
             'choices' => $choices,

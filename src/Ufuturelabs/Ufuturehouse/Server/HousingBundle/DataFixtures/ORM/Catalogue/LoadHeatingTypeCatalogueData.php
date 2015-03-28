@@ -10,7 +10,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Util\CatalogueUtil;
 class LoadHeatingTypeCatalogueData implements FixtureInterface
 {
     /** {@inheritDoc} */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $catalogues = array(
             new HeatingTypeCatalogue('catalogue.heating_type.natural_gas'),
