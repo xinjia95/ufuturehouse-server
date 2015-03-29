@@ -31,7 +31,7 @@ class ResidenceType extends HousingType
             ->add('balconiesArea')
             ->add('parkingSpacesArea')
             ->add('parkingSpacesPriceIncluded')
-            ->add('parkingSpacesPrice')
+            ->add('parkingSpacesPrice', 'money')
             ->add('wardrobesNumber')
             ->add('dresser')
             ->add('boxroom')

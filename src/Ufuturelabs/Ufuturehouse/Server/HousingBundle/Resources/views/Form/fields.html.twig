@@ -46,7 +46,14 @@
 {% endblock %}
 
 {% block catalogue_heating_distribution_widget %}
-    {{ block('catalogue_widget') }}
+    {% for choice in form.vars.choices %}
+        <div class="radio">
+            <label>
+                <input type="radio" id="{{ form.vars.id }}" name="housing[{{ form.vars.full_name }}]" value="{{ choice.label.id }}">
+                {{ (choice.label.value | trans({}, 'catalogues')) }}
+            </label>
+        </div>
+    {% endfor %}
 {% endblock %}
 
 {% block catalogue_heating_type_widget %}
