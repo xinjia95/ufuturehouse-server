@@ -62,6 +62,7 @@ class InstallCommand extends ContainerAwareCommand
                 'doctrine:fixtures:load',
                 new ArrayInput(array(
                         'command' => 'doctrine:fixtures:load',
+                        '-n' => true,
                         '--fixtures' => 'src\Ufuturelabs\Ufuturehouse\Server\HousingBundle\DataFixtures\ORM',
                     )
                 ),
