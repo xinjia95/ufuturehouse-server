@@ -15,11 +15,14 @@ build:
             - mysql -u root -e 'CREATE DATABASE ufuturehouse'
             - composer install --prefer-source -n
             - php app/console doctrine:schema:create
+            - php app/console doctrine:fixtures:load -n --fixtures=src/Ufuturelabs/Ufuturehouse/Server/HousingBundle/DataFixtures/ORM/Catalogue
 
 before_commands:
     - "composer self-update"
     - "composer install --prefer-source --dev"
     - "php app/console doctrine:schema:create"
+    - "php app/console doctrine:fixtures:load -n --fixtures=src/Ufuturelabs/Ufuturehouse/Server/HousingBundle/DataFixtures/ORM/Catalogue"
+
 tools:
     external_code_coverage: false
     php_code_coverage:      false
@@ -45,4 +48,4 @@ application:
             - mysql -u root -e "CREATE DATABASE ufuturehouse"
             - composer install --prefer-source -n
             - php app/console doctrine:schema:create
-            - php app/console doctrine:fixtures:load --fixtures=src\Ufuturelabs\Ufuturehouse\Server\HousingBundle\DataFixtures\ORM\Catalogue
+            - php app/console doctrine:fixtures:load -n --fixtures=src/Ufuturelabs/Ufuturehouse/Server/HousingBundle/DataFixtures/ORM/Catalogue
