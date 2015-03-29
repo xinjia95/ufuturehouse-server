@@ -11,10 +11,10 @@ build:
                     host: 'local.dev'
 
     dependencies:
-          before:
-               - mysql -u root -e 'CREATE DATABASE ufuturehouse'
-               - composer install --prefer-source -n
-               - php app/console doctrine:schema:create
+        before:
+            - mysql -u root -e 'CREATE DATABASE ufuturehouse'
+            - composer install --prefer-source -n
+            - php app/console doctrine:schema:create
 
 before_commands:
     - "composer self-update"
@@ -45,3 +45,4 @@ application:
             - mysql -u root -e "CREATE DATABASE ufuturehouse"
             - composer install --prefer-source -n
             - php app/console doctrine:schema:create
+            - php app/console doctrine:fixtures:load --fixtures=src\Ufuturelabs\Ufuturehouse\Server\HousingBundle\DataFixtures\ORM\Catalogue
