@@ -16,7 +16,11 @@ class HousingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
+            ->add('description', 'textarea', array(
+                'attr' => array(
+                    'row' => 3,
+                ),
+            ))
             ->add('onSale')
             ->add('forRent')
             ->add('sold')
@@ -44,6 +48,7 @@ class HousingType extends AbstractType
             ->add('zone')
             ->add('orientation', 'catalogue_orientation')
             ->add('owners')
+            ->add('newBuildingStatus', 'catalogue_new_building_status')
             ->add('images', 'collection', array(
                 'type' => new ImageType(),
                 'by_reference' => false,

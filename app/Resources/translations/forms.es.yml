@@ -146,3 +146,4 @@ form:
             securityDoor.label: Puerta de seguridad
             security.label: Seguridad
             conservationStatus.label: Estado de conservación
+            newBuildingStatus.label: Estado obra nueva

@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ConservationStatusCatalogue

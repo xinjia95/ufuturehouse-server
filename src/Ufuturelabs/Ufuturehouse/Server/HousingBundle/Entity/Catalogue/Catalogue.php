@@ -2,7 +2,7 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue;
 
-use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Catalogue
@@ -28,6 +28,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *      "housing_category"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HousingCategoryCatalogue",
  *      "height"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\HeightCatalogue",
  *      "kitchen_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\KitchenTypeCatalogue",
+ *      "new_building_status"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\NewBuildingStatusCatalogue",
  *      "orientation"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue",
  *      "parking_space_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue"
  * })

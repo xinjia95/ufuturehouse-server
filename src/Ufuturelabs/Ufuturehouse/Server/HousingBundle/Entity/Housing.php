@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ConservationStatusCatalogue;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\NewBuildingStatusCatalogue;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCatalogue;
 
 /**
@@ -279,6 +280,14 @@ class Housing
      * @ORM\Column(name="security", type="boolean", nullable=false)
      */
     private $security = false;
+
+    /**
+     * @var NewBuildingStatusCatalogue Estado nueva construcción
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\NewBuildingStatusCatalogue")
+     * @ORM\JoinColumn(name="new_building_status_id", referencedColumnName="id", nullable=true)
+     */
+    private $newBuildingStatus;
 
     public function __construct()
     {
@@ -771,5 +780,21 @@ class Housing
         $this->getImages()->removeElement($image);
         $util = new Util();
         $util->removeUploadedFile($util->getUploadImagesDir().'/'.$image->getPath());
+    }
+
+    /**
+     * @return NewBuildingStatusCatalogue
+     */
+    public function getNewBuildingStatus()
+    {
+        return $this->newBuildingStatus;
+    }
+
+    /**
+     * @param NewBuildingStatusCatalogue $newBuildingStatus
+     */
+    public function setNewBuildingStatus($newBuildingStatus)
+    {
+        $this->newBuildingStatus = $newBuildingStatus;
     }
 }

@@ -97,6 +97,12 @@ services:
         tags:
             - { name: form.type, alias: catalogue_kitchen_type }
 
+    ufuturehouse.form.type.catalogue.new_building_status:
+        class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\NewBuildingStatusCatalogueType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: catalogue_new_building_status }
+
     ufuturehouse.form.type.catalogue.orientation:
         class: Ufuturelabs\Ufuturehouse\Server\HousingBundle\Form\Type\Catalogue\OrientationCatalogueType
         arguments: [@doctrine.orm.entity_manager]
