@@ -2,27 +2,50 @@
 
 namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Cocur\Slugify\Slugify;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Translation\LoggingTranslator;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Twig\HousingTypeExtension;
 
 class Util
 {
-    /** @var ContainerInterface */
-    private $container;
-
-    /** @var string */
+    /** @var string $kernelRootDir */
     private $kernelRootDir;
+    
+    /** @var EntityManager $em */
+    private $em;
+    
+    /** @var LoggingTranslator $translator */
+    private $translator;
+    
+    /** @var string $locale */
+    private $locale;
+
+    /** @var HousingTypeExtension $housingGetTypeExtension */
+    private $housingGetTypeExtension;
+
+    /** @var Slugify $slugify */
+    private $slugify;
 
     /**
-     * @param string|null $kernelRootDir
-     * @param ContainerInterface $container
+     * @param string $kernelRootDir
+     * @param EntityManager $em
+     * @param LoggingTranslator $translator
+     * @param string $locale
+     * @param HousingTypeExtension $housingGetTypeExtension
+     * @param Slugify $slugify
      */
-    public function __construct($kernelRootDir = null, ContainerInterface $container = null)
+    public function __construct($kernelRootDir, EntityManager $em, LoggingTranslator $translator, $locale, HousingTypeExtension $housingGetTypeExtension, Slugify $slugify)
     {
         $this->kernelRootDir = $kernelRootDir;
-        $this->container = $container;
+        $this->em = $em;
+        $this->translator = $translator;
+        $this->locale = $locale;
+        $this->housingGetTypeExtension = $housingGetTypeExtension;
+        $this->slugify = $slugify;
     }
 
     /**
@@ -67,7 +90,7 @@ class Util
     public function generateFavicons($path, UploadedFile $file)
     {
         /** @var Company $company */
-        $company = $this->container->get('doctrine')->getManager()->getRepository('BackendBundle:Company')->findAll()[0];
+        $company = $this->em->getRepository('BackendBundle:Company')->findAll()[0];
 
         switch ($file->getClientMimeType())
         {
@@ -241,39 +264,39 @@ class Util
      */
     public function generateHousingSlug(Housing $housing)
     {
-        $housingType = $this->container->get('translator')->trans(
-            $this->container->get('twig.extension.housing.get_type')->getHousingType($housing),
+        $housingType = $this->translator->trans(
+            $this->housingGetTypeExtension->getHousingType($housing),
             array(),
             'messages',
-            $this->container->getParameter('locale')
+            $this->locale
         );
 
         if ($housing->isOnSale() && $housing->isForRent())
-            $housingStatus = $this->container->get('translator')->trans(
+            $housingStatus = $this->translator->trans(
                 'backend.housing.on_sale_rent',
                 array(),
                 'messages',
-                $this->container->getParameter('locale')
+                $this->locale
             );
         elseif ($housing->isOnSale())
-            $housingStatus = $this->container->get('translator')->trans(
+            $housingStatus = $this->translator->trans(
                 'backend.housing.on_sale',
                 array(),
                 'messages',
-                $this->container->getParameter('locale')
+                $this->locale
             );
         elseif ($housing->isForRent())
-            $housingStatus = $this->container->get('translator')->trans(
+            $housingStatus = $this->translator->trans(
                 'backend.housing.for_rent',
                 array(),
                 'messages',
-                $this->container->getParameter('locale')
+                $this->locale
             );
         else
             $housingStatus = '';
 
         $slug = $housingType.' '.$housingStatus.' '.$housing->getCity().' '.$housing->getZone().' '.$housing->getFloorArea().'m2 '.$housing->getPrice();
 
-        return $this->container->get('slugify')->slugify($slug);
+        return $this->slugify->slugify($slug);
     }
 }
