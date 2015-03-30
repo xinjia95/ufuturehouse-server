@@ -17,8 +17,8 @@ class UtilTest extends KernelTestCase
     /** @var Util */
     private $util;
 
-    /** @var ContainerInterface */
-    private $container;
+    /** @var EntityManager $em */
+    private $em;
 
     /** @var string */
     private $kernelRootDir;
@@ -27,8 +27,8 @@ class UtilTest extends KernelTestCase
     {
         self::bootKernel();
         $this->kernelRootDir = static::$kernel->getRootDir();
-        $this->container = static::$kernel->getContainer();
-        $this->util = new Util($this->kernelRootDir, $this->container);
+        $this->util = static::$kernel->getContainer()->get('ufuturehouse.util');
+        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 
     public function testGetDirs()
@@ -49,13 +49,10 @@ class UtilTest extends KernelTestCase
 
     public function testGenerateHousingSlug()
     {
-        /** @var EntityManager $em */
-        $em = $this->container->get('doctrine')->getManager();
-
         /** @var Housing[] $housings */
-        $housings = $em->getRepository('HousingBundle:Housing')->findLast(1);
+        $housings = $this->em->getRepository('HousingBundle:Housing')->findLast(1);
 
-        if ($housings === null || count($housings) == 0)
+        if (is_null($housings) || count($housings) == 0)
         {
             // If not exists create one
             $housing = new Housing();
