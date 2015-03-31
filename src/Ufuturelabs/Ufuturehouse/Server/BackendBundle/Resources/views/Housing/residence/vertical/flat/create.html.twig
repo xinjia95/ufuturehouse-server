@@ -1,19 +1,101 @@
 {% extends "@Backend/Default/admin.html.twig" %}
 
-{#{% form_theme form "HousingBundle:Catalogues:catalogues_form.html.twig" %}#}
-
 {% block article %}
     <div class="container">
+        <h1>{{ 'form.housing.header' | trans({ '%type%': ('navbar.housing.residence.vertical.flat' | trans) }, 'forms') }}</h1>
         {{ form_start(form) }}
-            {{ form_widget(form) }}
+            <fieldset>
+                <legend>{{ 'form.housing.where' | trans({}, 'forms') }}</legend>
+                {{ form_row(form.locationState) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.zone) }}
+                {{ form_row(form.address) }}
+            </fieldset>
+            <fieldset>
+                <legend>{{ 'form.housing.type' | trans({}, 'forms') }}</legend>
+                <div class="row">
+                    <div class="col-sm-2 control-label required">
+                        <strong>{{ 'form.housing.transaction' | trans({}, 'forms') }}</strong>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_row(form.onSale) }}
+                        {{ form_row(form.forRent) }}
+                    </div>
+                    <hr/>
+                </div>
+                {{ form_row(form.price) }}
+                {{ form_row(form.priceOffer) }}
+                {{ form_row(form.bankProperty) }}
+                {{ form_row(form.luxuryProperty) }}
+                {{ form_row(form.communityCharges) }}
+                {{ form_row(form.ibi) }}
+                {{ form_row(form.owners) }}
+            </fieldset>
+            <fieldset>
+                <legend>{{ 'form.housing.features' | trans({}, 'forms') }}</legend>
+                {{ form_row(form.description) }}
+                {{ form_row(form.bedroomsNumber) }}
+                {{ form_row(form.bathroomsNumber) }}
+                {{ form_row(form.toiletsNumber) }}
+                {{ form_row(form.sittingroomsNumber) }}
+                {{ form_row(form.sittingroomsArea) }}
+                {{ form_row(form.kitchensNumber) }}
+                {{ form_row(form.kitchensArea) }}
+                {{ form_row(form.kitchenType) }}
+                {{ form_row(form.floorArea) }}
+                {{ form_row(form.rentableArea) }}
+                {{ form_row(form.usableArea) }}
+                {{ form_row(form.height) }}
+                {{ form_row(form.orientation) }}
+                {{ form_row(form.inside) }}
+                {{ form_row(form.outside) }}
+                {{ form_row(form.terracesNumber) }}
+                {{ form_row(form.terracesArea) }}
+                {{ form_row(form.balconiesNumber) }}
+                {{ form_row(form.balconiesArea) }}
+                {{ form_row(form.elevatorNumber) }}
+                {{ form_row(form.parkingSpacesNumber) }}
+                {{ form_row(form.parkingSpacesArea) }}
+                {{ form_row(form.parkingSpaceType) }}
+                {{ form_row(form.parkingSpacesPriceIncluded) }}
+                {{ form_row(form.parkingSpacesPrice) }}
+                {{ form_row(form.availabilityDate) }}
+                {{ form_row(form.buildingYear) }}
+                {{ form_row(form.conservationStatus) }}
+                {{ form_row(form.doorwayStatus) }}
+                {{ form_row(form.buildingType) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.newBuildingStatus) }}
+                {{ form_row(form.energyClass) }}
+                {{ form_row(form.consumptionRate) }}
+                {{ form_row(form.emissionsClass) }}
+                {{ form_row(form.emissionsRate) }}
+                {{ form_row(form.hotWaterType) }}
+                {{ form_row(form.heatingDistribution) }}
+                {{ form_row(form.heatingType) }}
+                {{ form_row(form.airConditioningType) }}
+                {{ form_row(form.furnished) }}
+                {{ form_row(form.wardrobesNumber) }}
+                {{ form_row(form.dresser) }}
+                {{ form_row(form.clothesLine) }}
+                {{ form_row(form.boxroom) }}
+                {{ form_row(form.securityDoor) }}
+                {{ form_row(form.concierge) }}
+                {{ form_row(form.security) }}
+                {{ form_row(form.swimmingPool) }}
+                {{ form_row(form.gardenType) }}
+                {{ form_row(form.images) }}
+            </fieldset>
             <input type="submit" class="btn btn-success" style="margin-bottom: 30px;" value="{{ 'save' | trans() }}">
+            {% do form.sold.setRendered %}
+            {% do form.rented.setRendered %}
         {{ form_end(form) }}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script type="application/javascript">
-        var $addTagLinkImages = $('<a href="#" type="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus"></span></a>');
+        var $addTagLinkImages = $('<a href="#" type="button" class="btn btn-sm btn-info" style="margin-left:15px;"><span class="glyphicon glyphicon-plus"></span></a>');
         var $newLinkLiImages = $('<li style="list-style: none;"></li>').append($addTagLinkImages);
 
         $(document).ready(function() {

@@ -78,6 +78,11 @@ form:
             city.label: Ciudad
 
     housing:
+        header: Creación de %type%
+        where: Dónde
+        type: Tipo de inmueble
+        transaction: Transacción
+        features: Características
         children:
             description.label: Descripción
             onSale.label: 'Para vender'
@@ -147,3 +152,4 @@ form:
             security.label: Seguridad
             conservationStatus.label: Estado de conservación
             newBuildingStatus.label: Estado obra nueva
+            images.label: ''

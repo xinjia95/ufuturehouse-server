@@ -38,7 +38,7 @@ class Util
      * @param HousingTypeExtension $housingGetTypeExtension
      * @param Slugify $slugify
      */
-    public function __construct($kernelRootDir, EntityManager $em, LoggingTranslator $translator, $locale, HousingTypeExtension $housingGetTypeExtension, Slugify $slugify)
+    public function __construct($kernelRootDir = null, EntityManager $em = null, LoggingTranslator $translator = null, $locale = null, HousingTypeExtension $housingGetTypeExtension = null, Slugify $slugify = null)
     {
         $this->kernelRootDir = $kernelRootDir;
         $this->em = $em;
