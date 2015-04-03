@@ -33,7 +33,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      "parking_space_type"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ParkingSpaceTypeCatalogue"
  * })
  */
-class Catalogue
+abstract class Catalogue
 {
     /**
      * @var int

@@ -51,7 +51,7 @@ use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\OrientationCa
  *      "urban_floor"="Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Floor\UrbanFloor",
  * })
  */
-class Housing
+abstract class Housing
 {
     /**
      * @var int

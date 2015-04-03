@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "legal"="Ufuturelabs\Ufuturehouse\Server\PeopleBundle\Entity\LegalPerson"
  * })
  */
-class Person
+abstract class Person
 {
     /**
      * @var int
