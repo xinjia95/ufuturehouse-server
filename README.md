@@ -3,6 +3,7 @@
 uFutureHouse is a solution for the management of real estate that allows a modern web synchronized with your data and offer an API for mobile and desktop applications.
 
 ## Installation ##
+
 ### Database ###
 1. Execute this SQL with root user (MySQL example). Change DB_PASSWORD by your password:
  ```sql
@@ -17,34 +18,38 @@ uFutureHouse is a solution for the management of real estate that allows a moder
 
 ### Commands ###
 1. Execute composer:
- ```shell
+ ```sh
  composer install --no-dev --optimize-autoloader
  ```
 
 2. Create database:
- ```shell
+ ```sh
  php app/console doctrine:database:create
  ```
 
 3. Create database schema:
- ```shell
+ ```sh
  php app/console doctrine:schema:create
  ```
 
 4. Generate catalogues:
- ```shell
- php app/console doctrine:fixtures:load -n --fixtures=src/Ufu turelabs/Ufuturehouse/Server/HousingBundle/DataFixtures/ORM
+ ```sh
+ php app/console doctrine:fixtures:load -n --fixtures=src/Ufuturelabs/Ufuturehouse/Server/HousingBundle/DataFixtures/ORM
  ```
 
 5. Execute install command for generate superadmin user:
- ```shell
+ ```sh
  php app/console ufuturehouse:install
  ```
 
 6. Clean cache:
- ```shell
+ ```sh
  php app/console cache:clear --env=prod --no-debug
  ```
+
+### Files ###
+1. Apache config:
+
 
 ## Code Quality Assurance ##
 
