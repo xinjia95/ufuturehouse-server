@@ -5,7 +5,6 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Translation\LoggingTranslator;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Entity\Company;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Twig\HousingTypeExtension;
@@ -18,7 +17,7 @@ class Util
     /** @var EntityManager $em */
     private $em;
     
-    /** @var LoggingTranslator $translator */
+    /** @var $translator */
     private $translator;
     
     /** @var string $locale */
@@ -33,12 +32,12 @@ class Util
     /**
      * @param string $kernelRootDir
      * @param EntityManager $em
-     * @param LoggingTranslator $translator
+     * @param $translator
      * @param string $locale
      * @param HousingTypeExtension $housingGetTypeExtension
      * @param Slugify $slugify
      */
-    public function __construct($kernelRootDir = null, EntityManager $em = null, LoggingTranslator $translator = null, $locale = null, HousingTypeExtension $housingGetTypeExtension = null, Slugify $slugify = null)
+    public function __construct($kernelRootDir = null, EntityManager $em = null, $translator = null, $locale = null, HousingTypeExtension $housingGetTypeExtension = null, Slugify $slugify = null)
     {
         $this->kernelRootDir = $kernelRootDir;
         $this->em = $em;

@@ -213,11 +213,5 @@ class HousingTypeExtensionTest extends \PHPUnit_Framework_TestCase
             $housingTypeExtension->getHousingType(new NonUrbanFloor()),
             'Should return: navbar.housing.floor.non_urban'
         );
-
-        $this->assertEquals(
-            'housing',
-            $housingTypeExtension->getHousingType(new Housing()),
-            'Should return: housing'
-        );
     }
 }

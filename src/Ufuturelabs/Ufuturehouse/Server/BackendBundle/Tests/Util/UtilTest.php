@@ -4,10 +4,9 @@ namespace Ufuturelabs\Ufuturehouse\Server\BackendBundle\Tests\Util;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ufuturelabs\Ufuturehouse\Server\BackendBundle\Util\Util;
 use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Catalogue\ConservationStatusCatalogue;
-use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Housing;
+use Ufuturelabs\Ufuturehouse\Server\HousingBundle\Entity\Residence\ResidenceVertical\Flat;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\City;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\State;
 use Ufuturelabs\Ufuturehouse\Server\LocationsBundle\Entity\Zone;
@@ -49,44 +48,44 @@ class UtilTest extends KernelTestCase
 
     public function testGenerateHousingSlug()
     {
-        /** @var Housing[] $housings */
-        $housings = $this->em->getRepository('HousingBundle:Housing')->findLast(1);
+        /** @var Flat[] $flats */
+        $flats = $this->em->getRepository('HousingBundle:Residence\ResidenceVertical\Flat')->findAll();
 
-        if (is_null($housings) || count($housings) == 0)
+        if (is_null($flats) || count($flats) == 0)
         {
             // If not exists create one
-            $housing = new Housing();
-            $housing->setDescription('Description');
-            $housing->setOnSale(true);
-            $housing->setForRent(false);
-            $housing->setSold(false);
-            $housing->setRented(false);
-            $housing->setConservationStatus(new ConservationStatusCatalogue('catalogue.conservation_status.good'));
-            $housing->setFloorArea(81);
-            $housing->setAddress('Av. Ajalvir, 8, 28806');
-            $housing->setBuildingYear('1970');
-            $housing->setPrice(87260);
-            $housing->setAvailabilityDate(new \DateTime());
+            $flat = new Flat();
+            $flat->setDescription('Description');
+            $flat->setOnSale(true);
+            $flat->setForRent(false);
+            $flat->setSold(false);
+            $flat->setRented(false);
+            $flat->setConservationStatus(new ConservationStatusCatalogue('catalogue.conservation_status.good'));
+            $flat->setFloorArea(81);
+            $flat->setAddress('Av. Ajalvir, 8, 28806');
+            $flat->setBuildingYear('1970');
+            $flat->setPrice(87260);
+            $flat->setAvailabilityDate(new \DateTime());
 
             $state = new State();
             $state->setName('State');
-            $housing->setLocationState($state);
+            $flat->setLocationState($state);
 
             $city = new City();
             $city->setName('City');
             $city->setState($state);
-            $housing->setCity($city);
+            $flat->setCity($city);
 
             $zone = new Zone();
             $zone->setName('Zone');
             $zone->setCity($city);
-            $housing->setZone($zone);
+            $flat->setZone($zone);
 
-            $this->assertNotEmpty($this->util->generateHousingSlug($housing));
+            $this->assertNotEmpty($this->util->generateHousingSlug($flat));
         }
         else
         {
-            $this->assertEquals($housings[0]->getSlug(), $this->util->generateHousingSlug($housings[0]));
+            $this->assertEquals($flats[0]->getSlug(), $this->util->generateHousingSlug($flats[0]));
         }
     }
 }
